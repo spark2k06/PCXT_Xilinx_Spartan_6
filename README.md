@@ -4,7 +4,7 @@ PCXT port for ZXUno by [@spark2k06](https://github.com/spark2k06/).
 
 Discussion and evolution of the core in the following retrowiki forum thread:
 
-...
+http://www.retrowiki.es/viewtopic.php?f=110&t=200038687#p200160311
 
 ## Description
 
