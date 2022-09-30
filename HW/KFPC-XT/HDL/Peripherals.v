@@ -192,7 +192,7 @@ module PERIPHERALS (
 	wire tandy_page_cs = (iorq && ~address_enable_n) && (address[15:0] == 16'h03df);
 	wire ram_select_n;
 	//assign ram_select_n = ~(((~iorq && ~address_enable_n) && ~(address[19:16] == 4'b1111)) && ~(address[19:14] == 6'b111011));
-	assign ram_select_n = ~((~iorq && ~address_enable_n) && ~(address[19:13] == 7'b1111111));
+	assign ram_select_n = ~((~iorq && ~address_enable_n) && ~(address[19:13] == 7'b1111111) && ~(address[19:16] == 4'b1101));
 	wire [3:0] ems_page_address = (ems_address == 2'b00 ? 4'b1010 : (ems_address == 2'b01 ? 4'b1100 : 4'b1101));
 	wire ems_oe = ((iorq && ~address_enable_n) && ems_enabled) && ({address[15:2], 2'd0} == 16'h0260);
 	reg [0:3] ena_ems;
@@ -358,6 +358,7 @@ module PERIPHERALS (
 			ps2_clock_out = 1'b1;
 		else
 			ps2_clock_out = ~((keybord_irq | ~ps2_send_clock) | ~ps2_reset_n);
+	
 	wire [7:0] jtopl2_dout;
 	wire [7:0] opl32_data;
 	assign opl32_data = (adlibhide ? 8'hff : jtopl2_dout);
@@ -636,6 +637,15 @@ module PERIPHERALS (
 		.addra(address[12:0]), // rom_address
 //		.dina(internal_data_bus),
 		.douta(bios_cpu_dout)
+	);
+	
+	BRAM_16KB_XTIDE xtide(
+		.clka(clock),
+		.ena(~xtide_select_n),
+//		.wea(~memory_write_n),		
+		.addra(address[13:0]), // rom_address
+//		.dina(internal_data_bus),
+		.douta(xtide_cpu_dout)
 	);
 
 	splash splash_screen(

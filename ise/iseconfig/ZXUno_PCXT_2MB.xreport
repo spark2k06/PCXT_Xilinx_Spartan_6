@@ -1,11 +1,11 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2022-09-27T11:22:24</DateModified>
+  <DateModified>2022-09-30T13:24:12</DateModified>
   <ModuleName>ZXUno_PCXT_2MB</ModuleName>
-  <SummaryTimeStamp>2022-09-27T10:57:44</SummaryTimeStamp>
-  <SavedFilePath>C:/FPGA/PCXT_ZXUno/ise/iseconfig/ZXUno_PCXT_2MB.xreport</SavedFilePath>
-  <ImplementationReportsDirectory>C:/FPGA/PCXT_ZXUno/ise\</ImplementationReportsDirectory>
+  <SummaryTimeStamp>2022-09-30T12:46:57</SummaryTimeStamp>
+  <SavedFilePath>C:/Users/Aitor/Desktop/PCXT_ZXUno/ise/iseconfig/ZXUno_PCXT_2MB.xreport</SavedFilePath>
+  <ImplementationReportsDirectory>C:/Users/Aitor/Desktop/PCXT_ZXUno/ise\</ImplementationReportsDirectory>
   <DateInitialized>2022-09-27T10:55:05</DateInitialized>
   <EnableMessageFiltering>false</EnableMessageFiltering>
  </header>
