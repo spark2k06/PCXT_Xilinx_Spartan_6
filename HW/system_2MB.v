@@ -5,7 +5,7 @@ module system_2MB
 		 input clk_100,
 		 input clk_chipset,
 		 input clk_vga,	 
-//		 input clk_uart,
+		 input clk_uart,
 		 input clk_opl2,
 		
 		 output [20:0]SRAM_ADDR,
@@ -15,10 +15,16 @@ module system_2MB
 		 output wire [5:0]VGA_G,
 		 output wire [5:0]VGA_B,
 		 output wire VGA_HSYNC,
-		 output wire VGA_VSYNC
+		 output wire VGA_VSYNC,
+		 input wire uart_rx,
+		 output wire uart_tx,
 //		 output LED,
-//		 output AUD_L,
-//		 output AUD_R,
+
+		 inout wire clkps2,
+		 inout wire dataps2,
+		
+		 output AUD_L,
+		 output AUD_R
 //	 	 inout PS2_CLK1,
 //		 inout PS2_CLK2,
 //		 inout PS2_DATA1,
@@ -43,7 +49,19 @@ wire clk_4_77;
 reg clk_cpu = 1'b0;
 reg pclk = 1'b0;
 reg peripheral_clock;
-	 
+
+reg ps2_clock_in;
+reg ps2_data_in;
+wire ps2_clock_out;
+wire ps2_data_out;
+
+/*
+assign ps2_clock_in = clkps2;
+assign clkps2 = (ps2_clock_out == 1'b0) ? 1'b0 : 1'bZ;
+
+assign ps2_data_in = dataps2;
+assign dataps2 = (ps2_data_out == 1'b0) ? 1'b0 : 1'bZ;
+*/
 
 always @(posedge clk_vga) begin // 28.636MHz
 	clk_14_318 <= ~clk_14_318; // 14.318Mhz
@@ -60,6 +78,15 @@ clk_div3 clk_normal // 4.77MHz
 
 always @(posedge clk_4_77)
 	peripheral_clock <= ~peripheral_clock; // 2.385Mhz
+	
+
+assign clkps2 = (ps2_clock_out == 1'b0) ? 1'b0 : 1'bZ;
+assign dataps2 = (ps2_data_out == 1'b0) ? 1'b0 : 1'bZ;
+
+always @(posedge peripheral_clock) begin
+	ps2_clock_in <= clkps2;
+	ps2_data_in <= dataps2;
+end
 	
 wire  biu_done;
 reg  turbo_mode;
@@ -143,7 +170,7 @@ reg tandy_mode = 0;
 
 always @(negedge clk_chipset, posedge reset) begin
 	if (reset) begin
-		tandy_mode <= 1'b1; // status[3]
+		tandy_mode <= 1'b0; // status[3]
 		reset_cpu <= 1'b1;
 		reset_cpu_count <= 16'h0000;
 	end
@@ -199,15 +226,28 @@ reg splash_status = 1'b0;
     wire lock_n;
     wire [2:0]processor_status;
 	 
-	 wire  [7:0]   port_b_out;
-    wire  [7:0]   port_c_in;	 
-	 wire  [7:0]   sw;
+	 wire [7:0] port_b_out;
+    wire [7:0] port_c_in;	 
+	 wire [7:0] sw;
+	 wire speaker_out;
 	 
 //	 wire [1:0] scale = status[2:1];
 //	 wire [2:0] screen_mode = status[16:14];	 
 	 
 	 assign  sw = 8'b00101101; // PCXT DIP Switches (CGA 80)
 	 assign  port_c_in[3:0] = port_b_out[3] ? sw[7:4] : sw[3:0];
+	 
+	reg clk_uart_ff_1;
+	reg clk_uart_ff_2;
+	reg clk_uart_ff_3;
+	reg clk_uart_en;
+
+	always @(posedge clk_chipset) begin
+		clk_uart_ff_1 <= clk_uart;
+		clk_uart_ff_2 <= clk_uart_ff_1;
+		clk_uart_ff_3 <= clk_uart_ff_2;
+		clk_uart_en   <= ~clk_uart_ff_3 & clk_uart_ff_2;
+   end
 		 
    CHIPSET u_CHIPSET (
         .clock                              (clk_chipset),
@@ -261,11 +301,11 @@ reg splash_status = 1'b0;
 //      .terminal_count_n                   (terminal_count_n)
         .port_b_out                         (port_b_out),
 		  .port_c_in                          (port_c_in),
-//	     .speaker_out                        (speaker_out),   
-//      .ps2_clock                          (device_clock),
-//	     .ps2_data                           (device_data),
-//	     .ps2_clock_out                      (ps2_kbd_clk_out),
-//	     .ps2_data_out                       (ps2_kbd_data_out),
+	     .speaker_out                        (speaker_out),   
+		  .ps2_clock                          (ps2_clock_in),
+	     .ps2_data                           (ps2_data_in),
+	     .ps2_clock_out                      (ps2_clock_out),
+	     .ps2_data_out                       (ps2_data_out),
 //		  .joy_opts                           (joy_opts),                          //Joy0-Disabled, Joy0-Type, Joy1-Disabled, Joy1-Type, turbo_sync
 //      .joy0                               (status[28] ? joy1 : joy0),
 //      .joy1                               (status[28] ? joy0 : joy1),
@@ -273,23 +313,24 @@ reg splash_status = 1'b0;
 //		  .joya1                              (status[28] ? joya0 : joya1),
 		  .clk_en_opl2                        (cen_opl2),
 		  .jtopl2_snd_e                       (jtopl2_snd_e),
-//		  .tandy_snd_e                        (tandy_snd_e),
+		  .tandy_snd_e                        (tandy_snd_e),
 //		  .adlibhide                          (adlibhide),
 		  .tandy_video                        (tandy_mode),
-		  .tandy_16_gfx                       (tandy_16_gfx),
+//		  .tandy_16_gfx                       (tandy_16_gfx),
 //		  .ioctl_download                     (ioctl_download),
 //		  .ioctl_index                        (ioctl_index),
 //		  .ioctl_wr                           (ioctl_wr),
 //		  .ioctl_addr                         (ioctl_addr),
 //		  .ioctl_data                         (ioctl_data),		  
-		  .clk_uart                           (1'b0), // clk_uart
-//	     .uart_rx                            (uart_rx),
-//	     .uart_tx                            (uart_tx),
-//	     .uart_cts_n                         (uart_cts),
-//	     .uart_dcd_n                         (uart_dcd),
-//	     .uart_dsr_n                         (uart_dsr),
+		  .clk_uart                           (clk_uart_en),
+	     .uart_rx                            (uart_rx),
+	     .uart_tx                            (uart_tx),
+	     .uart_cts_n                         (1'b0), // uart_cts
+	     .uart_dcd_n                         (1'b0), // uart_dcd
+	     .uart_dsr_n                         (1'b0), // uart_dsr
 //	     .uart_rts_n                         (uart_rts),
 //	     .uart_dtr_n                         (uart_dtr),
+
 		  .SRAM_ADDR                          (SRAM_ADDR),
 		  .SRAM_DATA                          (SRAM_DATA),
 		  .SRAM_WE_n                          (SRAM_WE_n),
@@ -297,6 +338,9 @@ reg splash_status = 1'b0;
 		  .ems_address                        (2'b0), // status[13:12]
 		  .bios_writable                      (2'b0) // status[31:30]
     );
+	 
+	assign AUD_L = speaker_out;
+	assign AUD_R = speaker_out;
 	 
 	wire s6_3_mux;
 	wire [2:0] SEGMENT;

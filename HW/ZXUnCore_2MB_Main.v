@@ -10,11 +10,18 @@ module ZXUnCore_PCXT_2MB
 		output wire VGA_VSYNC,
 		output wire SRAM_WE_n,
 		output wire [20:0]SRAM_A,
-		inout  wire [7:0]SRAM_D
+		inout  wire [7:0]SRAM_D,
+		
+		output wire uart_rx,
+		input wire uart_tx,
+		
+		inout wire clkps2,
+		inout wire dataps2,
+		
+		output wire AUDIO_L,
+		output wire AUDIO_R
 		/*
 		output wire LED,
-		output wire AUDIO_L,
-		output wire AUDIO_R,
 		inout  wire PS2CLKA,
 		inout  wire PS2CLKB,
 		inout  wire PS2DATA,
@@ -36,25 +43,25 @@ module ZXUnCore_PCXT_2MB
 	wire clk_100;
 	wire clk_50;
 	wire clk_28_571;	
-//	wire clk_14_815; // clk_uart
-	wire clk_3_571;	
+	wire clk_14_815;
+//	wire clk_3_571;	
 	
 	dcm dcm_system 
 	(
 		.CLK_IN1(CLK_50MHZ), 
 		.CLK_OUT1(clk_100),
 		.CLK_OUT2(clk_50),
-		.CLK_OUT3(clk_28_571)
-//		.CLK_OUT4(clk_14_815), clk_uart
+		.CLK_OUT3(clk_28_571),
+		.CLK_OUT4(clk_14_815)
 //		.CLK_OUT4(clk_3_571)	// CLK_OUT5
-    );
-   
+    );	 
+  
 	system_2MB sys_inst
 	(	
 		.clk_100(clk_100),
 		.clk_chipset(clk_50),
 		.clk_vga(clk_28_571),
-//		.clk_uart(clk_14_815),
+		.clk_uart(clk_14_815),
 //		.clk_opl2(clk_3_571),		
 		
 		.VGA_R(VGA_R),
@@ -64,10 +71,14 @@ module ZXUnCore_PCXT_2MB
 		.VGA_VSYNC(VGA_VSYNC),
 		.SRAM_ADDR(SRAM_A),
 		.SRAM_DATA(SRAM_D),
-		.SRAM_WE_n(SRAM_WE_n)		
+		.SRAM_WE_n(SRAM_WE_n),
+		.uart_rx(uart_tx),
+		.uart_tx(uart_rx),
 //		.LED(LED),
-//		.AUD_L(AUDIO_L),
-//		.AUD_R(AUDIO_R),
+		.clkps2(clkps2),
+		.dataps2(dataps2),
+		.AUD_L(AUDIO_L),
+		.AUD_R(AUDIO_R)
 //	 	.PS2_CLK1(PS2CLKA),
 //		.PS2_CLK2(PS2CLKB),
 //		.PS2_DATA1(PS2DATA),

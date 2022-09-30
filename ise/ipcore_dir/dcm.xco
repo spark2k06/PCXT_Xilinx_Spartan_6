@@ -1,7 +1,7 @@
 ##############################################################
 #
 # Xilinx Core Generator version 14.7
-# Date: Mon Sep 26 11:28:00 2022
+# Date: Thu Sep 29 03:42:31 2022
 #
 ##############################################################
 #
@@ -84,9 +84,9 @@ CSET clkout3_requested_phase=0.000
 CSET clkout3_used=true
 CSET clkout4_drives=BUFG
 CSET clkout4_requested_duty_cycle=50.000
-CSET clkout4_requested_out_freq=7.169
+CSET clkout4_requested_out_freq=14.814814
 CSET clkout4_requested_phase=0.000
-CSET clkout4_used=false
+CSET clkout4_used=true
 CSET clkout5_drives=BUFG
 CSET clkout5_requested_duty_cycle=50.000
 CSET clkout5_requested_out_freq=4.772
@@ -189,7 +189,7 @@ CSET mmcm_notes=None
 CSET mmcm_ref_jitter1=0.010
 CSET mmcm_ref_jitter2=0.010
 CSET mmcm_startup_wait=false
-CSET num_out_clks=3
+CSET num_out_clks=4
 CSET override_dcm=false
 CSET override_dcm_clkgen=false
 CSET override_mmcm=false
@@ -209,7 +209,7 @@ CSET pll_clkout1_phase=0.000
 CSET pll_clkout2_divide=14
 CSET pll_clkout2_duty_cycle=0.500
 CSET pll_clkout2_phase=0.000
-CSET pll_clkout3_divide=56
+CSET pll_clkout3_divide=27
 CSET pll_clkout3_duty_cycle=0.500
 CSET pll_clkout3_phase=0.000
 CSET pll_clkout4_divide=84
@@ -266,4 +266,4 @@ CSET use_status=false
 MISC pkg_timestamp=2012-05-10T12:44:55Z
 # END Extra information
 GENERATE
-# CRC: 146cbb09
+# CRC: a2d5922c

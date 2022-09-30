@@ -17,22 +17,44 @@
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|FPGA|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8259 - KF8259</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|FPGA|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KFPS2KB - KFPS2KB</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|FPGA|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/uart1 - uart</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/B1 - i8088</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_BUS_ARBITER - BUS_ARBITER</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/cga1 - cga</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/sn76489 - sn76489_top - struct</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8253 - KF8253</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8255 - KF8255</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8259 - KF8259</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KFPS2KB - KFPS2KB</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/uart - uart</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/uart1 - uart2/uart_16750 - uart_16750 - rtl/UART_RX - uart_receiver - rtl</ClosedNode>
+         <ClosedNode>/gh_baud_rate_gen - a C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|gh_baud_rate_gen.vhd</ClosedNode>
+         <ClosedNode>/gh_fifo_async16_rcsr_wf - a C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|gh_fifo_async16_rcsr_wf.vhd</ClosedNode>
+         <ClosedNode>/gh_uart_16550 - a C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|gh_uart_16550.vhd</ClosedNode>
+         <ClosedNode>/gh_uart_Rx_8bit - a C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|gh_uart_Rx_8bit.vhd</ClosedNode>
+         <ClosedNode>/mpu C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|uart2.v</ClosedNode>
+         <ClosedNode>/sn76489_top - struct C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|sn76489|sn76489_top.vhd</ClosedNode>
+         <ClosedNode>/uart C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|uart2.v</ClosedNode>
+         <ClosedNode>/uart C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart|uart.v</ClosedNode>
+         <ClosedNode>/uart_16750 - rtl C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart|uart_16750.vhd</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem>ZXUnCore_PCXT_2MB (C:/FPGA/PCXT_ZXUno/HW/ZXUnCore_2MB_Main.v)</SelectedItem>
+         <SelectedItem>ZXUnCore_PCXT_2MB (C:/Users/Aitor/Desktop/PCXT_ZXUno/HW/ZXUnCore_2MB_Main.v)</SelectedItem>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000002020000000100000001000000640000026f000000020000000000000000000000000200000064ffffffff0000008100000003000000020000026f0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
-      <CurrentItem>ZXUnCore_PCXT_2MB (C:/FPGA/PCXT_ZXUno/HW/ZXUnCore_2MB_Main.v)</CurrentItem>
+      <CurrentItem>ZXUnCore_PCXT_2MB (C:/Users/Aitor/Desktop/PCXT_ZXUno/HW/ZXUnCore_2MB_Main.v)</CurrentItem>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VERILOG" guiview="Process" >
       <ClosedNodes>
          <ClosedNodesVersion>1</ClosedNodesVersion>
          <ClosedNode>Configure Target Device</ClosedNode>
          <ClosedNode>Design Utilities</ClosedNode>
-         <ClosedNode>Implement Design</ClosedNode>
+         <ClosedNode>Implement Design/Map</ClosedNode>
+         <ClosedNode>Implement Design/Place &amp; Route</ClosedNode>
+         <ClosedNode>Implement Design/Translate</ClosedNode>
          <ClosedNode>Synthesize - XST</ClosedNode>
          <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
@@ -41,7 +63,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000287000000010000000100000000000000000000000064ffffffff000000810000000000000001000002870000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027c0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem>Generate Programming File</CurrentItem>
    </ItemView>
@@ -74,14 +96,56 @@
          <ClosedNode>CORE Generator</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
+         <SelectedItem></SelectedItem>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027c0000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem></CurrentItem>
+   </ItemView>
+   <SourceProcessView>000000ff00000000000000020000011b0000011b01000000050100000002</SourceProcessView>
+   <CurrentView>Implementation</CurrentView>
+   <ItemView engineview="SynthesisOnly" sourcetype="" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Design Utilities</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
          <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000100000000000000000000000000000000000000000000000287000000010000000100000000000000000000000064ffffffff000000810000000000000001000002870000000100000000</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027c0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
       <CurrentItem/>
    </ItemView>
-   <SourceProcessView>000000ff00000000000000020000011b0000011b01000000050100000002</SourceProcessView>
-   <CurrentView>Implementation</CurrentView>
+   <ItemView engineview="SynthesisOnly" sourcetype="DESUT_UCF" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>User Constraints</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem/>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027c0000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem/>
+   </ItemView>
+   <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
+      <ClosedNodes>
+         <ClosedNodesVersion>1</ClosedNodesVersion>
+         <ClosedNode>Design Utilities</ClosedNode>
+      </ClosedNodes>
+      <SelectedItems>
+         <SelectedItem/>
+      </SelectedItems>
+      <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
+      <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
+      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027c0000000100000000</ViewHeaderState>
+      <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
+      <CurrentItem/>
+   </ItemView>
 </Project>
