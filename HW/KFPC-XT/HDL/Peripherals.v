@@ -151,7 +151,6 @@ module PERIPHERALS (
 	input wire [1:0] ems_address;
 	input wire [2:0] bios_writable;
 	output wire cga_vram_rdy;
-	wire [7:0] SRAM_DATA_A_i;
 	wire [7:0] SRAM_DATA_A_o;
 	wire grph_mode;
 	wire hres_mode;
@@ -497,7 +496,8 @@ module PERIPHERALS (
 		video_io_read_n <= io_read_n;
 		video_address_enable_n <= address_enable_n;
 	end
-	reg [7:0] cga_vram_cpu_dout;
+	wire [7:0] cga_vram_cpu_dout; // reg
+	reg [7:0] cga_vram_cpu_dout_1; // reg
 	always @(posedge clk_vga_cga) begin
 		cga_io_address_1 <= video_io_address;
 		cga_io_address_2 <= cga_io_address_1;
@@ -511,7 +511,7 @@ module PERIPHERALS (
 		cga_io_read_n_3 <= cga_io_read_n_2;
 		cga_address_enable_n_1 <= video_address_enable_n;
 		cga_address_enable_n_2 <= cga_address_enable_n_1;
-		cga_vram_cpu_dout <= SRAM_DATA;
+		cga_vram_cpu_dout_1 <= cga_vram_cpu_dout;
 	end
 	wire [3:0] video_cga;
 	wire [18:0] CGA_VRAM_ADDR;
@@ -547,7 +547,7 @@ module PERIPHERALS (
 		.bus_aen(cga_address_enable_n_1), // cga_address_enable_n_2
 		.vram_enable(CGA_VRAM_ENABLE),
 		.vram_addr(CGA_VRAM_ADDR),
-		.vram_din((splashscreen ? CGA_VRAM_DOUT : cga_vram_cpu_dout)),
+		.vram_din((splashscreen ? CGA_VRAM_DOUT : cga_vram_cpu_dout_1)),
 		.hsync(VGA_HSYNC),
 		.hblank(VGA_HBlank),
 		.vsync(VGA_VSYNC),
@@ -612,13 +612,15 @@ module PERIPHERALS (
 		.douta(ram_cpu_dout),
 //		.doutaxtide(xtide_cpu_dout),
 //		.doutabios(bios_cpu_dout),
-		.SRAM_ADDR(SRAM_ADDR_A),
+		.enacga(CGA_VRAM_ENABLE && ~(xtide_loading || bios_loader)),
+		.addracga(tandy_16_gfx ? tandy_crtc : cga_crtc),
+		.doutacga(cga_vram_cpu_dout),
+		
+		.SRAM_ADDR(SRAM_ADDR),
 		.SRAM_DATA_i(SRAM_DATA),
 		.SRAM_DATA_o(SRAM_DATA_A_o),
-		.SRAM_WE_n(SRAM_WE_n_A)
+		.SRAM_WE_n(SRAM_WE_n)
 	);
-	assign SRAM_WE_n = (CGA_VRAM_ENABLE && ~(xtide_loading || bios_loader) ? 1'b1 : SRAM_WE_n_A);
-	assign SRAM_ADDR = (CGA_VRAM_ENABLE && ~(xtide_loading || bios_loader) ? (tandy_16_gfx ? tandy_crtc : cga_crtc) : SRAM_ADDR_A);
 	assign SRAM_DATA = (~SRAM_WE_n ? SRAM_DATA_A_o : 8'hzz);
 	
 	/*

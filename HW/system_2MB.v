@@ -94,7 +94,7 @@ reg  turbo_mode;
 always @(posedge clk_chipset) begin
     if (biu_done)
         //turbo_mode  <= (status[18:17] == 2'b01 || status[18:17] == 2'b10);
-		  turbo_mode  <= 1'b0;
+		  turbo_mode  <= 1'b1;
     else
         turbo_mode  <= turbo_mode;
 end

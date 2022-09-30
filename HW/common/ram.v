@@ -4,17 +4,20 @@ module ram
   input               ena,
   input               enaxtide,
   input               enabios,
+  input               enacga,
   input               wea,
   input               weaxtide,
-  input               weabios,
+  input               weabios,  
   input      [20:0]   addra,
   input      [20:0]   addraxtide,
   input      [20:0]   addrabios,
+  input      [20:0]   addracga,
   input      [7:0]    dina,
   input      [7:0]    dinaxtidebios,
   output reg [7:0]    douta,
   output reg [7:0]    doutaxtide,
   output reg [7:0]    doutabios,
+  output reg [7:0]    doutacga,
 
   output reg [20:0]   SRAM_ADDR,
   input      [7:0]    SRAM_DATA_i,
@@ -47,8 +50,13 @@ begin
 			doutabios <= SRAM_DATA_i;
 		end
 	end
+	else if (enacga) begin
+		SRAM_ADDR = addracga;
+		doutacga <= SRAM_DATA_i;
+	end
+	
 	else if (ena) begin
-      SRAM_ADDR = addra;		
+      SRAM_ADDR = addra;
 		if (wea) begin
 		   SRAM_WE_n <= 1'b0;			
 			SRAM_DATA_o <= dina;
