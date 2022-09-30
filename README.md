@@ -18,11 +18,7 @@ An SN76489AN Compatible Implementation (Tandy Sound) written in VHDL was also in
 
 ## Notice
 
-The current status of the project is very preliminary... at the moment, only a diagnostic ROM is being used for testing purposes.
-
-Some modules are not connected, such as the keyboard or the sound system. The core is unstable, outside of this diagnostic environment, normal real PCXT BIOSes do not boot.
-
-There are timing issues, especially in relation to the VRAM which is currently located in the SRAM, in the current state and with a solution in place for the dual port requirement, the core only runs at 14.318MHz. Small changes such as adding a speaker signal for the speaker to sound can cause artifacts on the screen.
+There are timing issues, especially in relation to the VRAM which is currently located in the SRAM, in the current state and with a solution in place for the dual port requirement, the core only runs at 14.318MHz in normal mode of MCL86 IP core.
 
 ## To-do list and challenges
 
