@@ -248,6 +248,19 @@ reg splash_status = 1'b0;
 		clk_uart_ff_3 <= clk_uart_ff_2;
 		clk_uart_en   <= ~clk_uart_ff_3 & clk_uart_ff_2;
    end
+	
+   wire [15:0]jtopl2_snd_e;
+	reg [31:0]sndval = 0;	
+	wire [16:0]sndmix = (({jtopl2_snd_e[15], jtopl2_snd_e}) << 2) + (speaker_out << 15); // signed mixer
+	wire [15:0]sndamp = (~|sndmix[16:15] | &sndmix[16:15]) ? {!sndmix[15], sndmix[14:0]} : {16{!sndmix[16]}}; // clamp to [-32768..32767] and add 32878
+	wire sndsign = sndval[31:16] < sndamp;
+	
+	always @(posedge clk_vga) begin	
+		sndval <= sndval - sndval[31:7] + (sndsign << 25);
+	end
+	
+	assign AUD_L = sndsign;
+	assign AUD_R = sndsign;
 		 
    CHIPSET u_CHIPSET (
         .clock                              (clk_chipset),
@@ -338,9 +351,6 @@ reg splash_status = 1'b0;
 		  .ems_address                        (2'b0), // status[13:12]
 		  .bios_writable                      (2'b0) // status[31:30]
     );
-	 
-	assign AUD_L = speaker_out;
-	assign AUD_R = speaker_out;
 	 
 	wire s6_3_mux;
 	wire [2:0] SEGMENT;
