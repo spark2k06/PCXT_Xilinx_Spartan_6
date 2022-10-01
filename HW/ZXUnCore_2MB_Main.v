@@ -44,7 +44,7 @@ module ZXUnCore_PCXT_2MB
 	wire clk_50;
 	wire clk_28_571;	
 	wire clk_14_815;
-//	wire clk_3_571;	
+	wire clk_3_571;	
 	
 	dcm dcm_system 
 	(
@@ -52,8 +52,8 @@ module ZXUnCore_PCXT_2MB
 		.CLK_OUT1(clk_100),
 		.CLK_OUT2(clk_50),
 		.CLK_OUT3(clk_28_571),
-		.CLK_OUT4(clk_14_815)
-//		.CLK_OUT4(clk_3_571)	// CLK_OUT5
+		.CLK_OUT4(clk_14_815),
+		.CLK_OUT5(clk_3_571)
     );	 
   
 	system_2MB sys_inst
@@ -62,7 +62,7 @@ module ZXUnCore_PCXT_2MB
 		.clk_chipset(clk_50),
 		.clk_vga(clk_28_571),
 		.clk_uart(clk_14_815),
-//		.clk_opl2(clk_3_571),		
+		.clk_opl2(clk_3_571),		
 		
 		.VGA_R(VGA_R),
 		.VGA_G(VGA_G),

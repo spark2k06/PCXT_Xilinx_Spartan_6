@@ -64,9 +64,9 @@ module dcm_exdes
   input         CLK_IN1,
   // Reset that only drives logic in example design
   input         COUNTER_RESET,
-  output [4:1]  CLK_OUT,
+  output [5:1]  CLK_OUT,
   // High bits of counters driven by clocks
-  output [4:1]  COUNT
+  output [5:1]  COUNT
  );
 
   // Parameters for the counters
@@ -74,7 +74,7 @@ module dcm_exdes
   // Counter width
   localparam    C_W       = 16;
   // Number of counters
-  localparam    NUM_C     = 4;
+  localparam    NUM_C     = 5;
   genvar        count_gen;
   // Create reset for the counters
   wire          reset_int = COUNTER_RESET;
@@ -100,7 +100,8 @@ module dcm_exdes
     .CLK_OUT1           (clk_int[1]),
     .CLK_OUT2           (clk_int[2]),
     .CLK_OUT3           (clk_int[3]),
-    .CLK_OUT4           (clk_int[4]));
+    .CLK_OUT4           (clk_int[4]),
+    .CLK_OUT5           (clk_int[5]));
 
 genvar clk_out_pins;
 
@@ -127,6 +128,7 @@ endgenerate
   assign clk[2] = clk_int[2];
   assign clk[3] = clk_int[3];
   assign clk[4] = clk_int[4];
+  assign clk[5] = clk_int[5];
 
 
   // Reset synchronizer
