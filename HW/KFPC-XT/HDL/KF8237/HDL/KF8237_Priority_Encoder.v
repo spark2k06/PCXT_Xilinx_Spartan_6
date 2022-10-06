@@ -1,41 +1,26 @@
+`default_nettype none
+
 module KF8237_Priority_Encoder (
-	clock,
-	cpu_clock_posedge,
-	cpu_clock_negedge,
-	reset,
-	internal_data_bus,
-	write_command_register,
-	write_request_register,
-	set_or_reset_mask_register,
-	write_mask_register,
-	master_clear,
-	clear_mask_register,
-	dma_rotate,
-	edge_request,
-	dma_request_state,
-	encoded_dma,
-	end_of_process_internal,
-	dma_acknowledge_internal,
-	dma_request
-);
-	input wire clock;
-	input wire cpu_clock_posedge;
-	input wire cpu_clock_negedge;
-	input wire reset;
-	input wire [7:0] internal_data_bus;
-	input wire write_command_register;
-	input wire write_request_register;
-	input wire set_or_reset_mask_register;
-	input wire write_mask_register;
-	input wire master_clear;
-	input wire clear_mask_register;
-	input wire [1:0] dma_rotate;
-	input wire [3:0] edge_request;
-	output reg [3:0] dma_request_state;
-	output reg [3:0] encoded_dma;
-	input wire end_of_process_internal;
-	input wire [3:0] dma_acknowledge_internal;
-	input wire [3:0] dma_request;
+	input		wire					clock,
+	input		wire					cpu_clock_posedge,
+	input		wire					cpu_clock_negedge,
+	input		wire					reset,
+	input		wire	[7:0]			internal_data_bus,
+	input		wire					write_command_register,
+	input		wire					write_request_register,
+	input		wire					set_or_reset_mask_register,
+	input		wire					write_mask_register,
+	input		wire					master_clear,
+	input		wire					clear_mask_register,
+	input		wire	[1:0]			dma_rotate,
+	input		wire	[3:0]			edge_request,
+	output	reg	[3:0]			dma_request_state,
+	output	reg	[3:0]			encoded_dma,
+	input		wire					end_of_process_internal,
+	input		wire	[3:0]			dma_acknowledge_internal,
+	input		wire	[3:0]			dma_request
+	);
+
 	reg [7:0] bit_select = 8'b00011011;
 	reg controller_disable;
 	reg rotating_priority;

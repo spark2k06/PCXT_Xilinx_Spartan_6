@@ -1,47 +1,29 @@
+`default_nettype none
+
 module KF8288 (
-	clock,
-	cpu_clock,
-	reset,
-	address_enable_n,
-	command_enable,
-	io_bus_mode,
-	processor_status,
-	enable_io_command,
-	advanced_io_write_command_n,
-	io_write_command_n,
-	io_read_command_n,
-	interrupt_acknowledge_n,
-	enable_memory_command,
-	advanced_memory_write_command_n,
-	memory_write_command_n,
-	memory_read_command_n,
-	direction_transmit_or_receive_n,
-	data_enable,
-	master_cascade_enable,
-	peripheral_data_enable_n,
-	address_latch_enable
-);
-	input wire clock;
-	input wire cpu_clock;
-	input wire reset;
-	input wire address_enable_n;
-	input wire command_enable;
-	input wire io_bus_mode;
-	input wire [2:0] processor_status;
-	output reg enable_io_command;
-	output reg advanced_io_write_command_n;
-	output reg io_write_command_n;
-	output reg io_read_command_n;
-	output reg interrupt_acknowledge_n;
-	output reg enable_memory_command;
-	output reg advanced_memory_write_command_n;
-	output reg memory_write_command_n;
-	output reg memory_read_command_n;
-	output reg direction_transmit_or_receive_n;
-	output wire data_enable;
-	output wire master_cascade_enable;
-	output wire peripheral_data_enable_n;
-	output wire address_latch_enable;
+	input		wire					clock,
+	input		wire					cpu_clock,
+	input		wire					reset,
+	input		wire					address_enable_n,
+	input		wire					command_enable,
+	input		wire					io_bus_mode,
+	input		wire					[2:0] processor_status,
+	output	reg					enable_io_command,
+	output	reg					advanced_io_write_command_n,
+	output	reg					io_write_command_n,
+	output	reg					io_read_command_n,
+	output	reg					interrupt_acknowledge_n,
+	output	reg					enable_memory_command,
+	output	reg					advanced_memory_write_command_n,
+	output	reg					memory_write_command_n,
+	output	reg					memory_read_command_n,
+	output	reg					direction_transmit_or_receive_n,
+	output	wire					data_enable,
+	output	wire					master_cascade_enable,
+	output	wire					peripheral_data_enable_n,
+	output	wire					address_latch_enable
+	);
+
 	reg prev_cpu_clock;
 	always @(posedge clock or posedge reset)
 		if (reset)

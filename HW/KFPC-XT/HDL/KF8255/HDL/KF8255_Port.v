@@ -1,31 +1,21 @@
+`default_nettype none
+
 module KF8255_Port (
-	clock,
-	reset,
-	internal_data_bus,
-	write_port,
-	update_mode,
-	mode_select_reg,
-	port_io_reg,
-	strobe,
-	hiz,
-	port_io,
-	port_out,
-	port_in,
-	read
-);
-	input wire clock;
-	input wire reset;
-	input wire [7:0] internal_data_bus;
-	input wire write_port;
-	input wire update_mode;
-	input wire [1:0] mode_select_reg;
-	input wire port_io_reg;
-	input wire strobe;
-	input wire hiz;
-	output reg port_io;
-	output reg [7:0] port_out;
-	input wire [7:0] port_in;
-	output wire [7:0] read;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire	[7:0]			internal_data_bus,
+	input		wire					write_port,
+	input		wire					update_mode,
+	input		wire	[1:0]			mode_select_reg,
+	input		wire					port_io_reg,
+	input		wire					strobe,
+	input		wire					hiz,
+	output	reg					port_io,
+	output	reg	[7:0]			port_out,
+	input		wire	[7:0]			port_in,
+	output	wire	[7:0]			read
+	);
+
 	always @(posedge clock or posedge reset)
 		if (reset)
 			port_io <= 1'b1;

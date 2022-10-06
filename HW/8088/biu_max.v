@@ -44,53 +44,52 @@
 //
 //------------------------------------------------------------------------
 
+`default_nettype none
 
-module biu_max
-  (  
-    input               CORE_CLK_INT,           // Core Clock
+module biu_max(
+	input		wire					CORE_CLK_INT,           // Core Clock
 
-    
-    input               CLK,                    // 8088 Pins
-    input               RESET_INT,
-    input               READY_IN,
-    input               NMI,
-    input               INTR,
-    output reg          LOCK_n,
-    output reg          AD_OE,
-    output reg [19:0]   AD_OUT,
-    input  [7:0]        AD_IN,
-    output reg          S6_3_MUX,
-    output reg [2:0]    S2_S0_OUT,
 
-    
-    input  [15:0]       EU_BIU_COMMAND,         // EU to BIU Signals
-    input  [15:0]       EU_BIU_DATAOUT,
-    input  [15:0]       EU_REGISTER_R3,
-    input               EU_PREFIX_LOCK,
-    
-    
-    output              BIU_DONE,               // BIU to EU Signals
-    output              BIU_CLK_COUNTER_ZERO,
-    output [1:0]        BIU_SEGMENT,
-    output              BIU_NMI_CAUGHT,
-    input               BIU_NMI_DEBOUNCE,
-    output reg          BIU_INTR,
+	input		wire					CLK,                    // 8088 Pins
+	input		wire					RESET_INT,
+	input		wire					READY_IN,
+	input		wire					NMI,
+	input		wire					INTR,
+	output	reg					LOCK_n,
+	output	reg					AD_OE,
+	output	reg	[19:0]		AD_OUT,
+	input		wire	[7:0]			AD_IN,
+	output	reg					S6_3_MUX,
+	output	reg	[2:0]			S2_S0_OUT,
 
-    output [7:0]        PFQ_TOP_BYTE,
-    output              PFQ_EMPTY,
-    output[15:0]        PFQ_ADDR_OUT,
 
-    output [15:0]       BIU_REGISTER_ES,
-    output [15:0]       BIU_REGISTER_SS,
-    output [15:0]       BIU_REGISTER_CS,
-    output [15:0]       BIU_REGISTER_DS,
-    output [15:0]       BIU_REGISTER_RM,
-    output [15:0]       BIU_REGISTER_REG,
-    output [15:0]       BIU_RETURN_DATA,
-    
-    input               turbo_mode
+	input		wire	[15:0]		EU_BIU_COMMAND,         // EU to BIU Signals
+	input		wire	[15:0]		EU_BIU_DATAOUT,
+	input		wire	[15:0]		EU_REGISTER_R3,
+	input		wire					EU_PREFIX_LOCK,
 
-  );
+
+	output	wire					BIU_DONE,               // BIU to EU Signals
+	output	wire					BIU_CLK_COUNTER_ZERO,
+	output	wire	[1:0]			BIU_SEGMENT,
+	output	wire					BIU_NMI_CAUGHT,
+	input		wire					BIU_NMI_DEBOUNCE,
+	output	reg					BIU_INTR,
+
+	output	wire	[7:0]			PFQ_TOP_BYTE,
+	output	wire					PFQ_EMPTY,
+	output	wire	[15:0]		PFQ_ADDR_OUT,
+
+	output	wire	[15:0]		BIU_REGISTER_ES,
+	output	wire	[15:0]		BIU_REGISTER_SS,
+	output	wire	[15:0]		BIU_REGISTER_CS,
+	output	wire	[15:0]		BIU_REGISTER_DS,
+	output	wire	[15:0]		BIU_REGISTER_RM,
+	output	wire	[15:0]		BIU_REGISTER_REG,
+	output	wire	[15:0]		BIU_RETURN_DATA,
+
+	input		wire					turbo_mode
+	);
 
 //------------------------------------------------------------------------
       

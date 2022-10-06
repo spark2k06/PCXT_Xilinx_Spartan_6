@@ -1,47 +1,29 @@
+`default_nettype none
+
 module KF8237_Address_And_Count_Registers (
-	clock,
-	cpu_clock_posedge,
-	cpu_clock_negedge,
-	reset,
-	internal_data_bus,
-	read_address_or_count,
-	write_base_and_current_address,
-	write_base_and_current_word_count,
-	clear_byte_pointer,
-	set_byte_pointer,
-	master_clear,
-	read_current_address,
-	read_current_word_count,
-	transfer_register_select,
-	initialize_current_register,
-	address_hold_config,
-	decrement_address_config,
-	next_word,
-	underflow,
-	update_high_address,
-	transfer_address
-);
-	input wire clock;
-	input wire cpu_clock_posedge;
-	input wire cpu_clock_negedge;
-	input wire reset;
-	input wire [7:0] internal_data_bus;
-	output reg [7:0] read_address_or_count;
-	input wire [3:0] write_base_and_current_address;
-	input wire [3:0] write_base_and_current_word_count;
-	input wire clear_byte_pointer;
-	input wire set_byte_pointer;
-	input wire master_clear;
-	input wire [3:0] read_current_address;
-	input wire [3:0] read_current_word_count;
-	input wire [3:0] transfer_register_select;
-	input wire initialize_current_register;
-	input wire address_hold_config;
-	input wire decrement_address_config;
-	input wire next_word;
-	output wire underflow;
-	output wire update_high_address;
-	output reg [15:0] transfer_address;
+	input		wire					clock,
+	input		wire					cpu_clock_posedge,
+	input		wire					cpu_clock_negedge,
+	input		wire					reset,
+	input		wire	[7:0]			internal_data_bus,
+	output	reg	[7:0]			read_address_or_count,
+	input		wire	[3:0]			write_base_and_current_address,
+	input		wire	[3:0]			write_base_and_current_word_count,
+	input		wire					clear_byte_pointer,
+	input		wire					set_byte_pointer,
+	input		wire					master_clear,
+	input		wire	[3:0]			read_current_address,
+	input		wire	[3:0]			read_current_word_count,
+	input		wire	[3:0]			transfer_register_select,
+	input		wire					initialize_current_register,
+	input		wire					address_hold_config,
+	input		wire					decrement_address_config,
+	input		wire					next_word,
+	output	wire					underflow,
+	output	wire					update_high_address,
+	output	reg	[15:0]		transfer_address
+	);
+
 	reg [3:0] prev_read_current_address;
 	reg [3:0] prev_read_current_word_count;
 	reg byte_pointer;

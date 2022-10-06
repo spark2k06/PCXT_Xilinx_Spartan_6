@@ -6,23 +6,24 @@
 // http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 // Commons, PO Box 1866, Mountain View, CA 94042, USA.
 //
-`default_nettype wire
+`default_nettype none
+
 module cga_sequencer(
-    input clk,
-    output[4:0] clk_seq,
-    output vram_read,
-    output vram_read_a0,
-    output vram_read_char,
-    output vram_read_att,
-    input hres_mode,
-    output crtc_clk,
-    output charrom_read,
-    output disp_pipeline,
-    output isa_op_enable,
-    output hclk,
-    output lclk,
-	 input tandy_16_gfx
-    );
+	input		wire					clk,
+	output	wire	[4:0]			clk_seq,
+	output	wire					vram_read,
+	output	wire					vram_read_a0,
+	output	wire					vram_read_char,
+	output	wire					vram_read_att,
+	input		wire					hres_mode,
+	output	wire					crtc_clk,
+	output	wire					charrom_read,
+	output	wire					disp_pipeline,
+	output	wire					isa_op_enable,
+	output	wire					hclk,
+	output	wire					lclk,
+	input		wire					tandy_16_gfx
+	);
 
     wire crtc_clk_int;
     reg[4:0] clkdiv = 5'b0;

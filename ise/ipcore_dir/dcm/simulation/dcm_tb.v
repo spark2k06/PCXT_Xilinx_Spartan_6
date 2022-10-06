@@ -79,9 +79,9 @@ module dcm_tb ();
   reg         CLK_IN1     = 1;
 
   // The high bits of the sampling counters
-  wire [4:1]  COUNT;
+  wire [5:1]  COUNT;
   reg         COUNTER_RESET = 0;
-wire [4:1] CLK_OUT;
+wire [5:1] CLK_OUT;
 //Freq Check using the M & D values setting and actual Frequency generated
 
 

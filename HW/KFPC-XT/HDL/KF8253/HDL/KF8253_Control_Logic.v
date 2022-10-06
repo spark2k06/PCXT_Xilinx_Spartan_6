@@ -1,39 +1,25 @@
+`default_nettype none
+
 module KF8253_Control_Logic (
-	clock,
-	reset,
-	chip_select_n,
-	read_enable_n,
-	write_enable_n,
-	address,
-	data_bus_in,
-	internal_data_bus,
-	write_control_0,
-	write_control_1,
-	write_control_2,
-	write_counter_0,
-	write_counter_1,
-	write_counter_2,
-	read_counter_0,
-	read_counter_1,
-	read_counter_2
-);
-	input wire clock;
-	input wire reset;
-	input wire chip_select_n;
-	input wire read_enable_n;
-	input wire write_enable_n;
-	input wire [1:0] address;
-	input wire [7:0] data_bus_in;
-	output reg [7:0] internal_data_bus;
-	output wire write_control_0;
-	output wire write_control_1;
-	output wire write_control_2;
-	output wire write_counter_0;
-	output wire write_counter_1;
-	output wire write_counter_2;
-	output wire read_counter_0;
-	output wire read_counter_1;
-	output wire read_counter_2;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire					chip_select_n,
+	input		wire					read_enable_n,
+	input		wire					write_enable_n,
+	input		wire	[1:0]			address,
+	input		wire	[7:0]			data_bus_in,
+	output	reg	[7:0]			internal_data_bus,
+	output	wire					write_control_0,
+	output	wire					write_control_1,
+	output	wire					write_control_2,
+	output	wire					write_counter_0,
+	output	wire					write_counter_1,
+	output	wire					write_counter_2,
+	output	wire					read_counter_0,
+	output	wire					read_counter_1,
+	output	wire					read_counter_2
+	);
+
 	reg prev_write_enable_n;
 	wire write_flag;
 	wire write_control;

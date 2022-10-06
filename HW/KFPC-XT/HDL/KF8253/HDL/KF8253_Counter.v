@@ -1,25 +1,18 @@
+`default_nettype none
+
 module KF8253_Counter (
-	clock,
-	reset,
-	internal_data_bus,
-	write_control,
-	write_counter,
-	read_counter,
-	read_counter_data,
-	counter_clock,
-	counter_gate,
-	counter_out
-);
-	input wire clock;
-	input wire reset;
-	input wire [7:0] internal_data_bus;
-	input wire write_control;
-	input wire write_counter;
-	input wire read_counter;
-	output reg [7:0] read_counter_data;
-	input wire counter_clock;
-	input wire counter_gate;
-	output reg counter_out;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire	[7:0]			internal_data_bus,
+	input		wire					write_control,
+	input		wire					write_counter,
+	input		wire					read_counter,
+	output	reg	[7:0]			read_counter_data,
+	input		wire					counter_clock,
+	input		wire					counter_gate,
+	output	reg					counter_out
+	);
+
 	reg [1:0] select_read_write;
 	wire update_counter_config;
 	wire update_select_read_write;

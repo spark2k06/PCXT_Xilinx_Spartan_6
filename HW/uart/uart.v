@@ -1,28 +1,26 @@
-module uart
-(
-	input            clk,
-	input            reset,
+`default_nettype none
 
-	input      [2:0] address,
-	input            write,
-	input      [7:0] writedata,
-	input            read,
-	output reg [7:0] readdata,
-	input            cs,
-
-	input            br_clk,
-	input            rx,
-	output           tx,
-	input            cts_n,
-	input            dcd_n,
-	input            dsr_n,
-	input            ri_n,
-	output           rts_n,
-	output           br_out,
-	output           dtr_n,
-
-	output           irq
-);
+module uart(
+	input		wire					clk,
+	input		wire					reset,
+	input		wire  [2:0]			address,
+	input		wire					write,
+	input		wire	[7:0]			writedata,
+	input		wire					read,
+	output	reg	[7:0]			readdata,
+	input		wire					cs,
+	input		wire					br_clk,
+	input		wire					rx,
+	output	wire					tx,
+	input		wire					cts_n,
+	input		wire					dcd_n,
+	input		wire					dsr_n,
+	input		wire					ri_n,
+	output	wire					rts_n,
+	output	wire					br_out,
+	output	wire					dtr_n,
+	output	wire					irq
+	);
 
 wire [7:0] data;
 

@@ -1,15 +1,13 @@
+`default_nettype none
+
 module Tandy_Scancode_Converter (
-	clock,
-	reset,
-	scancode,
-	keybord_irq,
-	convert_data
+	input		wire					clock,
+	input		wire					reset,
+	input		wire	[7:0]			scancode,
+	input		wire					keybord_irq,
+	output	wire	[7:0]			convert_data
 );
-	input wire clock;
-	input wire reset;
-	input wire [7:0] scancode;
-	input wire keybord_irq;
-	output wire [7:0] convert_data;
+
 	reg e0_temp;
 	reg e0;
 	reg prev_keybord_irq;

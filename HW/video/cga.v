@@ -6,46 +6,47 @@
 // http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 // Commons, PO Box 1866, Mountain View, CA 94042, USA.
 //
-`default_nettype wire
+`default_nettype none
+
 module cga(
     // Clocks
-    input clk,
+	input		wire					clk,
 
-    // ISA bus
-    input[14:0] bus_a,
-    input bus_ior_l,
-    input bus_iow_l,
-    input bus_memr_l,
-    input bus_memw_l,
-    input[7:0] bus_d,
-    output[7:0] bus_out,
-    output bus_dir,
-    input bus_aen,
-    output bus_rdy,
+	// ISA bus
+	input		wire	[14:0]		bus_a,
+	input		wire 					bus_ior_l,
+	input		wire 					bus_iow_l,
+	input		wire 					bus_memr_l,
+	input		wire 					bus_memw_l,
+	input		wire  [7:0] 		bus_d,
+	output	wire	[7:0] 		bus_out,
+	output	wire					bus_dir,
+	input		wire					bus_aen,
+	output	wire 					bus_rdy,
 
-    // RAM
-    output vram_enable,
-    output[18:0] vram_addr,
-    input[7:0] vram_din,
+	// RAM
+	output	wire					vram_enable,
+	output	wire	[18:0]		vram_addr,
+	input		wire	[7:0]			vram_din,
 	 
-    // Video outputs
-    output hsync,
-	output hblank,
-    output dbl_hsync,
-    output vsync,
-	output vblank,
-	 output de_o,
-    output[3:0] video,
-    output[3:0] dbl_video,
-    output[6:0] comp_video,
+	// Video outputs
+	output	wire					hsync,
+	output	wire					hblank,
+	output	wire					dbl_hsync,
+	output	wire					vsync,
+	output	wire					vblank,
+	output	wire					de_o,
+	output	wire	[3:0]			video,
+	output	wire	[3:0]			dbl_video,
+	output	wire	[6:0]			comp_video,
 
-	 input splashscreen,
-    input thin_font,
-	 input tandy_video,	 
-	 output grph_mode,
-	 output hres_mode,
-	 output isa_op_enable
-    );
+	input	wire					splashscreen,
+	input	wire					thin_font,
+	input	wire					tandy_video,	 
+	output	wire					grph_mode,
+	output	wire					hres_mode,
+	output	wire					isa_op_enable
+	);
 
     parameter MDA_70HZ = 0;
     parameter BLINK_MAX = 0;
@@ -367,5 +368,6 @@ module cga(
         .dbl_video(dbl_video)
     );
 	 */
+	 
 
 endmodule

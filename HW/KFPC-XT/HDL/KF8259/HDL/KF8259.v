@@ -1,41 +1,26 @@
+`default_nettype none
+
 module KF8259 (
-	clock,
-	reset,
-	chip_select_n,
-	read_enable_n,
-	write_enable_n,
-	address,
-	data_bus_in,
-	data_bus_out,
-	data_bus_io,
-	cascade_in,
-	cascade_out,
-	cascade_io,
-	slave_program_n,
-	buffer_enable,
-	slave_program_or_enable_buffer,
-	interrupt_acknowledge_n,
-	interrupt_to_cpu,
-	interrupt_request
-);
-	input wire clock;
-	input wire reset;
-	input wire chip_select_n;
-	input wire read_enable_n;
-	input wire write_enable_n;
-	input wire address;
-	input wire [7:0] data_bus_in;
-	output reg [7:0] data_bus_out;
-	output reg data_bus_io;
-	input wire [2:0] cascade_in;
-	output wire [2:0] cascade_out;
-	output wire cascade_io;
-	input wire slave_program_n;
-	output wire buffer_enable;
-	output wire slave_program_or_enable_buffer;
-	input wire interrupt_acknowledge_n;
-	output wire interrupt_to_cpu;
-	input wire [7:0] interrupt_request;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire					chip_select_n,
+	input		wire					read_enable_n,
+	input		wire					write_enable_n,
+	input		wire					address,
+	input		wire	[7:0]			data_bus_in,
+	output	reg	[7:0]			data_bus_out,
+	output	reg					data_bus_io,
+	input		wire	[2:0]			cascade_in,
+	output	wire	[2:0]			cascade_out,
+	output	wire					cascade_io,
+	input		wire					slave_program_n,
+	output	wire					buffer_enable,
+	output	wire					slave_program_or_enable_buffer,
+	input		wire					interrupt_acknowledge_n,
+	output	wire					interrupt_to_cpu,
+	input		wire	[7:0]			interrupt_request
+	);
+
 	wire [7:0] internal_data_bus;
 	wire write_initial_command_word_1;
 	wire write_initial_command_word_2_4;

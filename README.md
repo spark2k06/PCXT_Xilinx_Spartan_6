@@ -16,10 +16,6 @@ The [Graphics Gremlin project](https://github.com/schlae/graphics-gremlin) from 
 
 An SN76489AN Compatible Implementation (Tandy Sound) written in VHDL was also integrated - Copyright (c) 2005, 2006, [Arnim Laeuger](https://github.com/devsaurus) (arnim.laeuger@gmx.net)
 
-## Notice
-
-There are timing issues, especially in relation to the VRAM which is currently located in the SRAM, in the current state and with a solution in place for the dual port requirement, the core only runs at 14.318MHz in normal mode of MCL86 IP core.
-
 ## To-do list and challenges
 
 * Refactor Graphics Gremlin module, the new KFPC-XT system will make this refactor possible.

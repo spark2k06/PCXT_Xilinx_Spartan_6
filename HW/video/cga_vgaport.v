@@ -6,16 +6,18 @@
 // http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 // Commons, PO Box 1866, Mountain View, CA 94042, USA.
 //
+`default_nettype none
+
 module cga_vgaport(
-    input wire clk,
+   input		wire					clk,
 
-    input wire[3:0] video,
+   input		wire	[3:0]			video,
 
-    // Analog outputs
-    output wire[5:0] red,
-    output wire[5:0] green,
-    output wire[5:0] blue
-    );
+   // Analog outputs
+   output		wire	[5:0]		red,
+   output		wire	[5:0]		green,
+   output		wire	[5:0]		blue
+	);
 
     reg[17:0] c;
 

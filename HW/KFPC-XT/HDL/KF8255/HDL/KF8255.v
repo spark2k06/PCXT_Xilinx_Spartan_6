@@ -1,39 +1,25 @@
+`default_nettype none
+
 module KF8255 (
-	clock,
-	reset,
-	chip_select_n,
-	read_enable_n,
-	write_enable_n,
-	address,
-	data_bus_in,
-	data_bus_out,
-	port_a_in,
-	port_a_out,
-	port_a_io,
-	port_b_in,
-	port_b_out,
-	port_b_io,
-	port_c_in,
-	port_c_out,
-	port_c_io
-);
-	input wire clock;
-	input wire reset;
-	input wire chip_select_n;
-	input wire read_enable_n;
-	input wire write_enable_n;
-	input wire [1:0] address;
-	input wire [7:0] data_bus_in;
-	output reg [7:0] data_bus_out;
-	input wire [7:0] port_a_in;
-	output wire [7:0] port_a_out;
-	output wire port_a_io;
-	input wire [7:0] port_b_in;
-	output wire [7:0] port_b_out;
-	output wire port_b_io;
-	input wire [7:0] port_c_in;
-	output wire [7:0] port_c_out;
-	output wire [7:0] port_c_io;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire					chip_select_n,
+	input		wire					read_enable_n,
+	input		wire					write_enable_n,
+	input		wire	[1:0]			address,
+	input		wire	[7:0]			data_bus_in,
+	output	reg	[7:0]			data_bus_out,
+	input		wire	[7:0]			port_a_in,
+	output	wire	[7:0]			port_a_out,
+	output	wire					port_a_io,
+	input		wire	[7:0]			port_b_in,
+	output	wire	[7:0]			port_b_out,
+	output	wire					port_b_io,
+	input		wire	[7:0]			port_c_in,
+	output	wire	[7:0]			port_c_out,
+	output	wire	[7:0]			port_c_io
+	);
+
 	wire [7:0] internal_data_bus;
 	wire write_port_a;
 	wire write_port_b;

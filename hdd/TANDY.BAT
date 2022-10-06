@@ -1,0 +1,1 @@
+type tandy.dbg | debug

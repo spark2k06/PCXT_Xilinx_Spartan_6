@@ -1,21 +1,16 @@
+`default_nettype none
+
 module KF8259_Priority_Resolver (
-	priority_rotate,
-	interrupt_mask,
-	interrupt_special_mask,
-	special_fully_nest_config,
-	highest_level_in_service,
-	interrupt_request_register,
-	in_service_register,
-	interrupt
-);
-	input wire [2:0] priority_rotate;
-	input wire [7:0] interrupt_mask;
-	input wire [7:0] interrupt_special_mask;
-	input wire special_fully_nest_config;
-	input wire [7:0] highest_level_in_service;
-	input wire [7:0] interrupt_request_register;
-	input wire [7:0] in_service_register;
-	output wire [7:0] interrupt;
+	input		wire	[2:0] 		priority_rotate,
+	input		wire	[7:0] 		interrupt_mask,
+	input		wire	[7:0] 		interrupt_special_mask,
+	input		wire					special_fully_nest_config,
+	input		wire	[7:0] 		highest_level_in_service,
+	input		wire	[7:0] 		interrupt_request_register,
+	input		wire	[7:0] 		in_service_register,
+	output	wire	[7:0] 		interrupt
+	);
+
 	wire [7:0] masked_interrupt_request;
 	assign masked_interrupt_request = interrupt_request_register & ~interrupt_mask;
 	wire [7:0] masked_in_service;

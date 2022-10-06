@@ -1,57 +1,34 @@
+`default_nettype none
+
 module KF8237 (
-	clock,
-	cpu_clock,
-	reset,
-	chip_select_n,
-	ready,
-	hold_acknowledge,
-	dma_request,
-	data_bus_in,
-	data_bus_out,
-	io_read_n_in,
-	io_read_n_out,
-	io_read_n_io,
-	io_write_n_in,
-	io_write_n_out,
-	io_write_n_io,
-	end_of_process_n_in,
-	end_of_process_n_out,
-	address_in,
-	address_out,
-	output_highst_address,
-	hold_request,
-	dma_acknowledge,
-	address_enable,
-	address_strobe,
-	memory_read_n,
-	memory_write_n
-);
-	input wire clock;
-	input wire cpu_clock;
-	input wire reset;
-	input wire chip_select_n;
-	input wire ready;
-	input wire hold_acknowledge;
-	input wire [3:0] dma_request;
-	input wire [7:0] data_bus_in;
-	output reg [7:0] data_bus_out;
-	input wire io_read_n_in;
-	output wire io_read_n_out;
-	output wire io_read_n_io;
-	input wire io_write_n_in;
-	output wire io_write_n_out;
-	output wire io_write_n_io;
-	input wire end_of_process_n_in;
-	output wire end_of_process_n_out;
-	input wire [3:0] address_in;
-	output wire [15:0] address_out;
-	output wire output_highst_address;
-	output wire hold_request;
-	output wire [3:0] dma_acknowledge;
-	output wire address_enable;
-	output wire address_strobe;
-	output wire memory_read_n;
-	output wire memory_write_n;
+	input		wire					clock,
+	input		wire					cpu_clock,
+	input		wire					reset,
+	input		wire					chip_select_n,
+	input		wire					ready,
+	input		wire					hold_acknowledge,
+	input		wire	[3:0] 		dma_request,
+	input		wire	[7:0] 		data_bus_in,
+	output	reg	[7:0] 		data_bus_out,
+	input		wire					io_read_n_in,
+	output	wire					io_read_n_out,
+	output	wire					io_read_n_io,
+	input		wire					io_write_n_in,
+	output	wire					io_write_n_out,
+	output	wire					io_write_n_io,
+	input		wire					end_of_process_n_in,
+	output	wire					end_of_process_n_out,
+	input		wire	[3:0] 		address_in,
+	output	wire	[15:0] 		address_out,
+	output	wire					output_highst_address,
+	output	wire					hold_request,
+	output	wire	[3:0] 		dma_acknowledge,
+	output	wire					address_enable,
+	output	wire					address_strobe,
+	output	wire					memory_read_n,
+	output	wire					memory_write_n
+	);
+
 	reg prev_cpu_clock;
 	always @(posedge clock or posedge reset)
 		if (reset)

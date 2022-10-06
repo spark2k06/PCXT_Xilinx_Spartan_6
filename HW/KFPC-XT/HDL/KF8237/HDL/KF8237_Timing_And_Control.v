@@ -1,87 +1,49 @@
+`default_nettype none
+
 module KF8237_Timing_And_Control (
-	clock,
-	cpu_clock_posedge,
-	cpu_clock_negedge,
-	reset,
-	internal_data_bus,
-	write_command_register,
-	write_mode_register,
-	read_status_register,
-	master_clear,
-	dma_rotate,
-	edge_request,
-	dma_request_state,
-	encoded_dma,
-	dma_acknowledge_internal,
-	transfer_register_select,
-	initialize_current_register,
-	address_hold_config,
-	decrement_address_config,
-	next_word,
-	update_high_address,
-	underflow,
-	end_of_process_internal,
-	lock_bus_control,
-	output_temporary_data,
-	temporary_register,
-	terminal_count_state,
-	hold_request,
-	hold_acknowledge,
-	dma_acknowledge,
-	address_enable,
-	address_strobe,
-	output_highst_address,
-	memory_read_n,
-	memory_write_n,
-	io_read_n_out,
-	io_read_n_io,
-	io_write_n_out,
-	io_write_n_io,
-	ready,
-	end_of_process_n_in,
-	end_of_process_n_out
-);
-	input wire clock;
-	input wire cpu_clock_posedge;
-	input wire cpu_clock_negedge;
-	input wire reset;
-	input wire [7:0] internal_data_bus;
-	input wire write_command_register;
-	input wire write_mode_register;
-	input wire read_status_register;
-	input wire master_clear;
-	output reg [1:0] dma_rotate;
-	output wire [3:0] edge_request;
-	input wire [3:0] dma_request_state;
-	input wire [3:0] encoded_dma;
-	output reg [3:0] dma_acknowledge_internal;
-	output reg [3:0] transfer_register_select;
-	output reg initialize_current_register;
-	output reg address_hold_config;
-	output reg decrement_address_config;
-	output reg next_word;
-	input wire update_high_address;
-	input wire underflow;
-	output reg end_of_process_internal;
-	output reg lock_bus_control;
-	output wire output_temporary_data;
-	output wire [7:0] temporary_register;
-	output reg [3:0] terminal_count_state;
-	output reg hold_request;
-	input wire hold_acknowledge;
-	output wire [3:0] dma_acknowledge;
-	output reg address_enable;
-	output reg address_strobe;
-	output reg output_highst_address;
-	output reg memory_read_n;
-	output reg memory_write_n;
-	output reg io_read_n_out;
-	output reg io_read_n_io;
-	output reg io_write_n_out;
-	output reg io_write_n_io;
-	input wire ready;
-	input wire end_of_process_n_in;
-	output wire end_of_process_n_out;
+	input		wire					clock,
+	input		wire					cpu_clock_posedge,
+	input		wire					cpu_clock_negedge,
+	input		wire					reset,
+	input		wire	[7:0]			internal_data_bus,
+	input		wire					write_command_register,
+	input		wire					write_mode_register,
+	input		wire					read_status_register,
+	input		wire					master_clear,
+	output	reg	[1:0]			dma_rotate,
+	output	wire	[3:0]			edge_request,
+	input		wire	[3:0]			dma_request_state,
+	input		wire	[3:0]			encoded_dma,
+	output	reg	[3:0]			dma_acknowledge_internal,
+	output	reg	[3:0]			transfer_register_select,
+	output	reg					initialize_current_register,
+	output	reg					address_hold_config,
+	output	reg					decrement_address_config,
+	output	reg					next_word,
+	input		wire					update_high_address,
+	input		wire					underflow,
+	output	reg					end_of_process_internal,
+	output	reg					lock_bus_control,
+	output	wire					output_temporary_data,
+	output	wire	[7:0]			temporary_register,
+	output	reg	[3:0]			terminal_count_state,
+	output	reg					hold_request,
+	input		wire					hold_acknowledge,
+	output	wire	[3:0]			dma_acknowledge,
+	output	reg					address_enable,
+	output	reg					address_strobe,
+	output	reg					output_highst_address,
+	output	reg					memory_read_n,
+	output	reg					memory_write_n,
+	output	reg					io_read_n_out,
+	output	reg					io_read_n_io,
+	output	reg					io_write_n_out,
+	output	reg					io_write_n_io,
+	input		wire					ready,
+	input		wire					end_of_process_n_in,
+	output	wire					end_of_process_n_out
+	);
+
 	reg [31:0] state;
 	reg [31:0] next_state;
 	reg [7:0] bit_select = 8'b00011011;

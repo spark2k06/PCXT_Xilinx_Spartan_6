@@ -1,0 +1,18 @@
+n tandy.rom
+l 8000:0
+a
+cli
+mov ax, 8000
+mov bx, f000
+mov cx, ffff
+mov ds, ax
+mov es, bx
+xor ax, ax
+mov si, ax
+mov di, ax
+rep movsb
+jmp ffff:0
+
+g
+
+
