@@ -1,77 +1,44 @@
+`default_nettype none
+
 module BUS_ARBITER (
-	clock,
-	cpu_clock,
-	reset,
-	cpu_address,
-	cpu_data_bus,
-	processor_status,
-	processor_lock_n,
-	processor_transmit_or_receive_n,
-	dma_ready,
-	dma_wait_n,
-	interrupt_acknowledge_n,
-	dma_chip_select_n,
-	dma_page_chip_select_n,
-	address,
-	address_ext,
-	address_direction,
-	data_bus_ext,
-	internal_data_bus,
-	data_bus_direction,
-	address_latch_enable,
-	io_read_n,
-	io_read_n_ext,
-	io_read_n_direction,
-	io_write_n,
-	io_write_n_ext,
-	io_write_n_direction,
-	memory_read_n,
-	memory_read_n_ext,
-	memory_read_n_direction,
-	memory_write_n,
-	memory_write_n_ext,
-	memory_write_n_direction,
-	dma_request,
-	dma_acknowledge_n,
-	address_enable_n,
-	terminal_count_n
-);
-	input wire clock;
-	input wire cpu_clock;
-	input wire reset;
-	input wire [19:0] cpu_address;
-	input wire [7:0] cpu_data_bus;
-	input wire [2:0] processor_status;
-	input wire processor_lock_n;
-	output wire processor_transmit_or_receive_n;
-	input wire dma_ready;
-	output wire dma_wait_n;
-	output wire interrupt_acknowledge_n;
-	input wire dma_chip_select_n;
-	input wire dma_page_chip_select_n;
-	output reg [19:0] address;
-	input wire [19:0] address_ext;
-	output reg address_direction;
-	input wire [7:0] data_bus_ext;
-	output reg [7:0] internal_data_bus;
-	output reg data_bus_direction;
-	output wire address_latch_enable;
-	output wire io_read_n;
-	input wire io_read_n_ext;
-	output wire io_read_n_direction;
-	output wire io_write_n;
-	input wire io_write_n_ext;
-	output wire io_write_n_direction;
-	output wire memory_read_n;
-	input wire memory_read_n_ext;
-	output wire memory_read_n_direction;
-	output wire memory_write_n;
-	input wire memory_write_n_ext;
-	output wire memory_write_n_direction;
-	input wire [3:0] dma_request;
-	output wire [3:0] dma_acknowledge_n;
-	output reg address_enable_n;
-	output wire terminal_count_n;
+	input		wire					clock,
+	input		wire					cpu_clock,
+	input		wire					reset,
+	input		wire	[19:0]		cpu_address,
+	input		wire	[7:0]			cpu_data_bus,
+	input		wire	[2:0]			processor_status,
+	input		wire					processor_lock_n,
+	output	wire					processor_transmit_or_receive_n,
+	input		wire					dma_ready,
+	output	wire					dma_wait_n,
+	output	wire					interrupt_acknowledge_n,
+	input		wire					dma_chip_select_n,
+	input		wire					dma_page_chip_select_n,
+	output	reg	[19:0]		address,
+	input		wire	[19:0]		address_ext,
+	output	reg					address_direction,
+	input		wire	[7:0]			data_bus_ext,
+	output	reg	[7:0]			internal_data_bus,
+	output	reg					data_bus_direction,
+	output	wire					address_latch_enable,
+	output	wire					io_read_n,
+	input		wire					io_read_n_ext,
+	output	wire					io_read_n_direction,
+	output	wire					io_write_n,
+	input		wire					io_write_n_ext,
+	output	wire					io_write_n_direction,
+	output	wire					memory_read_n,
+	input		wire					memory_read_n_ext,
+	output	wire					memory_read_n_direction,
+	output	wire					memory_write_n,
+	input		wire					memory_write_n_ext,
+	output	wire					memory_write_n_direction,
+	input		wire	[3:0]			dma_request,
+	output	wire	[3:0]			dma_acknowledge_n,
+	output	reg					address_enable_n,
+	output	wire					terminal_count_n
+	);
+
 	reg prev_cpu_clock;
 	always @(posedge clock or posedge reset)
 		if (reset)

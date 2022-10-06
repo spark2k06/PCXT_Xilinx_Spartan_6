@@ -6,30 +6,31 @@
 // http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 // Commons, PO Box 1866, Mountain View, CA 94042, USA.
 //
-`default_nettype wire
+`default_nettype none
+
 module cga_attrib(
-    input clk,
-    input[7:0] att_byte,
-    input[4:0] row_addr,
-    input[7:0] cga_color_reg,
-    input grph_mode,
-    input bw_mode,
-    input mode_640,
-    input tandy_16_mode,
-    input display_enable,
-    input blink_enabled,
-    input blink,
-    input cursor,
-    input hsync,
-    input vsync,
-    input pix_in,
-    input c0,
-    input c1,
-    input pix_640,
-    input [3:0] pix_tandy,
-    input [4:0] tandy_bordercol,
-    output reg[3:0] pix_out
-    );
+	input wire clk,
+	input		wire	[7:0]			att_byte,
+	input		wire	[4:0]			row_addr,
+	input		wire	[7:0]			cga_color_reg,
+	input		wire					grph_mode,
+	input		wire					bw_mode,
+	input		wire					mode_640,
+	input		wire					tandy_16_mode,
+	input		wire					display_enable,
+	input		wire					blink_enabled,
+	input		wire					blink,
+	input		wire					cursor,
+	input		wire					hsync,
+	input		wire					vsync,
+	input		wire					pix_in,
+	input		wire					c0,
+	input		wire					c1,
+	input		wire					pix_640,
+	input		wire	[3:0]			pix_tandy,
+	input		wire	[4:0]			tandy_bordercol,
+	output	reg	[3:0]			pix_out
+	);
 
     reg blinkdiv;
     reg[1:0] blink_old;

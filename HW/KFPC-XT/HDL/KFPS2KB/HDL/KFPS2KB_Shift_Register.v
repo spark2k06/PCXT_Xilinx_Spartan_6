@@ -1,22 +1,16 @@
+`default_nettype none
+
 module KFPS2KB_Shift_Register (
-	clock,
-	peripheral_clock,
-	reset,
-	device_clock,
-	device_data,
-	register,
-	recieved_flag,
-	error_flag
-);
+	input wire clock,
+	input		wire					peripheral_clock,
+	input		wire					reset,
+	input		wire					device_clock,
+	input		wire					device_data,
+	output	reg	[7:0]			register,
+	output	reg					recieved_flag,
+	output	reg					error_flag
+	);
 	parameter over_time = 16'd1000;
-	input wire clock;
-	input wire peripheral_clock;
-	input wire reset;
-	input wire device_clock;
-	input wire device_data;
-	output reg [7:0] register;
-	output reg recieved_flag;
-	output reg error_flag;
 	reg prev_device_clock;
 	wire device_clock_edge;
 	reg [8:0] shift_register;

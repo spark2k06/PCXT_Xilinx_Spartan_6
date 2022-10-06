@@ -1,35 +1,23 @@
+`default_nettype none
+
 module KF8255_Control_Logic (
-	clock,
-	reset,
-	chip_select_n,
-	read_enable_n,
-	write_enable_n,
-	address,
-	data_bus_in,
-	internal_data_bus,
-	write_port_a,
-	write_port_b,
-	write_port_c,
-	write_control,
-	read_port_a,
-	read_port_b,
-	read_port_c
-);
-	input wire clock;
-	input wire reset;
-	input wire chip_select_n;
-	input wire read_enable_n;
-	input wire write_enable_n;
-	input wire [1:0] address;
-	input wire [7:0] data_bus_in;
-	output reg [7:0] internal_data_bus;
-	output wire write_port_a;
-	output wire write_port_b;
-	output wire write_port_c;
-	output wire write_control;
-	output reg read_port_a;
-	output reg read_port_b;
-	output reg read_port_c;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire					chip_select_n,
+	input		wire					read_enable_n,
+	input		wire					write_enable_n,
+	input		wire	[1:0]			address,
+	input		wire	[7:0]			data_bus_in,
+	output	reg	[7:0]			internal_data_bus,
+	output	wire					write_port_a,
+	output	wire					write_port_b,
+	output	wire					write_port_c,
+	output	wire					write_control,
+	output	reg					read_port_a,
+	output	reg					read_port_b,
+	output	reg					read_port_c
+	);
+
 	reg prev_write_enable_n;
 	wire write_flag;
 	reg [2:0] stable_address;

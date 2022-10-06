@@ -1,39 +1,25 @@
+`default_nettype none
+
 module KF8253 (
-	clock,
-	reset,
-	chip_select_n,
-	read_enable_n,
-	write_enable_n,
-	address,
-	data_bus_in,
-	data_bus_out,
-	counter_0_clock,
-	counter_0_gate,
-	counter_0_out,
-	counter_1_clock,
-	counter_1_gate,
-	counter_1_out,
-	counter_2_clock,
-	counter_2_gate,
-	counter_2_out
-);
-	input wire clock;
-	input wire reset;
-	input wire chip_select_n;
-	input wire read_enable_n;
-	input wire write_enable_n;
-	input wire [1:0] address;
-	input wire [7:0] data_bus_in;
-	output reg [7:0] data_bus_out;
-	input wire counter_0_clock;
-	input wire counter_0_gate;
-	output wire counter_0_out;
-	input wire counter_1_clock;
-	input wire counter_1_gate;
-	output wire counter_1_out;
-	input wire counter_2_clock;
-	input wire counter_2_gate;
-	output wire counter_2_out;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire					chip_select_n,
+	input		wire					read_enable_n,
+	input		wire					write_enable_n,
+	input		wire	[1:0]			address,
+	input		wire	[7:0]			data_bus_in,
+	output	reg	[7:0]			data_bus_out,
+	input		wire					counter_0_clock,
+	input		wire					counter_0_gate,
+	output	wire					counter_0_out,
+	input		wire					counter_1_clock,
+	input		wire					counter_1_gate,
+	output	wire					counter_1_out,
+	input		wire					counter_2_clock,
+	input		wire					counter_2_gate,
+	output	wire					counter_2_out
+	);
+
 	wire [7:0] internal_data_bus;
 	wire write_control_0;
 	wire write_control_1;

@@ -1,47 +1,48 @@
 `timescale 1ns / 1ps
+`default_nettype none
 
-module system_2MB
-	(		 
-		 input clk_100,
-		 input clk_chipset,
-		 input clk_vga,	 
-		 input clk_uart,
-		 input clk_opl2,
-		
-		 output [20:0]SRAM_ADDR,
-		 inout [7:0]SRAM_DATA,
-		 output SRAM_WE_n,
-		 output wire [5:0]VGA_R,
-		 output wire [5:0]VGA_G,
-		 output wire [5:0]VGA_B,
-		 output wire VGA_HSYNC,
-		 output wire VGA_VSYNC,
-		 input wire uart_rx,
-		 output wire uart_tx,
-//		 output LED,
+module system_2MB(
+	input		wire					clk_100,
+	input		wire					clk_chipset,
+	input		wire					clk_vga,	 
+	input		wire					clk_uart,
+	input		wire					clk_opl2,
 
-		 inout wire clkps2,
-		 inout wire dataps2,
-		
-		 output AUD_L,
-		 output AUD_R
-//	 	 inout PS2_CLK1,
-//		 inout PS2_CLK2,
-//		 inout PS2_DATA1,
-//		 inout PS2_DATA2
+	output	wire	[20:0]		SRAM_ADDR,
+	inout		wire	[7:0]			SRAM_DATA,
+	output	wire					SRAM_WE_n,
+	output	wire	[5:0]			VGA_R,
+	output	wire	[5:0]			VGA_G,
+	output	wire	[5:0]			VGA_B,
+	output	wire					VGA_HSYNC,
+	output	wire					VGA_VSYNC,
+	input		wire					uart_rx,
+	output	wire					uart_tx,
 
-//		 output reg SD_n_CS = 1,
-//		 output wire SD_DI,
-//		 output reg SD_CK = 0,
-//		 input SD_DO,
-//		 input  wire joy_up,
-//		 input  wire joy_down,
-//		 input  wire joy_left,
-//		 input  wire joy_right,
-//		 input  wire joy_fire1,
-//		 input  wire joy_fire2
-		 		 
-    );
+	inout		wire					clkps2,
+	inout		wire					dataps2,
+
+	output	wire					AUD_L,
+	output	wire					AUD_R
+	/*
+	output	wire					LED,
+	inout		wire					PS2_CLK1,
+	inout		wire					PS2_CLK2,
+	inout		wire					PS2_DATA1,
+	inout		wire					PS2_DATA2
+
+	output	reg					SD_n_CS = 1,
+	output	wire					SD_DI,
+	output	reg					SD_CK = 0,
+	input		wire					SD_DO,
+	input		wire					joy_up,
+	input		wire					joy_down,
+	input		wire					joy_left,
+	input		wire					joy_right,
+	input		wire					joy_fire1,
+	input		wire					joy_fire2
+	*/
+	);
 	 
 reg clk_14_318 = 1'b0;
 reg clk_7_16 = 1'b0;
@@ -250,8 +251,11 @@ reg splash_status = 1'b0;
    end
 	
    wire [15:0]jtopl2_snd_e;
+	wire [15:0]tandy_snd_e;
 	reg [31:0]sndval = 0;	
-	wire [16:0]sndmix = (({jtopl2_snd_e[15], jtopl2_snd_e}) << 2) + (speaker_out << 15); // signed mixer
+	
+	wire [16:0]sndmix = (({jtopl2_snd_e[15], jtopl2_snd_e}) << 1) + {tandy_snd_e, 6'd0} + (speaker_out << 13); // signed mixer
+	//wire [16:0]sndmix = (({jtopl2_snd_e[15], jtopl2_snd_e}) << 2) + (speaker_out << 15); // signed mixer
 	wire [15:0]sndamp = (~|sndmix[16:15] | &sndmix[16:15]) ? {!sndmix[15], sndmix[14:0]} : {16{!sndmix[16]}}; // clamp to [-32768..32767] and add 32878
 	wire sndsign = sndval[31:16] < sndamp;
 	
@@ -328,7 +332,7 @@ reg splash_status = 1'b0;
 		  .jtopl2_snd_e                       (jtopl2_snd_e),
 		  .tandy_snd_e                        (tandy_snd_e),
 //		  .adlibhide                          (adlibhide),
-		  .tandy_video                        (tandy_mode),
+//		  .tandy_video                        (tandy_mode),
 //		  .tandy_16_gfx                       (tandy_16_gfx),
 //		  .ioctl_download                     (ioctl_download),
 //		  .ioctl_index                        (ioctl_index),
@@ -347,9 +351,9 @@ reg splash_status = 1'b0;
 		  .SRAM_ADDR                          (SRAM_ADDR),
 		  .SRAM_DATA                          (SRAM_DATA),
 		  .SRAM_WE_n                          (SRAM_WE_n),
-		  .ems_enabled                        (1'b0), // ~status[11]
+		  .ems_enabled                        (1'b1), // ~status[11]
 		  .ems_address                        (2'b0), // status[13:12]
-		  .bios_writable                      (2'b0) // status[31:30]
+		  .bios_writable                      (2'b1) // status[31:30]
     );
 	 
 	wire s6_3_mux;

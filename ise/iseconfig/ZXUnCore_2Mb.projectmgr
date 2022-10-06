@@ -17,16 +17,19 @@
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|FPGA|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8259 - KF8259</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|FPGA|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KFPS2KB - KFPS2KB</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|FPGA|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/uart1 - uart</ClosedNode>
-         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/B1 - i8088</ClosedNode>
-         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_BUS_ARBITER - BUS_ARBITER</ClosedNode>
-         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/cga1 - cga</ClosedNode>
-         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/B1 - i8088/EU_CORE - mcl86_eu_core</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2/u_base - jtopl/u_acc - jtopl_acc</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2/u_base - jtopl/u_eg - jtopl_eg</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2/u_base - jtopl/u_mmr - jtopl_mmr</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2/u_base - jtopl/u_op - jtopl_op</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2/u_base - jtopl/u_pg - jtopl_pg</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/jtopl2_inst - jtopl2/u_base - jtopl/u_timers - jtopl_timers</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/sn76489 - sn76489_top - struct</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8253 - KF8253</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8255 - KF8255</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KF8259 - KF8259</ClosedNode>
-         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/u_KFPS2KB - KFPS2KB</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/uart - uart</ClosedNode>
+         <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/uart1 - uart</ClosedNode>
          <ClosedNode>/ZXUnCore_PCXT_2MB C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|ZXUnCore_2MB_Main.v/sys_inst - system_2MB/u_CHIPSET - CHIPSET/u_PERIPHERALS - PERIPHERALS/uart1 - uart2/uart_16750 - uart_16750 - rtl/UART_RX - uart_receiver - rtl</ClosedNode>
          <ClosedNode>/gh_baud_rate_gen - a C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|gh_baud_rate_gen.vhd</ClosedNode>
          <ClosedNode>/gh_fifo_async16_rcsr_wf - a C:|Users|Aitor|Desktop|PCXT_ZXUno|HW|uart2|gh_fifo_async16_rcsr_wf.vhd</ClosedNode>
@@ -43,7 +46,7 @@
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
-      <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000002020000000100000001000000640000026f000000020000000000000000000000000200000064ffffffff0000008100000003000000020000026f0000000100000003000000000000000100000003</ViewHeaderState>
+      <ViewHeaderState orientation="horizontal" >000000ff000000000000000100000001000000000000000000000000000000000202000000010000000100000064000003be000000020000000000000000000000000200000064ffffffff000000810000000300000002000003be0000000100000003000000000000000100000003</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >true</UserChangedColumnWidths>
       <CurrentItem>ZXUnCore_PCXT_2MB (C:/Users/Aitor/Desktop/PCXT_ZXUno/HW/ZXUnCore_2MB_Main.v)</CurrentItem>
    </ItemView>
@@ -76,7 +79,7 @@
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff00000000000000010000000000000000010000000000000000000000000000000000000319000000040101000100000000000000000000000064ffffffff000000810000000000000004000000e60000000100000000000000d70000000100000000000000660000000100000000000000f60000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem>biu_max.v</CurrentItem>
+      <CurrentItem>..\HW\8088\biu_max.v</CurrentItem>
    </ItemView>
    <ItemView guiview="Library" >
       <ClosedNodes>
@@ -96,13 +99,13 @@
          <ClosedNode>CORE Generator</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027c0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <SourceProcessView>000000ff00000000000000020000011b0000011b01000000050100000002</SourceProcessView>
    <CurrentView>Implementation</CurrentView>
@@ -126,13 +129,13 @@
          <ClosedNode>User Constraints</ClosedNode>
       </ClosedNodes>
       <SelectedItems>
-         <SelectedItem></SelectedItem>
+         <SelectedItem/>
       </SelectedItems>
       <ScrollbarPosition orientation="vertical" >0</ScrollbarPosition>
       <ScrollbarPosition orientation="horizontal" >0</ScrollbarPosition>
       <ViewHeaderState orientation="horizontal" >000000ff0000000000000001000000010000000000000000000000000000000000000000000000027c000000010000000100000000000000000000000064ffffffff0000008100000000000000010000027c0000000100000000</ViewHeaderState>
       <UserChangedColumnWidths orientation="horizontal" >false</UserChangedColumnWidths>
-      <CurrentItem></CurrentItem>
+      <CurrentItem/>
    </ItemView>
    <ItemView engineview="SynthesisOnly" sourcetype="DESUT_VHDL_ARCHITECTURE" guiview="Process" >
       <ClosedNodes>

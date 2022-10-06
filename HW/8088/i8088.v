@@ -1,28 +1,27 @@
+`default_nettype none
 
-module i8088
-  (
-    input               CORE_CLK,
+module i8088(
+	input		wire					CORE_CLK,
 
-    input               CLK,
-    input               RESET,
+	input		wire					CLK,
+	input		wire					RESET,
 
-    input               READY,
-    input               INTR,
-    input               NMI,
+	input		wire					READY,
+	input		wire					INTR,
+	input		wire					NMI,
 
-    output [19:0]       ad_out,
-    output [7:0]    		dout,
-    input  [7:0]        din,
+	output	wire	[19:0]		ad_out,
+	output	wire	[7:0]			dout,
+	input		wire	[7:0]			din,
 
-    output              lock_n,
-    output              s6_3_mux,
-    output [2:0]        s2_s0_out,
-    output [2:0]        SEGMENT,
+	output	wire					lock_n,
+	output	wire					s6_3_mux,
+	output	wire	[2:0]			s2_s0_out,
+	output	wire	[2:0]			SEGMENT,
 
-    output              biu_done,
-    input               turbo_mode
-
-  );
+	output	wire					biu_done,
+	input		wire					turbo_mode
+	);
 
 //------------------------------------------------------------------------
 

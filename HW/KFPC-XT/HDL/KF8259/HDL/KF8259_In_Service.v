@@ -1,23 +1,17 @@
+`default_nettype none
+
 module KF8259_In_Service (
-	clock,
-	reset,
-	priority_rotate,
-	interrupt_special_mask,
-	interrupt,
-	latch_in_service,
-	end_of_interrupt,
-	in_service_register,
-	highest_level_in_service
-);
-	input wire clock;
-	input wire reset;
-	input wire [2:0] priority_rotate;
-	input wire [7:0] interrupt_special_mask;
-	input wire [7:0] interrupt;
-	input wire latch_in_service;
-	input wire [7:0] end_of_interrupt;
-	output reg [7:0] in_service_register;
-	output reg [7:0] highest_level_in_service;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire	[2:0]			priority_rotate,
+	input		wire	[7:0]			interrupt_special_mask,
+	input		wire	[7:0]			interrupt,
+	input		wire					latch_in_service,
+	input		wire	[7:0]			end_of_interrupt,
+	output	reg	[7:0]			in_service_register,
+	output	reg	[7:0]			highest_level_in_service
+	);
+
 	wire [7:0] next_in_service_register;
 	assign next_in_service_register = (in_service_register & ~end_of_interrupt) | (latch_in_service == 1'b1 ? interrupt : 8'b00000000);
 	always @(posedge clock or posedge reset)

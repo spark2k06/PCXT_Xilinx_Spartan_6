@@ -1,156 +1,85 @@
+`default_nettype none
+
 module PERIPHERALS (
-	clock,
-	clk_sys,
-	peripheral_clock,
-//	turbo_mode,
-	reset,
-	interrupt_to_cpu,
-	interrupt_acknowledge_n,
-	dma_chip_select_n,
-	dma_page_chip_select_n,
-	splashscreen,
-	clk_vga_cga,
-	de_o,
-	VGA_R,
-	VGA_G,
-	VGA_B,
-	VGA_HSYNC,
-	VGA_VSYNC,
-	VGA_HBlank,
-	VGA_VBlank,
-	address,
-	internal_data_bus,
-	data_bus_out,
-	data_bus_out_from_chipset,
-	interrupt_request,
-	io_read_n,
-	io_write_n,
-	memory_read_n,
-	memory_write_n,
-	address_enable_n,
-	timer_counter_out,
-	speaker_out,
-	port_a_out,
-	port_a_io,
-	port_b_in,
-	port_b_out,
-	port_b_io,
-	port_c_in,
-	port_c_out,
-	port_c_io,
-	ps2_clock,
-	ps2_data,
-	ps2_clock_out,
-	ps2_data_out,
-//	joy_opts,
-//	joy0,
-//	joy1,
-//	joya0,
-//	joya1,
-	clk_en_opl2,
-	jtopl2_snd_e,
-	adlibhide,
-	tandy_video,
-	tandy_snd_e,
-	tandy_snd_rdy,
-	tandy_16_gfx,
-	ioctl_download,
-	ioctl_index,
-	ioctl_wr,
-	ioctl_addr,
-	ioctl_data,
-	clk_uart,
-	uart_rx,
-	uart_tx,
-	uart_cts_n,
-	uart_dcd_n,
-	uart_dsr_n,
-	uart_rts_n,
-	uart_dtr_n,
-	SRAM_ADDR,
-	SRAM_DATA,
-	SRAM_WE_n,
-	ems_enabled,
-	ems_address,
-	bios_writable,
-	cga_vram_rdy
-);
+	input		wire					clock,
+	input		wire					clk_sys,
+	input		wire					peripheral_clock,
+//	input		wire	[1:0]			turbo_mode,
+	input		wire					reset,
+	output	wire					interrupt_to_cpu,
+	input		wire					interrupt_acknowledge_n,
+	output	wire					dma_chip_select_n,
+	output	wire					dma_page_chip_select_n,
+	input		wire					splashscreen,
+	input		wire					clk_vga_cga,
+	output	wire					de_o,
+	output	wire	[5:0]			VGA_R,
+	output	wire	[5:0]			VGA_G,
+	output	wire	[5:0]			VGA_B,
+	output	wire					VGA_HSYNC,
+	output	wire					VGA_VSYNC,
+	output	wire					VGA_HBlank,
+	output	wire					VGA_VBlank,
+	input		wire	[19:0]		address,
+	input		wire	[7:0]			internal_data_bus,
+	output	reg	[7:0] 		data_bus_out,
+	output	reg					data_bus_out_from_chipset,
+	input		wire	[7:0]			interrupt_request,
+	input		wire					io_read_n,
+	input		wire					io_write_n,
+	input		wire					memory_read_n,
+	input		wire					memory_write_n,
+	input		wire					address_enable_n,
+	output	wire	[2:0]			timer_counter_out,
+	output	wire					speaker_out,
+	output	wire	[7:0]			port_a_out,
+	output	wire					port_a_io,
+	input		wire	[7:0]			port_b_in,
+	output	wire	[7:0]			port_b_out,
+	output	wire					port_b_io,
+	input		wire	[7:0]			port_c_in,
+	output	wire	[7:0]			port_c_out,
+	output	wire	[7:0]			port_c_io,
+	input		wire					ps2_clock,
+	input		wire					ps2_data,
+	output	reg					ps2_clock_out,
+	output	wire					ps2_data_out,
+//	input		wire	[4:0]			joy_opts,
+//	input		wire	[31:0]		joy0,
+//	input		wire	[31:0]		joy1,
+//	input		wire	[15:0]		joya0,
+//	input		wire	[15:0]		joya1,
+	input		wire					clk_en_opl2,
+	output	wire	[15:0]		jtopl2_snd_e,
+	input		wire					adlibhide,
+//	input		wire					tandy_video,
+	output	wire	[7:0]			tandy_snd_e,
+	output	wire					tandy_snd_rdy,
+	output	wire					tandy_16_gfx,
+	input		wire					ioctl_download,
+	input		wire	[7:0]			ioctl_index,
+	input		wire					ioctl_wr,
+	input		wire	[24:0]		ioctl_addr,
+	input		wire	[7:0]			ioctl_data,
+	input		wire					clk_uart,
+	input		wire					uart_rx,
+	output	wire					uart_tx,
+	input		wire					uart_cts_n,
+	input		wire					uart_dcd_n,
+	input		wire					uart_dsr_n,
+	output	wire					uart_rts_n,
+	output	wire					uart_dtr_n,
+	output	wire	[20:0]		SRAM_ADDR,
+	inout		wire	[7:0]			SRAM_DATA,
+	output	wire					SRAM_WE_n,
+	input		wire					ems_enabled,
+	input		wire	[1:0]			ems_address,
+	input		wire	[2:0]			bios_writable,
+	output	wire					cga_vram_rdy
+	);
+
 	parameter ps2_over_time = 16'd1000;
-	input wire clock;
-	input wire clk_sys;
-	input wire peripheral_clock;
-//	input wire [1:0] turbo_mode;
-	input wire reset;
-	output wire interrupt_to_cpu;
-	input wire interrupt_acknowledge_n;
-	output wire dma_chip_select_n;
-	output wire dma_page_chip_select_n;
-	input wire splashscreen;
-	input wire clk_vga_cga;
-	output wire de_o;
-	output wire [5:0] VGA_R;
-	output wire [5:0] VGA_G;
-	output wire [5:0] VGA_B;
-	output wire VGA_HSYNC;
-	output wire VGA_VSYNC;
-	output wire VGA_HBlank;
-	output wire VGA_VBlank;
-	input wire [19:0] address;
-	input wire [7:0] internal_data_bus;
-	output reg [7:0] data_bus_out;
-	output reg data_bus_out_from_chipset;
-	input wire [7:0] interrupt_request;
-	input wire io_read_n;
-	input wire io_write_n;
-	input wire memory_read_n;
-	input wire memory_write_n;
-	input wire address_enable_n;
-	output wire [2:0] timer_counter_out;
-	output wire speaker_out;
-	output wire [7:0] port_a_out;
-	output wire port_a_io;
-	input wire [7:0] port_b_in;
-	output wire [7:0] port_b_out;
-	output wire port_b_io;
-	input wire [7:0] port_c_in;
-	output wire [7:0] port_c_out;
-	output wire [7:0] port_c_io;
-	input wire ps2_clock;
-	input wire ps2_data;
-	output reg ps2_clock_out;
-	output wire ps2_data_out;
-//	input wire [4:0] joy_opts;
-//	input wire [31:0] joy0;
-//	input wire [31:0] joy1;
-//	input wire [15:0] joya0;
-//	input wire [15:0] joya1;
-	input wire clk_en_opl2;
-	output wire [15:0] jtopl2_snd_e;
-	input wire adlibhide;
-	input wire tandy_video;
-	output wire [7:0] tandy_snd_e;
-	output wire tandy_snd_rdy;
-	output wire tandy_16_gfx;
-	input wire ioctl_download;
-	input wire [7:0] ioctl_index;
-	input wire ioctl_wr;
-	input wire [24:0] ioctl_addr;
-	input wire [7:0] ioctl_data;
-	input wire clk_uart;
-	input wire uart_rx;
-	output wire uart_tx;
-	input wire uart_cts_n;
-	input wire uart_dcd_n;
-	input wire uart_dsr_n;
-	output wire uart_rts_n;
-	output wire uart_dtr_n;
-	output wire [20:0] SRAM_ADDR;
-	inout [7:0] SRAM_DATA;
-	output wire SRAM_WE_n;
-	input wire ems_enabled;
-	input wire [1:0] ems_address;
-	input wire [2:0] bios_writable;
-	output wire cga_vram_rdy;
+	wire tandy_video;
 	wire [7:0] SRAM_DATA_A_o;
 	wire grph_mode;
 	wire hres_mode;
@@ -191,7 +120,7 @@ module PERIPHERALS (
 	wire tandy_page_cs = (iorq && ~address_enable_n) && (address[15:0] == 16'h03df);
 	wire ram_select_n;
 	//assign ram_select_n = ~(((~iorq && ~address_enable_n) && ~(address[19:16] == 4'b1111)) && ~(address[19:14] == 6'b111011));
-	assign ram_select_n = ~((~iorq && ~address_enable_n) && ~(address[19:13] == 7'b1111111) && ~(address[19:16] == 4'b1101));
+	assign ram_select_n = ~(~iorq && ~address_enable_n);	
 	wire [3:0] ems_page_address = (ems_address == 2'b00 ? 4'b1010 : (ems_address == 2'b01 ? 4'b1100 : 4'b1101));
 	wire ems_oe = ((iorq && ~address_enable_n) && ems_enabled) && ({address[15:2], 2'd0} == 16'h0260);
 	reg [0:3] ena_ems;
@@ -361,7 +290,7 @@ module PERIPHERALS (
 	wire [7:0] jtopl2_dout;
 	wire [7:0] opl32_data;
 	assign opl32_data = (adlibhide ? 8'hff : jtopl2_dout);
-	jtopl2 jtopl2_inst(
+	jtopl jtopl2_inst(
 		.rst(reset),
 		.clk(clock),
 		.cen(clk_en_opl2),
@@ -496,8 +425,8 @@ module PERIPHERALS (
 		video_io_read_n <= io_read_n;
 		video_address_enable_n <= address_enable_n;
 	end
-	wire [7:0] cga_vram_cpu_dout; // reg
-	reg [7:0] cga_vram_cpu_dout_1; // reg
+	wire [7:0] cga_vram_cpu_dout;
+	reg [7:0] cga_vram_cpu_dout_1; 
 	always @(posedge clk_vga_cga) begin
 		cga_io_address_1 <= video_io_address;
 		cga_io_address_2 <= cga_io_address_1;
@@ -549,11 +478,13 @@ module PERIPHERALS (
 		.vram_addr(CGA_VRAM_ADDR),
 		.vram_din((splashscreen ? CGA_VRAM_DOUT : cga_vram_cpu_dout_1)),
 		.hsync(VGA_HSYNC),
+		//.dbl_hsync(VGA_HSYNC),
 		.hblank(VGA_HBlank),
 		.vsync(VGA_VSYNC),
 		.vblank(VGA_VBlank),
 		.de_o(de_o),
 		.video(video_cga),
+		//.dbl_video(video_cga),
 		.splashscreen(splashscreen),
 		.thin_font(thin_font),
 		.tandy_video(tandy_video),
@@ -598,7 +529,7 @@ module PERIPHERALS (
 	wire SRAM_WE_n_A;
 	ram ram(
 		.clka(clock),
-		.ena((~iorq && ~address_enable_n) && ~ram_select_n),
+		.ena(~ram_select_n),
 //		.enaxtide(~xtide_select_n || xtide_loading),
 //		.enabios(~bios_select_n || bios_loader),
 		.wea(~memory_write_n),
@@ -612,7 +543,8 @@ module PERIPHERALS (
 		.douta(ram_cpu_dout),
 //		.doutaxtide(xtide_cpu_dout),
 //		.doutabios(bios_cpu_dout),
-		.enacga(CGA_VRAM_ENABLE && ~(xtide_loading || bios_loader)),
+//		.enacga(CGA_VRAM_ENABLE && ~(xtide_loading || bios_loader)),
+		.enacga(CGA_VRAM_ENABLE),
 		.addracga(tandy_16_gfx ? tandy_crtc : cga_crtc),
 		.doutacga(cga_vram_cpu_dout),
 		
@@ -623,34 +555,29 @@ module PERIPHERALS (
 	);
 	assign SRAM_DATA = (~SRAM_WE_n ? SRAM_DATA_A_o : 8'hzz);
 	
-	/*
-	reg [12:0] rom_address;
-	reg bios_select_n_1;
-	
-	always @(posedge clock) begin
-		  rom_address      <= address[12:0];
-        bios_select_n_1  <= bios_select_n;
-   end
-	*/
-	BRAM_8KB_BIOS bios(
+	bram #(.AW(13), .filename("jukost.hex")) bios
+	(
 		.clka(clock),
-		.ena(~bios_select_n), // bios_select_n_1
-//		.wea(~memory_write_n),		
-		.addra(address[12:0]), // rom_address
-//		.dina(internal_data_bus),
-		.douta(bios_cpu_dout)
+		.ena(~bios_select_n),
+		.wea(~memory_write_n && bios_writable[0]),		
+		.addra(address[12:0]),
+		.dina(internal_data_bus),
+		.douta(bios_cpu_dout),
+		.istandy(tandy_video)
 	);
 	
-	BRAM_16KB_XTIDE xtide(
+	bram #(.AW(14), .filename("xtide.hex")) xtide
+	(
 		.clka(clock),
 		.ena(~xtide_select_n),
-//		.wea(~memory_write_n),		
-		.addra(address[13:0]), // rom_address
-//		.dina(internal_data_bus),
+		.wea(~memory_write_n && bios_writable[0]),
+		.addra(address[13:0]),
+		.dina(internal_data_bus),		
 		.douta(xtide_cpu_dout)
 	);
-
-	splash splash_screen(
+	
+	bram #(.AW(12), .filename("splash.hex")) splash
+	(
 		.clka(clk_vga_cga),
 		.wea(1'b0),
 		.ena(splashscreen && CGA_VRAM_ENABLE),

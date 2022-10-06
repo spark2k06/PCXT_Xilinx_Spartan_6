@@ -1,29 +1,20 @@
+`default_nettype none
+
 module READY (
-	clock,
-	cpu_clock,
-	reset,
-	processor_ready,
-	dma_ready,
-	dma_wait_n,
-	io_channel_ready,
-	io_read_n,
-	io_write_n,
-	memory_read_n,
-	dma0_acknowledge_n,
-	address_enable_n
-);
-	input wire clock;
-	input wire cpu_clock;
-	input wire reset;
-	output wire processor_ready;
-	output wire dma_ready;
-	input wire dma_wait_n;
-	input wire io_channel_ready;
-	input wire io_read_n;
-	input wire io_write_n;
-	input wire memory_read_n;
-	input wire dma0_acknowledge_n;
-	input wire address_enable_n;
+	input		wire					clock,
+	input		wire					cpu_clock,
+	input		wire					reset,
+	output	wire					processor_ready,
+	output	wire					dma_ready,
+	input		wire					dma_wait_n,
+	input		wire					io_channel_ready,
+	input		wire					io_read_n,
+	input		wire					io_write_n,
+	input		wire					memory_read_n,
+	input		wire					dma0_acknowledge_n,
+	input		wire					address_enable_n
+	);
+
 	reg prev_cpu_clock;
 	always @(posedge clock or posedge reset)
 		if (reset)

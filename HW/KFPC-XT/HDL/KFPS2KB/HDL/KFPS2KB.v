@@ -1,22 +1,17 @@
+`default_nettype none
+
 module KFPS2KB (
-	clock,
-	peripheral_clock,
-	reset,
-	device_clock,
-	device_data,
-	irq,
-	keycode,
-	clear_keycode
-);
+	input		wire					clock,
+	input		wire					peripheral_clock,
+	input		wire					reset,
+	input		wire					device_clock,
+	input		wire					device_data,
+	output	reg					irq,
+	output	reg	[7:0]			keycode,
+	input		wire					clear_keycode
+
+	);
 	parameter over_time = 16'd1000;
-	input wire clock;
-	input wire peripheral_clock;
-	input wire reset;
-	input wire device_clock;
-	input wire device_data;
-	output reg irq;
-	output reg [7:0] keycode;
-	input wire clear_keycode;
 	wire [7:0] register;
 	wire recieved_flag;
 	wire error_flag;

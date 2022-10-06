@@ -1,67 +1,39 @@
+`default_nettype none
+
 module KF8259_Control_Logic (
-	clock,
-	reset,
-	cascade_in,
-	cascade_out,
-	cascade_io,
-	slave_program_n,
-	slave_program_or_enable_buffer,
-	interrupt_acknowledge_n,
-	interrupt_to_cpu,
-	internal_data_bus,
-	write_initial_command_word_1,
-	write_initial_command_word_2_4,
-	write_operation_control_word_1,
-	write_operation_control_word_2,
-	write_operation_control_word_3,
-	read,
-	out_control_logic_data,
-	control_logic_data,
-	level_or_edge_toriggered_config,
-	special_fully_nest_config,
-	enable_read_register,
-	read_register_isr_or_irr,
-	interrupt,
-	highest_level_in_service,
-	interrupt_mask,
-	interrupt_special_mask,
-	end_of_interrupt,
-	priority_rotate,
-	freeze,
-	latch_in_service,
-	clear_interrupt_request
-);
-	input wire clock;
-	input wire reset;
-	input wire [2:0] cascade_in;
-	output reg [2:0] cascade_out;
-	output wire cascade_io;
-	input wire slave_program_n;
-	output wire slave_program_or_enable_buffer;
-	input wire interrupt_acknowledge_n;
-	output reg interrupt_to_cpu;
-	input wire [7:0] internal_data_bus;
-	input wire write_initial_command_word_1;
-	input wire write_initial_command_word_2_4;
-	input wire write_operation_control_word_1;
-	input wire write_operation_control_word_2;
-	input wire write_operation_control_word_3;
-	input wire read;
-	output reg out_control_logic_data;
-	output reg [7:0] control_logic_data;
-	output reg level_or_edge_toriggered_config;
-	output reg special_fully_nest_config;
-	output reg enable_read_register;
-	output reg read_register_isr_or_irr;
-	input wire [7:0] interrupt;
-	input wire [7:0] highest_level_in_service;
-	output reg [7:0] interrupt_mask;
-	output reg [7:0] interrupt_special_mask;
-	output reg [7:0] end_of_interrupt;
-	output reg [2:0] priority_rotate;
-	output reg freeze;
-	output reg latch_in_service;
-	output reg [7:0] clear_interrupt_request;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire	[2:0]			cascade_in,
+	output	reg	[2:0]			cascade_out,
+	output	wire					cascade_io,
+	input		wire					slave_program_n,
+	output	wire					slave_program_or_enable_buffer,
+	input		wire					interrupt_acknowledge_n,
+	output	reg					interrupt_to_cpu,
+	input		wire	[7:0]			internal_data_bus,
+	input		wire					write_initial_command_word_1,
+	input		wire					write_initial_command_word_2_4,
+	input		wire					write_operation_control_word_1,
+	input		wire					write_operation_control_word_2,
+	input		wire					write_operation_control_word_3,
+	input		wire					read,
+	output	reg					out_control_logic_data,
+	output	reg	[7:0]			control_logic_data,
+	output	reg					level_or_edge_toriggered_config,
+	output	reg					special_fully_nest_config,
+	output	reg					enable_read_register,
+	output	reg					read_register_isr_or_irr,
+	input		wire	[7:0]			interrupt,
+	input		wire	[7:0]			highest_level_in_service,
+	output	reg	[7:0]			interrupt_mask,
+	output	reg	[7:0]			interrupt_special_mask,
+	output	reg	[7:0]			end_of_interrupt,
+	output	reg	[2:0]			priority_rotate,
+	output	reg					freeze,
+	output	reg					latch_in_service,
+	output	reg	[7:0]			clear_interrupt_request
+	);
+
 	reg [10:0] interrupt_vector_address;
 	reg call_address_interval_4_or_8_config;
 	reg single_or_cascade_config;

@@ -1,59 +1,35 @@
+`default_nettype none
+
 module KF8255_Port_C (
-	clock,
-	reset,
-	chip_select_n,
-	read_enable_n,
-	internal_data_bus,
-	write_port_a,
-	write_port_b,
-	write_port_c_bit_set,
-	write_port_c,
-	read_port_a,
-	read_port_b,
-	read_port_c,
-	update_group_a_mode,
-	update_group_b_mode,
-	group_a_mode_reg,
-	group_b_mode_reg,
-	group_a_port_a_io_reg,
-	group_b_port_b_io_reg,
-	group_a_port_c_io_reg,
-	group_b_port_c_io_reg,
-	port_a_strobe,
-	port_b_strobe,
-	port_a_hiz,
-	port_c_io,
-	port_c_out,
-	port_c_in,
-	port_c_read
-);
-	input wire clock;
-	input wire reset;
-	input wire chip_select_n;
-	input wire read_enable_n;
-	input wire [7:0] internal_data_bus;
-	input wire write_port_a;
-	input wire write_port_b;
-	input wire write_port_c_bit_set;
-	input wire write_port_c;
-	input wire read_port_a;
-	input wire read_port_b;
-	input wire read_port_c;
-	input wire update_group_a_mode;
-	input wire update_group_b_mode;
-	input wire [1:0] group_a_mode_reg;
-	input wire [1:0] group_b_mode_reg;
-	input wire group_a_port_a_io_reg;
-	input wire group_b_port_b_io_reg;
-	input wire group_a_port_c_io_reg;
-	input wire group_b_port_c_io_reg;
-	output wire port_a_strobe;
-	output wire port_b_strobe;
-	output wire port_a_hiz;
-	output reg [7:0] port_c_io;
-	output reg [7:0] port_c_out;
-	input wire [7:0] port_c_in;
-	output reg [7:0] port_c_read;
+	input		wire					clock,
+	input		wire					reset,
+	input		wire					chip_select_n,
+	input		wire					read_enable_n,
+	input		wire	[7:0] internal_data_bus,
+	input		wire					write_port_a,
+	input		wire					write_port_b,
+	input		wire					write_port_c_bit_set,
+	input		wire					write_port_c,
+	input		wire					read_port_a,
+	input		wire					read_port_b,
+	input		wire					read_port_c,
+	input		wire					update_group_a_mode,
+	input		wire					update_group_b_mode,
+	input		wire	[1:0] group_a_mode_reg,
+	input		wire	[1:0] group_b_mode_reg,
+	input		wire					group_a_port_a_io_reg,
+	input		wire					group_b_port_b_io_reg,
+	input		wire					group_a_port_c_io_reg,
+	input		wire					group_b_port_c_io_reg,
+	output	wire					port_a_strobe,
+	output	wire					port_b_strobe,
+	output	wire					port_a_hiz,
+	output	reg	[7:0] port_c_io,
+	output	reg	[7:0] port_c_out,
+	input		wire	[7:0] port_c_in,
+	output	reg	[7:0] port_c_read
+	);
+
 	reg read_port_a_ff;
 	reg read_port_b_ff;
 	wire stb_a_n;

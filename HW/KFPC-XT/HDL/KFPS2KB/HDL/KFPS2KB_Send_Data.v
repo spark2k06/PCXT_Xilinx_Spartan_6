@@ -1,24 +1,17 @@
+`default_nettype none
+
 module KFPS2KB_Send_Data (
-	clock,
-	peripheral_clock,
-	reset,
-	device_clock,
-	device_clock_out,
-	device_data_out,
-	sending_data_flag,
-	send_request,
-	send_data
-);
+	input		wire					clock,
+	input		wire					peripheral_clock,
+	input		wire					reset,
+	input		wire					device_clock,
+	output	reg					device_clock_out,
+	output	reg					device_data_out,
+	output	wire					sending_data_flag,
+	input		wire					send_request,
+	input		wire	[7:0]			send_data
+	);
 	parameter device_out_clock_wait = 16'd240;
-	input wire clock;
-	input wire peripheral_clock;
-	input wire reset;
-	input wire device_clock;
-	output reg device_clock_out;
-	output reg device_data_out;
-	output wire sending_data_flag;
-	input wire send_request;
-	input wire [7:0] send_data;
 	reg prev_device_clock;
 	wire device_clock_edge;
 	reg prev_send_request;

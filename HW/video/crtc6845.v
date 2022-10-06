@@ -6,31 +6,33 @@
 // http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 // Commons, PO Box 1866, Mountain View, CA 94042, USA.
 //
-`default_nettype wire
+`default_nettype none
+
 module crtc6845(
-    input clk,
-    input divclk,
+	input		wire					clk,
+	input		wire					divclk,
 
-    // ISA bus
-    input cs,
-    input a0,
-    input write,
-    input read,
-    input[7:0] bus,
-    output reg [7:0] bus_out,
+	// ISA bus
+	input		wire					cs,
+	input		wire					a0,
+	input		wire					write,
+	input		wire					read,
+	input		wire	[7:0]			bus,
+	output	reg	[7:0]			bus_out,
 
-    input lock,
+	input		wire					lock,
 
-    // Video control signals
-    output hsync,
-    output vsync,
-	output hblank,
-    output vblank,
-    output display_enable,
-    output cursor,
-    output [13:0] mem_addr,
-    output [4:0] row_addr,
-    output line_reset);
+	// Video control signals
+   output	wire					hsync,
+   output	wire					vsync,
+	output	wire					hblank,
+	output	wire					vblank,
+	output	wire					display_enable,
+	output	wire					cursor,
+	output	wire	[13:0]		mem_addr,
+	output	wire	[4:0]			row_addr,
+	output	wire					line_reset
+	);
 
     parameter H_TOTAL = 0;
     parameter H_DISP = 0;

@@ -6,36 +6,37 @@
 // http://creativecommons.org/licenses/by-sa/4.0/ or send a letter to Creative
 // Commons, PO Box 1866, Mountain View, CA 94042, USA.
 //
-`default_nettype wire
+`default_nettype none
+
 module cga_pixel(
-    input clk,
-    input[4:0] clk_seq,
-    input hres_mode,
-    input grph_mode,
-    input bw_mode,
-    input mode_640,
-    input tandy_16_mode,
-    input thin_font,
-    input[7:0] vram_data,
-    input vram_read_char,
-    input vram_read_att,
-    input disp_pipeline,
-    input charrom_read,
-    input display_enable,
-    input cursor,
-    input[4:0] row_addr,
-    input blink_enabled,
-    input blink,
-    input hsync,
-    input vsync,
-    input video_enabled,
-    input[7:0] cga_color_reg,
-    input[3:0] tandy_palette_color,
-    input[3:0] tandy_newcolor,
-    input tandy_palette_set,
-    input[4:0] tandy_bordercol,
-    output[3:0] video
-    );
+	input		wire					clk,
+	input		wire	[4:0]			clk_seq,
+	input		wire					hres_mode,
+	input		wire					grph_mode,
+	input		wire					bw_mode,
+	input		wire					mode_640,
+	input		wire					tandy_16_mode,
+	input		wire					thin_font,
+	input		wire	[7:0]			vram_data,
+	input		wire					vram_read_char,
+	input		wire					vram_read_att,
+	input		wire					disp_pipeline,
+	input		wire					charrom_read,
+	input		wire					display_enable,
+	input		wire					cursor,
+	input		wire	[4:0]			row_addr,
+	input		wire					blink_enabled,
+	input		wire					blink,
+	input		wire					hsync,
+	input		wire					vsync,
+	input		wire					video_enabled,
+	input		wire	[7:0]			cga_color_reg,
+	input		wire	[3:0]			tandy_palette_color,
+	input		wire	[3:0]			tandy_newcolor,
+	input		wire					tandy_palette_set,
+	input		wire	[4:0]			tandy_bordercol,
+	output	wire	[3:0]			video
+	);
 
     reg[7:0] attr_byte;
     reg[7:0] char_byte;

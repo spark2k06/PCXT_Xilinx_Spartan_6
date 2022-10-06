@@ -1,7 +1,10 @@
+`default_nettype none
+
 module eu_rom(
-  input clka,
-  input [11:0] addra,
-  output reg [31:0] douta
+	input		wire					clk,
+	input		wire					clka,
+	input		wire	[11:0]		addra,
+	output	reg	[31:0]		douta
 );
 
 reg [31:0] memory[3961:0];

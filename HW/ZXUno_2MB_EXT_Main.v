@@ -1,50 +1,50 @@
 `timescale 1ns / 1ps
+`default_nettype none
 
-module ZXUno_PCXT_2MB_EXT
-	(
-		input  wire CLK_50MHZ,
-		output wire [2:0]VGA_R,
-		output wire [2:0]VGA_G,
-		output wire [2:0]VGA_B,
-		output wire VGA_HSYNC,
-		output wire VGA_VSYNC,
-		output wire SRAM_WE_n,
-		output wire [20:0]SRAM_A,
-		inout  wire [7:0]SRAM_D,
-		
-		output wire uart_rx,
-		input wire uart_tx,
-		
-		inout wire clkps2,
-		inout wire dataps2,
-		
-		output wire AUDIO_L,
-		output wire AUDIO_R
-		/*
-		output wire LED,
-		inout  wire PS2CLKA,
-		inout  wire PS2CLKB,
-		inout  wire PS2DATA,
-		inout  wire PS2DATB,
-		output wire SD_nCS,
-		output wire SD_DI,
-		output wire SD_CK,
-		input  wire SD_DO,
-		input  wire P_A,
-		input  wire P_U,
-		input  wire P_D,
-		input  wire P_L,
-		input  wire P_R,
-		input  wire P_tr
-		*/
+module ZXUno_PCXT_2MB_EXT(
+	input		wire					CLK_50MHZ,
+	output	wire	[2:0]			VGA_R,
+	output	wire	[2:0]			VGA_G,
+	output	wire	[2:0]			VGA_B,
+	output	wire					VGA_HSYNC,
+	output	wire					VGA_VSYNC,
+	output	wire					SRAM_WE_n,
+	output	wire	[20:0]		SRAM_A,
+	inout		wire	[7:0]			SRAM_D,
 
+	output	wire					uart_rx,
+	input		wire					uart_tx,
+
+	inout		wire					clkps2,
+	inout		wire					dataps2,
+
+	output	wire					AUDIO_L,
+	output	wire					AUDIO_R
+	/*
+	output	wire					LED,
+	inout		wire					PS2CLKA,
+	inout		wire					PS2CLKB,
+	inout		wire					PS2DATA,
+	inout		wire					PS2DATB,
+	output	wire					SD_nCS,
+	output	wire					SD_DI,
+	output	wire					SD_CK,
+	input		wire					SD_DO,
+	input		wire					P_A,
+	input		wire					P_U,
+	input		wire					P_D,
+	input		wire					P_L,
+	input		wire					P_R,
+	input		wire					P_tr
+	*/
 	);
+
 	
 	wire clk_100;
 	wire clk_50;
 	wire clk_28_571;	
 	wire clk_14_815;
-//	wire clk_3_571;	
+	wire clk_3_571;	
 	
 	wire [5:0] R;
 	wire [5:0] G;
@@ -60,8 +60,8 @@ module ZXUno_PCXT_2MB_EXT
 		.CLK_OUT1(clk_100),
 		.CLK_OUT2(clk_50),
 		.CLK_OUT3(clk_28_571),
-		.CLK_OUT4(clk_14_815)
-//		.CLK_OUT4(clk_3_571)	// CLK_OUT5
+		.CLK_OUT4(clk_14_815),
+		.CLK_OUT5(clk_3_571)
     );
    
 	system_2MB sys_inst
@@ -70,7 +70,7 @@ module ZXUno_PCXT_2MB_EXT
 		.clk_chipset(clk_50),
 		.clk_vga(clk_28_571),
 		.clk_uart(clk_14_815),
-//		.clk_opl2(clk_3_571),		
+		.clk_opl2(clk_3_571),		
 		
 		.VGA_R(R),
 		.VGA_G(G),

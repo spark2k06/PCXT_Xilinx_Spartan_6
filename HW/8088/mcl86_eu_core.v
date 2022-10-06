@@ -44,42 +44,41 @@
 //
 //------------------------------------------------------------------------
 
+`default_nettype none
 
-module mcl86_eu_core
-  (  
-    input               CORE_CLK_INT,           // Core Clock
-    input               RESET_INT,              // Pipelined 8088 RESET pin
-    input               TEST_N_INT,             // Pipelined 8088 TEST_n pin
+module mcl86_eu_core(
+	input		wire					CORE_CLK_INT,           // Core Clock
+	input		wire					RESET_INT,              // Pipelined 8088 RESET pin
+	input		wire					TEST_N_INT,             // Pipelined 8088 TEST_n pin
 
-    
-    output [15:0]       EU_BIU_COMMAND,         // EU to BIU Signals
-    output [15:0]       EU_BIU_DATAOUT,         
-    output [15:0]       EU_REGISTER_R3, 
-    output              EU_PREFIX_LOCK,
-    output              EU_FLAG_I,          
-    
-    
-    input               BIU_DONE,               // BIU to EU Signals
-    input               BIU_CLK_COUNTER_ZERO,
-    input               BIU_NMI_CAUGHT,
-    output              BIU_NMI_DEBOUNCE,
-    input               BIU_INTR,
 
-    
-    input [7:0]         PFQ_TOP_BYTE,
-    input               PFQ_EMPTY,
-    input[15:0]         PFQ_ADDR_OUT,
+	output		wire	[15:0]	EU_BIU_COMMAND,         // EU to BIU Signals
+	output		wire	[15:0]	EU_BIU_DATAOUT,
+	output		wire	[15:0]	EU_REGISTER_R3,
+	output		wire					EU_PREFIX_LOCK,
+	output		wire					EU_FLAG_I,
+	
 
-    
-    input [15:0]        BIU_REGISTER_ES,
-    input [15:0]        BIU_REGISTER_SS,
-    input [15:0]        BIU_REGISTER_CS,
-    input [15:0]        BIU_REGISTER_DS,
-    input [15:0]        BIU_REGISTER_RM,
-    input [15:0]        BIU_REGISTER_REG,
-    input [15:0]        BIU_RETURN_DATA
+	input		wire					BIU_DONE,               // BIU to EU Signals
+	input		wire					BIU_CLK_COUNTER_ZERO,
+	input		wire					BIU_NMI_CAUGHT,
+	output	wire					BIU_NMI_DEBOUNCE,
+	input		wire					BIU_INTR,
 
-  );
+ 
+	input		wire	[7:0]			PFQ_TOP_BYTE,
+	input		wire					PFQ_EMPTY,
+	input		wire	[15:0]		PFQ_ADDR_OUT,
+
+
+	input		wire	[15:0]		BIU_REGISTER_ES,
+	input		wire	[15:0]		BIU_REGISTER_SS,
+	input		wire	[15:0]		BIU_REGISTER_CS,
+	input		wire	[15:0]		BIU_REGISTER_DS,
+	input		wire	[15:0]		BIU_REGISTER_RM,
+	input		wire	[15:0]		BIU_REGISTER_REG,
+	input		wire	[15:0]		BIU_RETURN_DATA
+	);
 
 //------------------------------------------------------------------------
       

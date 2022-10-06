@@ -1,43 +1,42 @@
 `timescale 1ns / 1ps
+`default_nettype none
 
-module ZXUnCore_PCXT_2MB
-	(
-		input  wire CLK_50MHZ,
-		output wire [5:0]VGA_R,
-		output wire [5:0]VGA_G,
-		output wire [5:0]VGA_B,
-		output wire VGA_HSYNC,
-		output wire VGA_VSYNC,
-		output wire SRAM_WE_n,
-		output wire [20:0]SRAM_A,
-		inout  wire [7:0]SRAM_D,
-		
-		output wire uart_rx,
-		input wire uart_tx,
-		
-		inout wire clkps2,
-		inout wire dataps2,
-		
-		output wire AUDIO_L,
-		output wire AUDIO_R
-		/*
-		output wire LED,
-		inout  wire PS2CLKA,
-		inout  wire PS2CLKB,
-		inout  wire PS2DATA,
-		inout  wire PS2DATB,
-		output wire SD_nCS,
-		output wire SD_DI,
-		output wire SD_CK,
-		input  wire SD_DO,
-		input  wire P_A,
-		input  wire P_U,
-		input  wire P_D,
-		input  wire P_L,
-		input  wire P_R,
-		input  wire P_tr
-		*/
+module ZXUnCore_PCXT_2MB(	
+	input		wire					CLK_50MHZ,
+	output	wire	[5:0]			VGA_R,
+	output	wire	[5:0]			VGA_G,
+	output	wire	[5:0]			VGA_B,
+	output	wire					VGA_HSYNC,
+	output	wire					VGA_VSYNC,
+	output	wire					SRAM_WE_n,
+	output	wire	[20:0]		SRAM_A,
+	inout		wire	[7:0]			SRAM_D,
 
+	output	wire					uart_rx,
+	input		wire					uart_tx,
+
+	inout		wire					clkps2,
+	inout		wire					dataps2,
+
+	output	wire					AUDIO_L,
+	output	wire					AUDIO_R
+	/*
+	output	wire					LED,
+	inout		wire					PS2CLKA,
+	inout		wire					PS2CLKB,
+	inout		wire					PS2DATA,
+	inout		wire					PS2DATB,
+	output	wire					SD_nCS,
+	output	wire					SD_DI,
+	output	wire					SD_CK,
+	input		wire					SD_DO,
+	input		wire					P_A,
+	input		wire					P_U,
+	input		wire					P_D,
+	input		wire					P_L,
+	input		wire					P_R,
+	input		wire					P_tr
+	*/
 	);
 	
 	wire clk_100;
