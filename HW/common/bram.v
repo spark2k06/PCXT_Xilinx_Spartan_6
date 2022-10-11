@@ -8,33 +8,31 @@ module bram #(parameter AW=16, parameter filename="")
 	input		wire	[AW-1:0]		addra,
 	input		wire	[7:0]			dina,
 	output	reg	[7:0]			douta,
-	output	wire					istandy
+	input		wire					clkb,
+	input		wire					enb,
+	input		wire					web,
+	input		wire	[AW-1:0]		addrb,
+	input		wire	[7:0]			dinb,
+	output	reg	[7:0]			doutb
 );
 
 reg [7:0] bram[(2**AW)-1:0];
 
 initial $readmemh(filename, bram);
 
-reg [7:0] tandy_byte = 8'h00;
-reg get_tandy_byte = 1'b0;
-
-assign istandy = (tandy_byte == 8'h38);
-
 always @(posedge clka) begin
-  
-  if (get_tandy_byte)
-		tandy_byte <= douta;
-  
+
   if (ena)
 		if (wea)
 			bram[addra] <= dina;
-		else begin		
+		else
 			douta <= bram[addra];
-			if (addra == 0)
-				get_tandy_byte <= 1'b1;
-			else
-				get_tandy_byte <= 1'b0;
-		end
-
+end
+always @(posedge clkb) begin
+  if (enb)
+		if (web)
+			bram[addrb] <= dinb;
+		else
+			doutb <= bram[addrb];
 end
 endmodule

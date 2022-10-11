@@ -53,8 +53,8 @@ module PERIPHERALS (
 	output	wire	[15:0]		jtopl2_snd_e,
 	input		wire					adlibhide,
 //	input		wire					tandy_video,
-	output	wire	[7:0]			tandy_snd_e,
-	output	wire					tandy_snd_rdy,
+//	output	wire	[7:0]			tandy_snd_e,
+//	output	wire					tandy_snd_rdy,
 	output	wire					tandy_16_gfx,
 	input		wire					ioctl_download,
 	input		wire	[7:0]			ioctl_index,
@@ -69,13 +69,13 @@ module PERIPHERALS (
 	input		wire					uart_dsr_n,
 	output	wire					uart_rts_n,
 	output	wire					uart_dtr_n,
-	output	wire	[20:0]		SRAM_ADDR,
+	output	wire	[18:0]		SRAM_ADDR,
 	inout		wire	[7:0]			SRAM_DATA,
 	output	wire					SRAM_WE_n,
-	input		wire					ems_enabled,
-	input		wire	[1:0]			ems_address,
-	input		wire	[2:0]			bios_writable,
-	output	wire					cga_vram_rdy
+//	input		wire					ems_enabled,
+//	input		wire	[1:0]			ems_address,
+	input		wire	[2:0]			bios_writable
+//	output	wire					cga_vram_rdy
 	);
 
 	parameter ps2_over_time = 16'd1000;
@@ -86,7 +86,7 @@ module PERIPHERALS (
 	assign tandy_16_gfx = (tandy_video & grph_mode) & hres_mode;
 	reg [7:0] chip_select_n;
 	wire CGA_VRAM_ENABLE;
-	assign cga_vram_rdy = ~CGA_VRAM_ENABLE;
+//	assign cga_vram_rdy = ~CGA_VRAM_ENABLE;
 	always @(*)
 		if ((~address_enable_n & ~address[9]) & ~address[8])
 			casez (address[7:5])
@@ -109,30 +109,30 @@ module PERIPHERALS (
 	wire ppi_chip_select_n = iorq && chip_select_n[3];
 	assign dma_page_chip_select_n = iorq && chip_select_n[4];
 //	wire joystick_select = (iorq && ~address_enable_n) && (address[15:3] == (16'h0200 >> 3));
-	wire nmi_mask_register_n = ~(((tandy_video && iorq) && ~address_enable_n) && (address[15:3] == (16'h00a0 >> 3)));
-	wire tandy_chip_select_n = ~((iorq && ~address_enable_n) && (address[15:3] == (16'h00c0 >> 3)));
+//	wire nmi_mask_register_n = ~(((tandy_video && iorq) && ~address_enable_n) && (address[15:3] == (16'h00a0 >> 3)));
+//	wire tandy_chip_select_n = ~((iorq && ~address_enable_n) && (address[15:3] == (16'h00c0 >> 3)));
 	wire opl_chip_select_n = ~((iorq && ~address_enable_n) && (address[15:1] == (16'h0388 >> 1)));
 	wire cga_chip_select_n = ~((~iorq && ~address_enable_n) && (address[19:15] == 5'b10111));
 	wire bios_select_n = ~((~iorq && ~address_enable_n) && (address[19:13] == 7'b1111111));
 	wire xtide_select_n = ~((~iorq && ~address_enable_n) && (address[19:14] == 6'b111011));
 	wire uart_cs = ~address_enable_n && ({address[15:3], 3'd0} == 16'h03f8);
 	wire lpt_cs = (iorq && ~address_enable_n) && (address[15:0] == 16'h0378);
-	wire tandy_page_cs = (iorq && ~address_enable_n) && (address[15:0] == 16'h03df);
-	wire ram_select_n;
-	//assign ram_select_n = ~(((~iorq && ~address_enable_n) && ~(address[19:16] == 4'b1111)) && ~(address[19:14] == 6'b111011));
-	assign ram_select_n = ~(~iorq && ~address_enable_n);	
-	wire [3:0] ems_page_address = (ems_address == 2'b00 ? 4'b1010 : (ems_address == 2'b01 ? 4'b1100 : 4'b1101));
-	wire ems_oe = ((iorq && ~address_enable_n) && ems_enabled) && ({address[15:2], 2'd0} == 16'h0260);
-	reg [0:3] ena_ems;
-	wire ems_b1 = (~iorq && ena_ems[0]) && (address[19:14] == {ems_page_address, 2'b00});
-	wire ems_b2 = (~iorq && ena_ems[1]) && (address[19:14] == {ems_page_address, 2'b01});
-	wire ems_b3 = (~iorq && ena_ems[2]) && (address[19:14] == {ems_page_address, 2'b10});
-	wire ems_b4 = (~iorq && ena_ems[3]) && (address[19:14] == {ems_page_address, 2'b11});
-	reg [23:0] map_ems;
-	reg [1:0] ems_access_address;
-	reg ems_write_enable;
-	reg [7:0] write_map_ems_data;
-	reg write_map_ena_data;
+//	wire tandy_page_cs = (iorq && ~address_enable_n) && (address[15:0] == 16'h03df);
+//	wire ram_select_n = ~(((~iorq && ~address_enable_n) && ~(address[19:16] == 4'b1111)) && ~(address[19:14] == 6'b111011));
+	wire ram_select_n = ~(~iorq && ~address_enable_n && ~address[19]);	
+//	wire [3:0] ems_page_address = (ems_address == 2'b00 ? 4'b1010 : (ems_address == 2'b01 ? 4'b1100 : 4'b1101));
+//	wire ems_oe = ((iorq && ~address_enable_n) && ems_enabled) && ({address[15:2], 2'd0} == 16'h0260);
+//	reg [0:3] ena_ems;
+//	wire ems_b1 = (~iorq && ena_ems[0]) && (address[19:14] == {ems_page_address, 2'b00});
+//	wire ems_b2 = (~iorq && ena_ems[1]) && (address[19:14] == {ems_page_address, 2'b01});
+//	wire ems_b3 = (~iorq && ena_ems[2]) && (address[19:14] == {ems_page_address, 2'b10});
+//	wire ems_b4 = (~iorq && ena_ems[3]) && (address[19:14] == {ems_page_address, 2'b11});
+//	reg [23:0] map_ems;
+//	reg [1:0] ems_access_address;
+//	reg ems_write_enable;
+//	reg [7:0] write_map_ems_data;
+//	reg write_map_ena_data;
+	/*
 	always @(posedge clock or posedge reset)
 		if (reset) begin
 			ems_access_address <= 2'b11;
@@ -155,6 +155,7 @@ module PERIPHERALS (
 			map_ems[(3 - ems_access_address) * 6+:6] <= write_map_ems_data;
 			ena_ems[ems_access_address] <= write_map_ena_data;
 		end
+	*/
 	wire timer_interrupt;
 	reg keybord_interrupt;
 	wire uart_interrupt;
@@ -303,6 +304,7 @@ module PERIPHERALS (
 		.snd(jtopl2_snd_e),
 		.sample()
 	);
+	/*
 	sn76489_top sn76489(
 		.clock_i(clock),
 		.clock_en_i(clk_en_opl2),
@@ -313,6 +315,7 @@ module PERIPHERALS (
 		.d_i(internal_data_bus),
 		.aout_o(tandy_snd_e)
 	);
+	*/
 	reg keybord_interrupt_ff;
 	always @(posedge clock or posedge reset)
 		if (reset) begin
@@ -353,10 +356,10 @@ module PERIPHERALS (
 			write_to_uart <= write_to_uart;
 		if (lpt_cs && ~io_write_n)
 			lpt_data <= internal_data_bus;
-		if (tandy_page_cs && ~io_write_n)
-			tandy_page_data <= internal_data_bus;
-		if (~nmi_mask_register_n && ~io_write_n)
-			nmi_mask_register_data <= internal_data_bus;
+//		if (tandy_page_cs && ~io_write_n)
+//			tandy_page_data <= internal_data_bus;
+//		if (~nmi_mask_register_n && ~io_write_n)
+//			nmi_mask_register_data <= internal_data_bus;
 	end
 	wire iorq_uart = (io_write_n & ~prev_io_write_n) || (~io_read_n & prev_io_read_n);
 	uart uart1(
@@ -426,7 +429,7 @@ module PERIPHERALS (
 		video_address_enable_n <= address_enable_n;
 	end
 	wire [7:0] cga_vram_cpu_dout;
-	reg [7:0] cga_vram_cpu_dout_1; 
+//	reg [7:0] cga_vram_cpu_dout_1; 
 	always @(posedge clk_vga_cga) begin
 		cga_io_address_1 <= video_io_address;
 		cga_io_address_2 <= cga_io_address_1;
@@ -440,7 +443,7 @@ module PERIPHERALS (
 		cga_io_read_n_3 <= cga_io_read_n_2;
 		cga_address_enable_n_1 <= video_address_enable_n;
 		cga_address_enable_n_2 <= cga_address_enable_n_1;
-		cga_vram_cpu_dout_1 <= cga_vram_cpu_dout;
+//		cga_vram_cpu_dout_1 <= cga_vram_cpu_dout;
 	end
 	wire [3:0] video_cga;
 	wire [18:0] CGA_VRAM_ADDR;
@@ -476,7 +479,7 @@ module PERIPHERALS (
 		.bus_aen(cga_address_enable_n_1), // cga_address_enable_n_2
 		.vram_enable(CGA_VRAM_ENABLE),
 		.vram_addr(CGA_VRAM_ADDR),
-		.vram_din((splashscreen ? CGA_VRAM_DOUT : cga_vram_cpu_dout_1)),
+		.vram_din(CGA_VRAM_DOUT),
 		.hsync(VGA_HSYNC),
 		//.dbl_hsync(VGA_HSYNC),
 		.hblank(VGA_HBlank),
@@ -506,7 +509,8 @@ module PERIPHERALS (
 	wire bios_loader = pcxt_loader || tandy_loader;
 	reg bios_loaded = 1'b0;
 	reg bios_loading = 1'b0;
-	reg [20:0] latch_address;
+	/*
+	reg [20:0] latch_address;	
 	always @(*)
 		if (ems_b1)
 			latch_address = {1'b1, map_ems[18+:6], address[13:0]};
@@ -518,14 +522,15 @@ module PERIPHERALS (
 			latch_address = {1'b1, map_ems[0+:6], address[13:0]};
 		else
 			latch_address = {1'b0, address};
+	*/
 	defparam cga1.BLINK_MAX = 24'd4772727;
 	wire [7:0] bios_cpu_dout;
 	wire [7:0] xtide_cpu_dout;
 	wire [7:0] ram_cpu_dout;
-	wire [20:0] tandy_processor = {1'b0, nmi_mask_register_data[3:1], tandy_page_data[5:4], (tandy_page_data[3] ? tandy_page_data[3] : latch_address[14]), latch_address[13:0]};
-	wire [20:0] tandy_crtc = {1'b0, nmi_mask_register_data[3:1], tandy_page_data[2:1], (tandy_page_data[0] ? tandy_page_data[0] : CGA_VRAM_ADDR[14]), CGA_VRAM_ADDR[13:0]};
-	wire [20:0] cga_crtc = {6'b010111, CGA_VRAM_ADDR[14:0]};
-	wire [20:0] SRAM_ADDR_A;
+//	wire [19:0] tandy_processor = {nmi_mask_register_data[3:1], tandy_page_data[5:4], (tandy_page_data[3] ? tandy_page_data[3] : address[14]), address[13:0]};
+//	wire [19:0] tandy_crtc = {nmi_mask_register_data[3:1], tandy_page_data[2:1], (tandy_page_data[0] ? tandy_page_data[0] : CGA_VRAM_ADDR[14]), CGA_VRAM_ADDR[13:0]};
+//	wire [19:0] cga_crtc = {6'b10111, CGA_VRAM_ADDR[14:0]};
+	wire [18:0] SRAM_ADDR_A;
 	wire SRAM_WE_n_A;
 	ram ram(
 		.clka(clock),
@@ -535,7 +540,7 @@ module PERIPHERALS (
 		.wea(~memory_write_n),
 //		.weaxtide((xtide_loading && ioctl_wr) || (~memory_write_n && bios_writable[0])),
 //		.weabios((bios_loader && ioctl_wr) || (~memory_write_n && bios_writable[1])),
-		.addra(((tandy_16_gfx && ~cga_chip_select_n) && ~latch_address[20] ? tandy_processor : latch_address)),
+		.addra(address[18:0]),
 //		.addraxtide({7'b0111011, (xtide_loading ? ioctl_addr[13:0] : address[13:0])}),
 //		.addrabios((bios_loader ? {tandy_loader, 4'b1111, ioctl_addr[15:0]} : {tandy_video, 4'b1111, address[15:0]})),
 		.dina(internal_data_bus),
@@ -544,9 +549,9 @@ module PERIPHERALS (
 //		.doutaxtide(xtide_cpu_dout),
 //		.doutabios(bios_cpu_dout),
 //		.enacga(CGA_VRAM_ENABLE && ~(xtide_loading || bios_loader)),
-		.enacga(CGA_VRAM_ENABLE),
-		.addracga(tandy_16_gfx ? tandy_crtc : cga_crtc),
-		.doutacga(cga_vram_cpu_dout),
+//		.enacga(CGA_VRAM_ENABLE),
+//		.addracga(tandy_16_gfx ? tandy_crtc : cga_crtc),
+//		.doutacga(cga_vram_cpu_dout),
 		
 		.SRAM_ADDR(SRAM_ADDR),
 		.SRAM_DATA_i(SRAM_DATA),
@@ -555,35 +560,52 @@ module PERIPHERALS (
 	);
 	assign SRAM_DATA = (~SRAM_WE_n ? SRAM_DATA_A_o : 8'hzz);
 	
-	bram #(.AW(13), .filename("jukost.hex")) bios
-	(
-		.clka(clock),
-		.ena(~bios_select_n),
-		.wea(~memory_write_n && bios_writable[0]),		
-		.addra(address[12:0]),
-		.dina(internal_data_bus),
-		.douta(bios_cpu_dout),
-		.istandy(tandy_video)
-	);
+    reg   [13:0]  rom_address;	 
+    reg           bios_select_n_1;
+    reg           xtide_select_n_1; 
 	
-	bram #(.AW(14), .filename("xtide.hex")) xtide
+	always @(posedge clock) begin
+        
+		  rom_address      <= address[13:0];
+        bios_select_n_1  <= bios_select_n;
+        xtide_select_n_1 <= xtide_select_n;
+   end
+	
+	rom #(.AW(13), .filename("jukost.hex")) bios
 	(
 		.clka(clock),
-		.ena(~xtide_select_n),
-		.wea(~memory_write_n && bios_writable[0]),
-		.addra(address[13:0]),
-		.dina(internal_data_bus),		
+		.ena(~bios_select_n_1),
+		.wea(1'b0),
+		.addra(rom_address[12:0]),
+		.douta(bios_cpu_dout)
+	);
+		
+	rom #(.AW(14), .filename("xtide.hex")) xtide
+	(
+		.clka(clock),
+		.ena(~xtide_select_n_1),
+		.wea(1'b0),
+		.addra(rom_address[13:0]),
 		.douta(xtide_cpu_dout)
+		
 	);
 	
-	bram #(.AW(12), .filename("splash.hex")) splash
+	bram #(.AW(14), .filename("splash.hex")) splash
 	(
 		.clka(clk_vga_cga),
 		.wea(1'b0),
-		.ena(splashscreen && CGA_VRAM_ENABLE),
-		.addra(CGA_VRAM_ADDR[11:0]),
+		.ena(CGA_VRAM_ENABLE),
+		.addra(CGA_VRAM_ADDR[13:0]),
 		.dina(8'h00),
-		.douta(CGA_VRAM_DOUT)
+		.douta(CGA_VRAM_DOUT),
+		.clkb(clock),
+		.enb(~cga_chip_select_n),
+		.web(~memory_write_n),
+		.addrb(address[13:0]),
+		.dinb(internal_data_bus),
+		.doutb(cga_vram_cpu_dout)
+		
+		
 	);
 	/*
 	wire [7:0] joy_data;
@@ -625,6 +647,10 @@ module PERIPHERALS (
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= xtide_cpu_dout;
 		end
+		else if (~cga_chip_select_n && ~memory_read_n) begin
+			data_bus_out_from_chipset <= 1'b1;
+			data_bus_out <= cga_vram_cpu_dout;
+		end
 		else if (CGA_CRTC_OE_2) begin
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= CGA_CRTC_DOUT_2;
@@ -641,24 +667,30 @@ module PERIPHERALS (
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= ram_cpu_dout;
 		end
+		/*
 		else if (ems_oe && ~io_read_n) begin
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= (ena_ems[address[1:0]] ? map_ems[(3 - address[1:0]) * 6+:6] : 8'hff);
 		end
+		*/
 		else if (lpt_cs && ~io_read_n) begin
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= lpt_data;
 		end
-		else if (~nmi_mask_register_n && ~io_read_n) begin
-			data_bus_out_from_chipset <= 1'b1;
-			data_bus_out <= nmi_mask_register_data;
-		end
+//		else if (~nmi_mask_register_n && ~io_read_n) begin
+//			data_bus_out_from_chipset <= 1'b1;
+//			data_bus_out <= nmi_mask_register_data;
+//		end
 		/*
 		else if (joystick_select && ~io_read_n) begin
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= joy_data;
 		end
 		*/
+		else if (~memory_read_n) begin
+			data_bus_out_from_chipset <= 1'b1;
+			data_bus_out <= 8'b11111111;
+		end
 		else begin
 			data_bus_out_from_chipset <= 1'b0;
 			data_bus_out <= 8'b00000000;

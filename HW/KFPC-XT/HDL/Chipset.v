@@ -73,7 +73,7 @@ module CHIPSET (
 	output	wire	[15:0]		jtopl2_snd_e,
 	input		wire					adlibhide,
 //	input		wire					tandy_video,
-	output	wire	[7:0]			tandy_snd_e,
+//	output	wire	[7:0]			tandy_snd_e,
 	output	wire					tandy_16_gfx,
 	input		wire					ioctl_download,
 	input		wire	[7:0]			ioctl_index,
@@ -88,11 +88,11 @@ module CHIPSET (
 	input		wire					uart_dsr_n,
 	output	wire					uart_rts_n,
 	output	wire					uart_dtr_n,
-	output	wire	[20:0]		SRAM_ADDR,
+	output	wire	[18:0]		SRAM_ADDR,
 	inout 	wire	[7:0] 		SRAM_DATA,
 	output	wire					SRAM_WE_n,
-	input		wire					ems_enabled,
-	input		wire	[1:0]			ems_address,
+//	input		wire					ems_enabled,
+//	input		wire	[1:0]			ems_address,
 	input		wire	[2:0]			bios_writable
 	);
 
@@ -116,8 +116,8 @@ module CHIPSET (
 	wire ems_b2;
 	wire ems_b3;
 	wire ems_b4;
-	wire tandy_snd_rdy;
-	wire cga_vram_rdy;
+//	wire tandy_snd_rdy;
+//	wire cga_vram_rdy;
 
 	always @(posedge clock)
 		if (reset)
@@ -140,7 +140,8 @@ module CHIPSET (
 		.processor_ready(processor_ready),
 		.dma_ready(dma_ready),
 		.dma_wait_n(dma_wait_n),
-		.io_channel_ready((io_channel_ready & tandy_snd_rdy) && cga_vram_rdy),
+//		.io_channel_ready((io_channel_ready & tandy_snd_rdy) && cga_vram_rdy),
+		.io_channel_ready(io_channel_ready),
 		.io_read_n(io_read_n),
 		.io_write_n(io_write_n),
 		.memory_read_n(memory_read_n),
@@ -240,8 +241,8 @@ module CHIPSET (
 		.jtopl2_snd_e(jtopl2_snd_e),
 		.adlibhide(adlibhide),
 //		.tandy_video(tandy_video),
-		.tandy_snd_e(tandy_snd_e),
-		.tandy_snd_rdy(tandy_snd_rdy),
+//		.tandy_snd_e(tandy_snd_e),
+//		.tandy_snd_rdy(tandy_snd_rdy),
 		.tandy_16_gfx(tandy_16_gfx),
 		.ioctl_download(ioctl_download),
 		.ioctl_index(ioctl_index),
@@ -258,10 +259,10 @@ module CHIPSET (
 		.SRAM_ADDR(SRAM_ADDR),
 		.SRAM_DATA(SRAM_DATA),
 		.SRAM_WE_n(SRAM_WE_n),
-		.ems_enabled(ems_enabled),
-		.ems_address(ems_address),
-		.bios_writable(bios_writable),
-		.cga_vram_rdy(cga_vram_rdy)
+//		.ems_enabled(ems_enabled),
+//		.ems_address(ems_address),
+		.bios_writable(bios_writable)
+//		.cga_vram_rdy(cga_vram_rdy)
 	);
 	assign data_bus = internal_data_bus;
 	always @(*)
