@@ -50,7 +50,7 @@
 set projDir [file dirname [info script]]
 set projName dcm
 set topName dcm_exdes
-set device xc6slx9tqg144-2
+set device xc6slx25ftg256-2
 
 create_project $projName $projDir/results/$projName -part $device
 

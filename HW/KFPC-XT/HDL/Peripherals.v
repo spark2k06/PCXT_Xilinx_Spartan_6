@@ -465,15 +465,15 @@ module PERIPHERALS (
 	wire isa_op_enable;
 	cga cga1(
 		.clk(clk_vga_cga),
-		.bus_a(cga_io_address_1), // cga_io_address_2
-		.bus_ior_l(cga_io_read_n_2), // cga_io_read_n_3
-		.bus_iow_l(cga_io_write_n_2), // cga_io_write_n_3
+		.bus_a(cga_io_address_2),
+		.bus_ior_l(cga_io_read_n_3),
+		.bus_iow_l(cga_io_write_n_3),
 		.bus_memr_l(1'd0),
 		.bus_memw_l(1'd0),
 		.bus_d(cga_io_data_2),
 		.bus_out(CGA_CRTC_DOUT),
 		.bus_dir(CGA_CRTC_OE),
-		.bus_aen(cga_address_enable_n_1), // cga_address_enable_n_2
+		.bus_aen(cga_address_enable_n_2),
 		.vram_enable(CGA_VRAM_ENABLE),
 		.vram_addr(CGA_VRAM_ADDR),
 		.vram_din((splashscreen ? CGA_VRAM_DOUT : cga_vram_cpu_dout_1)),

@@ -1,7 +1,7 @@
 run
 -ifmt MIXED
 -top dcm_exdes
--p xc6slx9-tqg144-2
+-p xc6slx25-ftg256-2
 -ifn xst.prj
 -ofn dcm_exdes
 -keep_hierarchy soft 

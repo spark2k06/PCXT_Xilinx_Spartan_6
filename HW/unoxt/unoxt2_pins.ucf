@@ -1,0 +1,167 @@
+
+# ZX Spectrum Next Issue 2 FPGA Pin Assignemnt and Constraints
+# Copyright 2020 Fabio Belavenuto and Alvin Albrecht
+#
+# All Rights Reserved
+#
+# Redistribution and use in source and synthezised forms, with or without
+# modification, are permitted provided that the following conditions are met:
+#
+# Redistributions of source code must retain the above copyright notice,
+# this list of conditions and the following disclaimer.
+#
+# Redistributions in synthesized form must reproduce the above copyright
+# notice, this list of conditions and the following disclaimer in the
+# documentation and/or other materials provided with the distribution.
+#
+# Neither the name of the author nor the names of other contributors may
+# be used to endorse or promote products derived from this software without
+# specific prior written permission.
+#
+# THIS CODE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+# AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO,
+# THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+# PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE
+# LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+# CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+# SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+# INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+# CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+# ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+# POSSIBILITY OF SUCH DAMAGE.
+#
+# You are responsible for any legal issues arising from your use of this code.
+#
+# This file is part of the ZX Spectrum Next Project
+# <https://gitlab.com/SpectrumNext/ZX_Spectrum_Next_FPGA/tree/master/cores>
+#Max
+NET 'clock_50_i'        LOC='T8'    |IOSTANDARD = LVCMOS33;
+
+NET 'ram_addr_o<0>'     LOC='J1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<1>'     LOC='J3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<2>'     LOC='K3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<3>'     LOC='H2'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<4>'     LOC='H1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<5>'     LOC='C3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<6>'     LOC='F3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<7>'     LOC='H3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<8>'     LOC='G1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<9>'     LOC='E4'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<10>'    LOC='D1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<11>'    LOC='D3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<12>'    LOC='C1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<13>'    LOC='C2'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<14>'    LOC='B1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<15>'    LOC='P2'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<16>'    LOC='P1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<17>'    LOC='M5'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<18>'    LOC='N1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<19>'    LOC='M3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_addr_o<20>'    LOC='E2'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<0>'    LOC='K5'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<1>'    LOC='L3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<2>'    LOC='K2'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<3>'    LOC='L1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<4>'    LOC='L5'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<5>'    LOC='M1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<6>'    LOC='M2'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<7>'    LOC='L4'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<8>'    LOC='E3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<9>'    LOC='E1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<10>'   LOC='F5'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<11>'   LOC='B3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<12>'   LOC='F2'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<13>'   LOC='A3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<14>'   LOC='F4'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_data_io<15>'   LOC='G5'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_oe_n_o'        LOC='G6'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_we_n_o'        LOC='M4'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_ce_n_o'   		LOC='K1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_lb_n_o'        LOC='F1'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+NET 'ram_ub_n_o'        LOC='G3'    |IOSTANDARD = LVCMOS33 |DRIVE = 4 |SLEW = "FAST" |NODELAY;
+
+NET 'ps2_clk_io'        LOC='R2'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
+NET 'ps2_data_io'       LOC='N4'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
+NET 'ps2_pin6_io'       LOC='N3'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
+NET 'ps2_pin2_io'       LOC='R1'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
+
+NET 'sd_cs0_n_o'        LOC='M12'    |IOSTANDARD = LVTTL;
+NET 'sd_sclk_o'         LOC='N9'    |IOSTANDARD = LVTTL;
+NET 'sd_mosi_o'         LOC='P11'    |IOSTANDARD = LVTTL;
+NET 'sd_miso_i'         LOC='R9'    |IOSTANDARD = LVTTL |PULLUP;
+
+NET 'flash_cs_n_o'      LOC='T3'    |IOSTANDARD = LVCMOS33;
+NET 'flash_sclk_o'      LOC='R11'   |IOSTANDARD = LVCMOS33;
+NET 'flash_mosi_o'      LOC='T10'   |IOSTANDARD = LVCMOS33;
+NET 'flash_miso_i'      LOC='P10'   |IOSTANDARD = LVCMOS33 |PULLUP;
+NET 'flash_wp_o'        LOC='N12'   |IOSTANDARD = LVCMOS33;
+NET 'flash_hold_o'      LOC='P12'   |IOSTANDARD = LVCMOS33;
+
+NET 'joyp1_i'           LOC='E11'   |IOSTANDARD = LVTTL | PULLUP;
+NET 'joyp2_i'           LOC='D12'   |IOSTANDARD = LVTTL | PULLUP;
+NET 'joyp3_i'           LOC='A12'   |IOSTANDARD = LVTTL | PULLUP;
+NET 'joyp4_i'           LOC='B12'   |IOSTANDARD = LVTTL | PULLUP;
+NET 'joyp6_i'           LOC='E10'   |IOSTANDARD = LVTTL | PULLUP;
+NET 'joyp7_o'           LOC='C11'   |IOSTANDARD = LVTTL;
+NET 'joyp9_i'           LOC='C13'   |IOSTANDARD = LVTTL | PULLUP;
+
+NET 'audioext_l_o'      LOC='E7'    |IOSTANDARD = LVCMOS33 |DRIVE = 16;
+NET 'audioext_r_o'      LOC='E6'    |IOSTANDARD = LVCMOS33 |DRIVE = 16;
+
+NET 'ear_port_i'        LOC='A2'    |IOSTANDARD = LVCMOS33;
+NET 'mic_port_o'        LOC='B2'    |IOSTANDARD = LVCMOS33;
+
+NET 'btn_divmmc_n_i'    LOC='T6'    |IOSTANDARD = LVCMOS33 |PULLUP;
+NET 'btn_multiface_n_i' LOC='R7'    |IOSTANDARD = LVCMOS33 |PULLUP;
+
+NET 'rgb_r_o<0>'        LOC='A6'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_r_o<1>'        LOC='B6'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_r_o<2>'        LOC='A5'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_r_o<3>'        LOC='B5'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_r_o<4>'        LOC='A4'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_g_o<0>'        LOC='D5'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ;
+NET 'rgb_g_o<1>'        LOC='C5'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_g_o<2>'        LOC='D6'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_g_o<3>'        LOC='C6'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_g_o<4>'        LOC='C7'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_b_o<0>'        LOC='A10'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_b_o<1>'        LOC='A9'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_b_o<2>'        LOC='A8'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_b_o<3>'        LOC='B8'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'rgb_b_o<4>'        LOC='A7'    |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'vsync_o'           LOC='C10'   |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+NET 'hsync_o'           LOC='C8'   |IOSTANDARD = LVTTL |DRIVE = 8 |SLEW = FAST ; 
+
+NET 'esp_gpio0_io'      LOC='M11'   |IOSTANDARD = LVCMOS33 |DRIVE = 2 |PULLUP;
+NET 'esp_gpio2_io'      LOC='M10'   |IOSTANDARD = LVCMOS33 |DRIVE = 2 |PULLUP;
+NET 'esp_rx_i'          LOC='L8'    |IOSTANDARD = LVCMOS33 |PULLUP;
+NET 'esp_tx_o'          LOC='L10'   |IOSTANDARD = LVCMOS33 |DRIVE = 4;
+
+NET 'led_red_o' 			LOC='T4'    |IOSTANDARD = LVCMOS33;
+NET 'led_yellow_o' 		LOC='R5'    |IOSTANDARD = LVCMOS33;
+NET 'led_green_o' 		LOC='T5'    |IOSTANDARD = LVCMOS33;
+NET 'led_blue_o' 			LOC='T7'    |IOSTANDARD = LVCMOS33;
+
+NET 'uart_rx_i'          LOC='L13'    |IOSTANDARD = LVCMOS33 |PULLUP;
+NET 'uart_tx_o'          LOC='M13'   |IOSTANDARD = LVCMOS33 |DRIVE = 4;
+NET 'uart_rts_n_i'       LOC='M14'    |IOSTANDARD = LVCMOS33 |PULLUP;
+NET 'uart_cts_n_o'       LOC='N14'   |IOSTANDARD = LVCMOS33 |DRIVE = 4;
+
+NET "test<0>"           LOC="T13"   |IOSTANDARD = LVTTL;
+NET "test<1>"           LOC="T12"   |IOSTANDARD = LVTTL;
+NET "test<2>"           LOC="R14"   |IOSTANDARD = LVTTL;
+NET "test<3>"           LOC="T14"   |IOSTANDARD = LVTTL;
+NET "test<4>"           LOC="R15"   |IOSTANDARD = LVTTL;
+NET "test<5>"           LOC="T15"   |IOSTANDARD = LVTTL;
+NET "test<6>"           LOC="P15"   |IOSTANDARD = LVTTL;
+NET "test<7>"           LOC="R16"   |IOSTANDARD = LVTTL;
+NET "test<8>"           LOC="N16"   |IOSTANDARD = LVTTL;
+NET "test<9>"           LOC="P16"   |IOSTANDARD = LVTTL;
+
+# Timings
+# Timing constraints
+# NET "clock_50_i" TNM_NET = "clock_50_i";
+# TIMESPEC TS_clk50 = PERIOD "clock_50_i" 20ns HIGH 50%;
+
+PIN "dcm_system/clkout4_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;
+PIN "dcm_system/clkout5_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;
