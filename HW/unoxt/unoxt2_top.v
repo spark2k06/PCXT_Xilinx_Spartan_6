@@ -57,7 +57,11 @@
    input wire flash_miso_i,
    output wire flash_wp_o,
    output wire flash_hold_o,
-   
+	
+	output wire uart_rx,
+	input wire uart_tx,
+
+/*	
    input wire joyp1_i,
    input wire joyp2_i,
    input wire joyp3_i,
@@ -65,6 +69,7 @@
    input wire joyp6_i,
    output wire joyp7_o,
    input wire joyp9_i,
+*/
 	
    input wire btn_divmmc_n_i,
    input wire btn_multiface_n_i,
@@ -83,9 +88,9 @@
 	input uart_rx_i,
 	output uart_tx_o,
 	input uart_rts_n_i,
-	output uart_cts_n_o,
+	output uart_cts_n_o
 		
-	output wire [9:0] test
+	//output wire [9:0] test
 
    );
    
@@ -134,8 +139,8 @@
 		.SRAM_ADDR(ram_addr_o),
 		.SRAM_DATA(ram_data_io[7:0]),
 		.SRAM_WE_n(ram_we_n_o),
-		.uart_rx(uart_rx),
-		.uart_tx(uart_tx),
+		.uart_rx(uart_tx),
+		.uart_tx(uart_rx),
 //		.LED(LED),
 		.clkps2(ps2_clk_io),
 		.dataps2(ps2_data_io),
@@ -159,8 +164,8 @@
 		
 	);
 
- 	assign joyp7_o = 1'b1;
-	assign joy1 = {joyp6_i, joyp1_i, joyp2_i, joyp3_i, joyp4_i};
+// assign joyp7_o = 1'b1;
+//	assign joy1 = {joyp6_i, joyp1_i, joyp2_i, joyp3_i, joyp4_i};
 	
 	assign ram_oe_n_o = 1'b0;
 	assign ram_ce_n_o = 1'b0;
@@ -187,7 +192,9 @@
 	assign led_red_o = 1'b1;
 	assign led_yellow_o = 1'b0;
 	assign led_blue_o = 1'b0;
+	assign led_green_o = 1'b0;
 	
+/*
 	flashCnt #(.CLK_MHZ(16'd50)) cnt(
 		.clk(sysclk),
 		.signal(uart_rx),
@@ -195,15 +202,8 @@
 		.flash(led_green_o)
 	);
 	
-
-	assign uart_rx = uart_rx_i;
-	assign uart_tx_o = uart_tx;
-	assign uart_cts_n_o = 1'b1;
-		
-	assign test[0] = 1'b1;
-	assign test[1] = 1'b1;
-	assign test[9] = 1'b1;
-
+	assign test[0] = uart_tx;
+	assign uart_rx = test[1];
 	
 	assign test[2] = 1'b1;
 	assign test[3] = 1'b1;
@@ -212,5 +212,5 @@
 	assign test[6] = 1'b1;
 	assign test[7] = 1'b1;
 	assign test[8] = 1'b1;
-  
+*/  
 endmodule

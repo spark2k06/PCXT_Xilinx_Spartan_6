@@ -97,13 +97,17 @@ NET 'flash_miso_i'      LOC='P10'   |IOSTANDARD = LVCMOS33 |PULLUP;
 NET 'flash_wp_o'        LOC='N12'   |IOSTANDARD = LVCMOS33;
 NET 'flash_hold_o'      LOC='P12'   |IOSTANDARD = LVCMOS33;
 
-NET 'joyp1_i'           LOC='E13'   |IOSTANDARD = LVTTL | PULLUP;
-NET 'joyp2_i'           LOC='B15'   |IOSTANDARD = LVTTL | PULLUP;
-NET 'joyp3_i'           LOC='F12'   |IOSTANDARD = LVTTL | PULLUP;
-NET 'joyp4_i'           LOC='G11'   |IOSTANDARD = LVTTL | PULLUP;
-NET 'joyp6_i'           LOC='E12'   |IOSTANDARD = LVTTL | PULLUP;
-NET 'joyp7_o'           LOC='B16'   |IOSTANDARD = LVTTL;
-NET 'joyp9_i'           LOC='D14'   |IOSTANDARD = LVTTL | PULLUP;
+# UART
+NET "uart_rx" LOC="F12" | IOSTANDARD = LVCMOS33 | PULLUP;  # RX
+NET "uart_tx" LOC="G11" | IOSTANDARD = LVCMOS33;  # TX
+
+# NET 'joyp1_i'           LOC='E13'   |IOSTANDARD = LVTTL | PULLUP;
+# NET 'joyp2_i'           LOC='B15'   |IOSTANDARD = LVTTL | PULLUP;
+# NET 'joyp3_i'           LOC='F12'   |IOSTANDARD = LVTTL | PULLUP;
+# NET 'joyp4_i'           LOC='G11'   |IOSTANDARD = LVTTL | PULLUP;
+# NET 'joyp6_i'           LOC='E12'   |IOSTANDARD = LVTTL | PULLUP;
+# NET 'joyp7_o'           LOC='B16'   |IOSTANDARD = LVTTL;
+# NET 'joyp9_i'           LOC='D14'   |IOSTANDARD = LVTTL | PULLUP;
 
 NET 'audioext_l_o'      LOC='D6'    |IOSTANDARD = LVCMOS33 |DRIVE = 16;
 NET 'audioext_r_o'      LOC='C6'    |IOSTANDARD = LVCMOS33 |DRIVE = 16;
