@@ -394,6 +394,7 @@ module PERIPHERALS (
 	reg video_io_write_n;
 	reg video_io_read_n;
 	reg video_address_enable_n;
+	/*
 	reg [14:0] cga_io_address_1;
 	reg [14:0] cga_io_address_2;
 	reg [7:0] cga_io_data_1;
@@ -406,6 +407,7 @@ module PERIPHERALS (
 	reg cga_io_read_n_3;
 	reg cga_address_enable_n_1;
 	reg cga_address_enable_n_2;
+	*/
 	always @(posedge clock)
 		if (~io_write_n | ~io_read_n) begin
 			video_io_address <= address[14:0];
@@ -426,7 +428,8 @@ module PERIPHERALS (
 		video_address_enable_n <= address_enable_n;
 	end
 	wire [7:0] cga_vram_cpu_dout;
-	reg [7:0] cga_vram_cpu_dout_1; 
+	//reg [7:0] cga_vram_cpu_dout_1; 
+	/*
 	always @(posedge clk_vga_cga) begin
 		cga_io_address_1 <= video_io_address;
 		cga_io_address_2 <= cga_io_address_1;
@@ -442,6 +445,7 @@ module PERIPHERALS (
 		cga_address_enable_n_2 <= cga_address_enable_n_1;
 		cga_vram_cpu_dout_1 <= cga_vram_cpu_dout;
 	end
+	*/
 	wire [3:0] video_cga;
 	wire [18:0] CGA_VRAM_ADDR;
 	wire [7:0] CGA_VRAM_DOUT;
@@ -465,18 +469,18 @@ module PERIPHERALS (
 	wire isa_op_enable;
 	cga cga1(
 		.clk(clk_vga_cga),
-		.bus_a(cga_io_address_2),
-		.bus_ior_l(cga_io_read_n_3),
-		.bus_iow_l(cga_io_write_n_3),
+		.bus_a(video_io_address),
+		.bus_ior_l(video_io_read_n),
+		.bus_iow_l(video_io_write_n),
 		.bus_memr_l(1'd0),
 		.bus_memw_l(1'd0),
-		.bus_d(cga_io_data_2),
+		.bus_d(video_io_data),
 		.bus_out(CGA_CRTC_DOUT),
 		.bus_dir(CGA_CRTC_OE),
-		.bus_aen(cga_address_enable_n_2),
+		.bus_aen(video_address_enable_n),
 		.vram_enable(CGA_VRAM_ENABLE),
 		.vram_addr(CGA_VRAM_ADDR),
-		.vram_din((splashscreen ? CGA_VRAM_DOUT : cga_vram_cpu_dout_1)),
+		.vram_din((splashscreen ? CGA_VRAM_DOUT : cga_vram_cpu_dout)),
 		.hsync(VGA_HSYNC),
 		//.dbl_hsync(VGA_HSYNC),
 		.hblank(VGA_HBlank),
@@ -522,6 +526,7 @@ module PERIPHERALS (
 	wire [7:0] bios_cpu_dout;
 	wire [7:0] xtide_cpu_dout;
 	wire [7:0] ram_cpu_dout;
+	wire [7:0] vram_cpu_dout;
 	wire [20:0] tandy_processor = {1'b0, nmi_mask_register_data[3:1], tandy_page_data[5:4], (tandy_page_data[3] ? tandy_page_data[3] : latch_address[14]), latch_address[13:0]};
 	wire [20:0] tandy_crtc = {1'b0, nmi_mask_register_data[3:1], tandy_page_data[2:1], (tandy_page_data[0] ? tandy_page_data[0] : CGA_VRAM_ADDR[14]), CGA_VRAM_ADDR[13:0]};
 	wire [20:0] cga_crtc = {6'b010111, CGA_VRAM_ADDR[14:0]};
@@ -544,9 +549,10 @@ module PERIPHERALS (
 //		.doutaxtide(xtide_cpu_dout),
 //		.doutabios(bios_cpu_dout),
 //		.enacga(CGA_VRAM_ENABLE && ~(xtide_loading || bios_loader)),
-		.enacga(CGA_VRAM_ENABLE),
-		.addracga(tandy_16_gfx ? tandy_crtc : cga_crtc),
-		.doutacga(cga_vram_cpu_dout),
+
+//		.enacga(CGA_VRAM_ENABLE),
+//		.addracga(tandy_16_gfx ? tandy_crtc : cga_crtc),
+//		.doutacga(cga_vram_cpu_dout),
 		
 		.SRAM_ADDR(SRAM_ADDR),
 		.SRAM_DATA_i(SRAM_DATA),
@@ -584,6 +590,22 @@ module PERIPHERALS (
 		.addra(CGA_VRAM_ADDR[11:0]),
 		.dina(8'h00),
 		.douta(CGA_VRAM_DOUT)
+	);
+	
+	vram vram_video
+	(
+		.clka(clk_vga_cga),
+		.wea(1'b0),
+		.ena(~splashscreen && CGA_VRAM_ENABLE),
+		.addra(tandy_16_gfx ? tandy_crtc[15:0] : cga_crtc[15:0]),
+		.dina(8'h00),
+		.douta(cga_vram_cpu_dout),
+		.clkb(clock),
+		.web(~memory_write_n),
+		.enb(~cga_chip_select_n),
+		.addrb(((tandy_16_gfx && ~cga_chip_select_n) && ~latch_address[20] ? tandy_processor[15:0] : latch_address[15:0])),
+		.dinb(internal_data_bus),
+		.doutb(vram_cpu_dout)
 	);
 	/*
 	wire [7:0] joy_data;
@@ -640,6 +662,10 @@ module PERIPHERALS (
 		else if (~ram_select_n && ~memory_read_n) begin
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= ram_cpu_dout;
+		end
+		else if (~cga_chip_select_n && ~memory_read_n) begin
+			data_bus_out_from_chipset <= 1'b1;
+			data_bus_out <= vram_cpu_dout;
 		end
 		else if (ems_oe && ~io_read_n) begin
 			data_bus_out_from_chipset <= 1'b1;
