@@ -75,7 +75,14 @@ module PERIPHERALS (
 	input		wire					ems_enabled,
 	input		wire	[1:0]			ems_address,
 	input		wire	[2:0]			bios_writable,
-	output	wire					cga_vram_rdy
+	output	wire					cga_vram_rdy,
+   	output   wire              mmc_clk,
+	input    wire              mmc_cmd_in,
+	output   wire              mmc_cmd_out,
+	output   wire              mmc_cmd_io,
+	input    wire              mmc_dat_in,
+	output   wire              mmc_dat_out,
+	output   wire              mmc_dat_io
 	);
 
 	parameter ps2_over_time = 16'd1000;
@@ -128,6 +135,7 @@ module PERIPHERALS (
 	wire ems_b2 = (~iorq && ena_ems[1]) && (address[19:14] == {ems_page_address, 2'b01});
 	wire ems_b3 = (~iorq && ena_ems[2]) && (address[19:14] == {ems_page_address, 2'b10});
 	wire ems_b4 = (~iorq && ena_ems[3]) && (address[19:14] == {ems_page_address, 2'b11});
+	wire ide0_chip_select_n      = ~(iorq && ~address_enable_n && ({address[15:4], 4'd0} == 16'h0300));
 	reg [23:0] map_ems;
 	reg [1:0] ems_access_address;
 	reg ems_write_enable;
@@ -607,6 +615,76 @@ module PERIPHERALS (
 		.dinb(internal_data_bus),
 		.doutb(vram_cpu_dout)
 	);
+    //
+    // XT2IDE
+    //
+    wire   [7:0]   xt2ide0_data_bus_out;
+    wire           ide0_cs1fx;
+    wire           ide0_cs3fx;
+    wire           ide0_io_read_n;
+    wire           ide0_io_write_n;
+    wire   [2:0]   ide0_address;
+    wire   [15:0]  ide0_data_bus_in;
+    wire   [15:0]  ide0_data_bus_out;
+
+    XT2IDE xt2ide0 (
+        .clock              (clock),
+        .reset              (reset),
+
+        .high_speed         (0),
+
+        .chip_select_n      (ide0_chip_select_n),
+        .io_read_n          (io_read_n),
+        .io_write_n         (io_write_n),
+
+        .address            (address[3:0]),
+        .data_bus_in        (internal_data_bus),
+        .data_bus_out       (xt2ide0_data_bus_out),
+
+        .ide_cs1fx          (ide0_cs1fx),
+        .ide_cs3fx          (ide0_cs3fx),
+        .ide_io_read_n      (ide0_io_read_n),
+        .ide_io_write_n     (ide0_io_write_n),
+
+        .ide_address        (ide0_address),
+        .ide_data_bus_in    (ide0_data_bus_in),
+        .ide_data_bus_out   (ide0_data_bus_out)
+    );
+    //
+    // XTIDE-MMC
+    //
+
+    wire [15:0]    mmcide_readdata;
+
+    KFMMC_IDE #(
+        .init_spi_clock_cycle               (8'd100),
+        .normal_spi_clock_cycle             (8'd100),
+        .timeout                            (32'h000FFFFF)
+    ) kfmmc_ide (
+        .clock              (clock),
+        .reset              (reset),
+
+        .ide_cs1fx_n        (ide0_cs1fx),
+        .ide_cs3fx_n        (ide0_cs3fx),
+        .ide_io_read_n      (ide0_io_read_n),
+        .ide_io_write_n     (ide0_io_write_n),
+
+        .ide_address        (ide0_address),
+        .ide_data_bus_in    (ide0_data_bus_out),
+        .ide_data_bus_out   (mmcide_readdata),
+
+        .device_master      (1'b1),     // set primary drive
+
+        .mmc_clk            (mmc_clk),
+        .mmc_cmd_in         (mmc_cmd_in),
+        .mmc_cmd_out        (mmc_cmd_out),
+        .mmc_cmd_io         (mmc_cmd_io),
+        .mmc_dat_in         (mmc_dat_in),
+        .mmc_dat_out        (mmc_dat_out),
+        .mmc_dat_io         (mmc_dat_io)
+    );
+
+    assign ide0_data_bus_in = mmcide_readdata;
 	/*
 	wire [7:0] joy_data;
 	tandy_pcjr_joy joysticks(
@@ -678,6 +756,10 @@ module PERIPHERALS (
 		else if (~nmi_mask_register_n && ~io_read_n) begin
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= nmi_mask_register_data;
+		end
+		else if ((~ide0_chip_select_n) && (~io_read_n)) begin
+			data_bus_out_from_chipset <= 1'b1;
+			data_bus_out <= xt2ide0_data_bus_out;
 		end
 		/*
 		else if (joystick_select && ~io_read_n) begin

@@ -88,6 +88,13 @@ module CHIPSET (
 	input		wire					uart_dsr_n,
 	output	wire					uart_rts_n,
 	output	wire					uart_dtr_n,
+	output   wire              mmc_clk,
+	input    wire              mmc_cmd_in,
+	output   wire              mmc_cmd_out,
+	output   wire              mmc_cmd_io,
+	input    wire              mmc_dat_in,
+	output   wire              mmc_dat_out,
+	output   wire              mmc_dat_io,
 	output	wire	[20:0]		SRAM_ADDR,
 	inout 	wire	[7:0] 		SRAM_DATA,
 	output	wire					SRAM_WE_n,
@@ -261,7 +268,14 @@ module CHIPSET (
 		.ems_enabled(ems_enabled),
 		.ems_address(ems_address),
 		.bios_writable(bios_writable),
-		.cga_vram_rdy(cga_vram_rdy)
+		.cga_vram_rdy(cga_vram_rdy),
+		.mmc_clk(mmc_clk),
+		.mmc_cmd_in(mmc_cmd_in),
+		.mmc_cmd_out(mmc_cmd_out),
+		.mmc_cmd_io(mmc_cmd_io),
+		.mmc_dat_in(mmc_dat_in),
+		.mmc_dat_out(mmc_dat_out),
+		.mmc_dat_io(mmc_dat_io)
 	);
 	assign data_bus = internal_data_bus;
 	always @(*)

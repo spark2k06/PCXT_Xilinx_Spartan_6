@@ -23,7 +23,11 @@ module system_2MB(
 	inout		wire					dataps2,
 
 	output	wire					AUD_L,
-	output	wire					AUD_R
+	output	wire					AUD_R,
+	output	reg					SD_n_CS = 1,
+	output	wire					SD_DI,
+	output	wire					SD_CK,
+	input	wire					SD_DO
 	/*
 	output	wire					LED,
 	inout		wire					PS2_CLK1,
@@ -31,10 +35,6 @@ module system_2MB(
 	inout		wire					PS2_DATA1,
 	inout		wire					PS2_DATA2
 
-	output	reg					SD_n_CS = 1,
-	output	wire					SD_DI,
-	output	reg					SD_CK = 0,
-	input		wire					SD_DO,
 	input		wire					joy_up,
 	input		wire					joy_down,
 	input		wire					joy_left,
@@ -347,7 +347,13 @@ reg splash_status = 1'b0;
 	     .uart_dsr_n                         (1'b0), // uart_dsr
 //	     .uart_rts_n                         (uart_rts),
 //	     .uart_dtr_n                         (uart_dtr),
-
+		  .mmc_clk                            (mmc_clk),
+		  .mmc_cmd_in                         (mmc_cmd_in),
+		  .mmc_cmd_out                        (mmc_cmd_out),
+		  .mmc_cmd_io                         (mmc_cmd_io),
+		  .mmc_dat_in                         (mmc_dat_in),
+		  .mmc_dat_out                        (mmc_dat_out),
+		  .mmc_dat_io                         (mmc_dat_io),
 		  .SRAM_ADDR                          (SRAM_ADDR),
 		  .SRAM_DATA                          (SRAM_DATA),
 		  .SRAM_WE_n                          (SRAM_WE_n),
@@ -355,7 +361,29 @@ reg splash_status = 1'b0;
 		  .ems_address                        (2'b0), // status[13:12]
 		  .bios_writable                      (2'b1) // status[31:30]
     );
-	 
+
+   //
+   ///////////////////////   MMC     ///////////////////////
+   //
+   wire mmc_clk;
+   wire mmc_cmd_in;
+   wire mmc_cmd_out;
+   wire mmc_cmd_io;
+   wire mmc_dat_in;
+   wire mmc_dat_out;
+   wire mmc_dat_io;
+	
+   assign  SD_CK    = mmc_clk;
+   assign  SD_DI    = (~mmc_cmd_io & ~mmc_cmd_out) ? 1'b0 : 1'bz;
+   assign  mmc_cmd_in  = SD_DI;
+
+   assign  mmc_dat_in = (~mmc_dat_io & ~mmc_dat_out) ? 1'b0 : 1'bz;
+   assign  SD_DO = mmc_dat_in;
+
+   //
+   ///////////////////////   CPU     ///////////////////////
+   //
+	
 	wire s6_3_mux;
 	wire [2:0] SEGMENT;
 	 

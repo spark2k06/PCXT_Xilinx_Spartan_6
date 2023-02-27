@@ -139,16 +139,17 @@
 		.clkps2(ps2_clk_io),
 		.dataps2(ps2_data_io),
 		.AUD_L(audioext_l_o),
-		.AUD_R(audioext_r_o)
+		.AUD_R(audioext_r_o),
 //	 	.PS2_CLK1(PS2CLKA),
 //		.PS2_CLK2(PS2CLKB),
 //		.PS2_DATA1(PS2DATA),
 //		.PS2_DATA2(PS2DATB)
 
-//		.SD_n_CS(SD_nCS),
-//		.SD_DI(SD_DI),
-//		.SD_CK(SD_CK),
-//		.SD_DO(SD_DO),
+		.SD_n_CS(sd_cs0_n_o),
+		.SD_DI(sd_mosi_o),
+		.SD_CK(sd_sclk_o),
+		.SD_DO(sd_miso_i)
+
 //		.joy_up(P_U),
 //		.joy_down(P_D),
 //		.joy_left(P_L),
@@ -178,10 +179,6 @@
 	assign flash_mosi_o = 1'b1;
 	assign flash_wp_o = 1'b1;
 	assign flash_hold_o = 1'b1;
-	
-	assign sd_cs0_n_o = 1'b1;
-	assign sd_sclk_o = 1'b1;
-	assign sd_mosi_o = 1'b1;
 
 	assign led_red_o = 1'b1;
 	assign led_yellow_o = 1'b0;
