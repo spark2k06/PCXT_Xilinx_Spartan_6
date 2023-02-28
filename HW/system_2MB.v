@@ -24,10 +24,10 @@ module system_2MB(
 
 	output	wire					AUD_L,
 	output	wire					AUD_R,
-	output	reg					SD_n_CS = 1,
-	output	wire					SD_DI,
-	output	wire					SD_CK,
-	input	wire					SD_DO
+	output	reg					SD_n_CS = 1'bz,
+	inout		wire					SD_DI, // CMD
+	output	wire					SD_CK, // CLK
+	inout		wire					SD_DO	 // DAT0
 	/*
 	output	wire					LED,
 	inout		wire					PS2_CLK1,
@@ -377,8 +377,8 @@ reg splash_status = 1'b0;
    assign  SD_DI    = (~mmc_cmd_io & ~mmc_cmd_out) ? 1'b0 : 1'bz;
    assign  mmc_cmd_in  = SD_DI;
 
-   assign  mmc_dat_in = (~mmc_dat_io & ~mmc_dat_out) ? 1'b0 : 1'bz;
-   assign  SD_DO = mmc_dat_in;
+   assign  SD_DO = (~mmc_dat_io & ~mmc_dat_out) ? 1'b0 : 1'bz;
+   assign  mmc_dat_in = SD_DO;
 
    //
    ///////////////////////   CPU     ///////////////////////

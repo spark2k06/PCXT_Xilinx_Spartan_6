@@ -85,10 +85,10 @@ NET 'ps2_data_io'       LOC='F3'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
 NET 'ps2_pin6_io'       LOC='A2'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
 NET 'ps2_pin2_io'       LOC='F4'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
 
-NET 'sd_cs0_n_o'        LOC='E16'    |IOSTANDARD = LVTTL;
-NET 'sd_sclk_o'         LOC='F16'    |IOSTANDARD = LVTTL;
-NET 'sd_mosi_o'         LOC='F15'    |IOSTANDARD = LVTTL;
-NET 'sd_miso_i'         LOC='G14'    |IOSTANDARD = LVTTL |PULLUP;
+NET 'sd_cs0_n'        LOC='E16'    |IOSTANDARD = LVTTL |PULLUP;
+NET 'sd_sclk'         LOC='F16'    |IOSTANDARD = LVTTL;
+NET 'sd_mosi'         LOC='F15'    |IOSTANDARD = LVTTL |PULLUP;
+NET 'sd_miso'         LOC='G14'    |IOSTANDARD = LVTTL |PULLUP;
 
 NET 'flash_cs_n_o'      LOC='T3'    |IOSTANDARD = LVCMOS33;
 NET 'flash_sclk_o'      LOC='R11'   |IOSTANDARD = LVCMOS33;

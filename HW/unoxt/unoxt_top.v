@@ -74,10 +74,10 @@
    input wire btn_divmmc_n_i,
    input wire btn_multiface_n_i,
 
-   output wire sd_cs0_n_o,    
-   output wire sd_sclk_o,     
-   output wire sd_mosi_o,    
-   input wire sd_miso_i,
+   output wire sd_cs0_n,    
+   output wire sd_sclk,   // CLK
+   inout  wire sd_mosi,   // CMD
+   inout  wire sd_miso,   // DAT0
 
    output wire led_red_o,
    output wire led_yellow_o,
@@ -145,10 +145,10 @@
 //		.PS2_DATA1(PS2DATA),
 //		.PS2_DATA2(PS2DATB)
 
-		.SD_n_CS(sd_cs0_n_o),
-		.SD_DI(sd_mosi_o),
-		.SD_CK(sd_sclk_o),
-		.SD_DO(sd_miso_i)
+		.SD_n_CS(sd_cs0_n),
+		.SD_DI(sd_mosi),
+		.SD_CK(sd_sclk),
+		.SD_DO(sd_miso)
 
 //		.joy_up(P_U),
 //		.joy_down(P_D),
