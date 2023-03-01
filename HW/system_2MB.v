@@ -24,7 +24,7 @@ module system_2MB(
 
 	output	wire					AUD_L,
 	output	wire					AUD_R,
-	output	reg					SD_n_CS = 1'bz,
+	output	reg					SD_n_CS = 1'b1,
 	inout		wire					SD_DI, // CMD
 	output	wire					SD_CK, // CLK
 	inout		wire					SD_DO	 // DAT0
