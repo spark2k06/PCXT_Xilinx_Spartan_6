@@ -1,0 +1,23 @@
+xst -intstyle ise -ifn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.xst" -ofn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.syr" 
+xst -intstyle ise -ifn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.xst" -ofn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.syr" 
+xst -intstyle ise -ifn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.xst" -ofn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf -p xc6slx25-ftg256-2 unoxt2_top.ngc unoxt2_top.ngd  
+xst -intstyle ise -ifn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.xst" -ofn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf -p xc6slx25-ftg256-2 unoxt2_top.ngc unoxt2_top.ngd  
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf -p xc6slx25-ftg256-2 unoxt2_top.ngc unoxt2_top.ngd  
+map -intstyle ise -p xc6slx25-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 3 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o unoxt2_top_map.ncd unoxt2_top.ngd unoxt2_top.pcf 
+par -w -intstyle ise -ol high -mt 4 unoxt2_top_map.ncd unoxt2_top.ncd unoxt2_top.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml unoxt2_top.twx unoxt2_top.ncd -o unoxt2_top.twr unoxt2_top.pcf 
+bitgen -intstyle ise -f unoxt2_top.ut unoxt2_top.ncd 
+xst -intstyle ise -ifn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.xst" -ofn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf -p xc6slx25-ftg256-2 unoxt2_top.ngc unoxt2_top.ngd  
+map -intstyle ise -p xc6slx25-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 3 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o unoxt2_top_map.ncd unoxt2_top.ngd unoxt2_top.pcf 
+par -w -intstyle ise -ol high -mt 4 unoxt2_top_map.ncd unoxt2_top.ncd unoxt2_top.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml unoxt2_top.twx unoxt2_top.ncd -o unoxt2_top.twr unoxt2_top.pcf 
+bitgen -intstyle ise -f unoxt2_top.ut unoxt2_top.ncd 
+xst -intstyle ise -ifn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.xst" -ofn "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ipcore_dir -nt timestamp -uc D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf -p xc6slx25-ftg256-2 unoxt2_top.ngc unoxt2_top.ngd  
+map -intstyle ise -p xc6slx25-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 3 -register_duplication off -r 4 -global_opt off -mt 2 -ir off -pr off -lc off -power off -o unoxt2_top_map.ncd unoxt2_top.ngd unoxt2_top.pcf 
+par -w -intstyle ise -ol high -mt 4 unoxt2_top_map.ncd unoxt2_top.ncd unoxt2_top.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml unoxt2_top.twx unoxt2_top.ncd -o unoxt2_top.twr unoxt2_top.pcf 
+bitgen -intstyle ise -f unoxt2_top.ut unoxt2_top.ncd 

@@ -1,0 +1,34 @@
+Release 14.7 - par P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Sat Mar 04 20:44:21 2023
+
+All signals are completely routed.
+
+WARNING:ParHelpers:361 - There are 22 loadless signals in this design. This design will cause Bitgen to issue DRC
+   warnings.
+
+   btn_divmmc_n_i_IBUF
+   btn_multiface_n_i_IBUF
+   ear_port_i_IBUF
+   esp_rx_i_IBUF
+   flash_miso_i_IBUF
+   ps2_pin2_io_IBUF
+   ps2_pin6_io_IBUF
+   ram_data_io<10>_IBUF
+   ram_data_io<11>_IBUF
+   ram_data_io<12>_IBUF
+   ram_data_io<13>_IBUF
+   ram_data_io<14>_IBUF
+   ram_data_io<15>_IBUF
+   ram_data_io<8>_IBUF
+   ram_data_io<9>_IBUF
+   sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_RXFF/Mram_iFIFOMem1_RAMD_O
+   sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_RXFF/Mram_iFIFOMem2_RAMD_O
+   sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_RXFF/Mram_iFIFOMem3_RAMD_O
+   sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_TXFF/Mram_iFIFOMem1_RAMD_O
+   sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_TXFF/Mram_iFIFOMem2_RAMD_O
+   test<0>_IBUF
+   test<1>_IBUF
+
+

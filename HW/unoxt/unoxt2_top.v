@@ -74,23 +74,17 @@
    input wire btn_divmmc_n_i,
    input wire btn_multiface_n_i,
 
-   output wire sd_cs0_n_o,    
-   output wire sd_sclk_o,     
-   output wire sd_mosi_o,    
-   input wire sd_miso_i,
+   output wire sd_cs0_n,    
+   output wire sd_sclk,   // CLK
+   inout  wire sd_mosi,   // CMD
+   inout  wire sd_miso,   // DAT0
 
    output wire led_red_o,
    output wire led_yellow_o,
    output wire led_green_o,
    output wire led_blue_o,
 
-
-	input uart_rx_i,
-	output uart_tx_o,
-	input uart_rts_n_i,
-	output uart_cts_n_o
-		
-	//output wire [9:0] test
+	inout wire [9:0] test
 
    );
    
@@ -145,16 +139,17 @@
 		.clkps2(ps2_clk_io),
 		.dataps2(ps2_data_io),
 		.AUD_L(audioext_l_o),
-		.AUD_R(audioext_r_o)
+		.AUD_R(audioext_r_o),
 //	 	.PS2_CLK1(PS2CLKA),
 //		.PS2_CLK2(PS2CLKB),
 //		.PS2_DATA1(PS2DATA),
 //		.PS2_DATA2(PS2DATB)
 
-//		.SD_n_CS(SD_nCS),
-//		.SD_DI(SD_DI),
-//		.SD_CK(SD_CK),
-//		.SD_DO(SD_DO),
+		.SD_n_CS(sd_cs0_n),
+		.SD_DI(sd_mosi),
+		.SD_CK(sd_sclk),
+		.SD_DO(sd_miso)
+
 //		.joy_up(P_U),
 //		.joy_down(P_D),
 //		.joy_left(P_L),
@@ -184,26 +179,23 @@
 	assign flash_mosi_o = 1'b1;
 	assign flash_wp_o = 1'b1;
 	assign flash_hold_o = 1'b1;
-	
-	assign sd_cs0_n_o = 1'b1;
-	assign sd_sclk_o = 1'b1;
-	assign sd_mosi_o = 1'b1;
 
 	assign led_red_o = 1'b1;
 	assign led_yellow_o = 1'b0;
 	assign led_blue_o = 1'b0;
 	assign led_green_o = 1'b0;
 	
-/*
+	/*
 	flashCnt #(.CLK_MHZ(16'd50)) cnt(
 		.clk(sysclk),
 		.signal(uart_rx),
 		.msec(16'd20),
 		.flash(led_green_o)
 	);
+	*/
 	
-	assign test[0] = uart_tx;
-	assign uart_rx = test[1];
+//	assign test[0] = uart_tx;
+//	assign uart_rx = test[1];
 	
 	assign test[2] = 1'b1;
 	assign test[3] = 1'b1;
@@ -212,5 +204,6 @@
 	assign test[6] = 1'b1;
 	assign test[7] = 1'b1;
 	assign test[8] = 1'b1;
-*/  
+	assign test[9] = 1'b1;
+  
 endmodule

@@ -85,10 +85,10 @@ NET 'ps2_data_io'       LOC='N4'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
 NET 'ps2_pin6_io'       LOC='N3'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
 NET 'ps2_pin2_io'       LOC='R1'    |IOSTANDARD = LVCMOS33 |PULLUP |DRIVE = 24;
 
-NET 'sd_cs0_n_o'        LOC='M12'    |IOSTANDARD = LVTTL;
-NET 'sd_sclk_o'         LOC='N9'    |IOSTANDARD = LVTTL;
-NET 'sd_mosi_o'         LOC='P11'    |IOSTANDARD = LVTTL;
-NET 'sd_miso_i'         LOC='R9'    |IOSTANDARD = LVTTL |PULLUP;
+NET 'sd_cs0_n'        LOC='M12'    |IOSTANDARD = LVTTL |PULLUP;
+NET 'sd_sclk'         LOC='N9'    |IOSTANDARD = LVTTL;
+NET 'sd_mosi'         LOC='P11'    |IOSTANDARD = LVTTL |PULLUP;
+NET 'sd_miso'         LOC='R9'    |IOSTANDARD = LVTTL |PULLUP;
 
 NET 'flash_cs_n_o'      LOC='T3'    |IOSTANDARD = LVCMOS33;
 NET 'flash_sclk_o'      LOC='R11'   |IOSTANDARD = LVCMOS33;
@@ -150,21 +150,30 @@ NET 'led_blue_o' 			LOC='T7'    |IOSTANDARD = LVCMOS33;
 # NET 'uart_rts_n_i'       LOC='M14'    |IOSTANDARD = LVCMOS33 |PULLUP;
 # NET 'uart_cts_n_o'       LOC='N14'   |IOSTANDARD = LVCMOS33 |DRIVE = 4;
 
-# NET "test<0>"           LOC="T13"   |IOSTANDARD = LVTTL;
-# NET "test<1>"           LOC="T12"   |IOSTANDARD = LVTTL;
-# NET "test<2>"           LOC="R14"   |IOSTANDARD = LVTTL;
-# NET "test<3>"           LOC="T14"   |IOSTANDARD = LVTTL;
-# NET "test<4>"           LOC="R15"   |IOSTANDARD = LVTTL;
-# NET "test<5>"           LOC="T15"   |IOSTANDARD = LVTTL;
-# NET "test<6>"           LOC="P15"   |IOSTANDARD = LVTTL;
-# NET "test<7>"           LOC="R16"   |IOSTANDARD = LVTTL;
-# NET "test<8>"           LOC="N16"   |IOSTANDARD = LVTTL;
-# NET "test<9>"           LOC="P16"   |IOSTANDARD = LVTTL;
+ NET "test<0>"           LOC="T13"   |IOSTANDARD = LVTTL;
+ NET "test<1>"           LOC="T12"   |IOSTANDARD = LVTTL;
+ NET "test<2>"           LOC="R14"   |IOSTANDARD = LVTTL;
+ NET "test<3>"           LOC="T14"   |IOSTANDARD = LVTTL;
+ NET "test<4>"           LOC="R15"   |IOSTANDARD = LVTTL;
+ NET "test<5>"           LOC="T15"   |IOSTANDARD = LVTTL;
+ NET "test<6>"           LOC="P15"   |IOSTANDARD = LVTTL;
+ NET "test<7>"           LOC="R16"   |IOSTANDARD = LVTTL;
+ NET "test<8>"           LOC="N16"   |IOSTANDARD = LVTTL;
+ NET "test<9>"           LOC="P16"   |IOSTANDARD = LVTTL;
 
 # Timings
 # Timing constraints
-# NET "clock_50_i" TNM_NET = "clock_50_i";
-# TIMESPEC TS_clk50 = PERIOD "clock_50_i" 20ns HIGH 50%;
+NET "clock_50_i" TNM_NET = "clock_50_i";
+TIMESPEC TS_clk50 = PERIOD "clock_50_i" 20ns HIGH 50%;
+
+PIN "dcm_system/clkout1_buf.O" TNM = "clk_100";
+PIN "dcm_system/clkout2_buf.O" TNM = "clk_50";
+PIN "dcm_system/clkout3_buf.O" TNM = "clk_28_571";
+
+TIMESPEC TS_IGNORE1 = FROM "clk_100" TO "clk_28_571" TIG ;
+TIMESPEC TS_IGNORE2 = FROM "clk_50"  TO "clk_28_571" TIG ;
+TIMESPEC TS_IGNORE3 = FROM "clk_28_571" TO "clk_100" TIG ;
+TIMESPEC TS_IGNORE4 = FROM "clk_28_571" TO "clk_50" TIG ;
 
 PIN "dcm_system/clkout4_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;
 PIN "dcm_system/clkout5_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;

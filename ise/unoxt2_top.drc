@@ -1,0 +1,30 @@
+Release 14.7 Drc P.20131013 (nt64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Sat Mar 04 21:39:52 2023
+
+drc -z unoxt2_top.ncd unoxt2_top.pcf
+
+WARNING:PhysDesignRules:367 - The signal
+   <sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_TXFF/Mram_iFIFOMem2_R
+   AMD_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_TXFF/Mram_iFIFOMem1_R
+   AMD_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_RXFF/Mram_iFIFOMem1_R
+   AMD_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_RXFF/Mram_iFIFOMem2_R
+   AMD_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:367 - The signal
+   <sys_inst/u_CHIPSET/u_PERIPHERALS/uart1/uart_16750/UART_RXFF/Mram_iFIFOMem3_R
+   AMD_O> is incomplete. The signal does not drive any load pins in the design.
+WARNING:PhysDesignRules:781 - PULLUP on an active net. PULLUP of comp
+   uart_rx_PULLUP is set but the tri state is not configured. 
+WARNING:PhysDesignRules:2410 - This design is using one or more 9K Block RAMs
+   (RAMB8BWER).  9K Block RAM initialization data, both user defined and
+   default, may be incorrect and should not be used.  For more information,
+   please reference Xilinx Answer Record 39999.
+DRC detected 0 errors and 7 warnings.  Please see the previously displayed
+individual error or warning messages for more details.

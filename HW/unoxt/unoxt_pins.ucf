@@ -158,8 +158,17 @@ NET "test<8>"           LOC="K12"   |IOSTANDARD = LVTTL;
 
 # Timings
 # Timing constraints
-#NET "clock_50_i" TNM_NET = "clock_50_i";
-#TIMESPEC TS_clk50 = PERIOD "clock_50_i" 20ns HIGH 50%;
+NET "clock_50_i" TNM_NET = "clock_50_i";
+TIMESPEC TS_clk50 = PERIOD "clock_50_i" 20ns HIGH 50%;
+
+PIN "dcm_system/clkout1_buf.O" TNM = "clk_100";
+PIN "dcm_system/clkout2_buf.O" TNM = "clk_50";
+PIN "dcm_system/clkout3_buf.O" TNM = "clk_28_571";
+
+TIMESPEC TS_IGNORE1 = FROM "clk_100" TO "clk_28_571" TIG ;
+TIMESPEC TS_IGNORE2 = FROM "clk_50"  TO "clk_28_571" TIG ;
+TIMESPEC TS_IGNORE3 = FROM "clk_28_571" TO "clk_100" TIG ;
+TIMESPEC TS_IGNORE4 = FROM "clk_28_571" TO "clk_50" TIG ;
 
 PIN "dcm_system/clkout4_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;
 PIN "dcm_system/clkout5_buf.O" CLOCK_DEDICATED_ROUTE = FALSE;

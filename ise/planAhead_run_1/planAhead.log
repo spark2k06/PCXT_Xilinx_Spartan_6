@@ -1,0 +1,203 @@
+#-----------------------------------------------------------
+# PlanAhead v14.7
+# Build 321239 by xbuild on Fri Sep 27 19:31:35 MDT 2013
+# Start of session at: Sat Mar 04 21:18:23 2023
+# Process ID: 17868
+# Log file: D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/planAhead_run_1/planAhead.log
+# Journal file: D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/planAhead_run_1/planAhead.jou
+#-----------------------------------------------------------
+INFO: [Common 17-78] Attempting to get a license: PlanAhead
+INFO: [Common 17-290] Got license for PlanAhead
+INFO: [Device 21-36] Loading parts and site information from C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/arch.xml
+Parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+Finished parsing RTL primitives file [C:/Xilinx/14.7/ISE_DS/PlanAhead/data/parts/xilinx/rtl/prims/rtl_prims.xml]
+start_gui
+source D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/pa.fromNetlist.tcl
+# create_project -name unoxt2 -dir "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/planAhead_run_1" -part xc6slx25ftg256-2
+# set_property design_mode GateLvl [get_property srcset [current_run -impl]]
+# set_property edif_top_file "D:/Xilinx/share/pcxt/PCXT_ZXUno/ise/unoxt2_top.ngc" [ get_property srcset [ current_run ] ]
+# add_files -norecurse { {D:/Xilinx/share/pcxt/PCXT_ZXUno/ise} {ipcore_dir} }
+# add_files [list {ipcore_dir/vram.ncf}] -fileset [get_property constrset [current_run]]
+# set_property target_constrs_file "D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf" [current_fileset -constrset]
+Adding file 'D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf' to fileset 'constrs_1'
+# add_files [list {D:/Xilinx/share/pcxt/PCXT_ZXUno/HW/unoxt/unoxt2_pins.ucf}] -fileset [get_property constrset [current_run]]
+# link_design
+Design is defaulting to srcset: sources_1
+Design is defaulting to constrset: constrs_1
+Design is defaulting to project part: xc6slx25ftg256-2
+INFO: [Common 17-41] Interrupt caught. Command should exit soon.
+Release 14.7 - ngc2edif P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Release 14.7 - ngc2edif P.20131013 (nt)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+Reading design unoxt2_top.ngc ...
+WARNING:NetListWriters:298 - No output is written to unoxt2_top.xncf, ignored.
+Processing design ...
+   Preping design's networks ...
+   Preping design's macros ...
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/vga_cga/c<13 : 0> on block unoxt2_top is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/tandy_page_data<5 : 0> on block unoxt2_top
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus sys_inst/B1/EU_CORE/carry<16 : 3> on
+   block unoxt2_top is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus sys_inst/B1/EU_CORE/eu_operand0<15 : 5>
+   on block unoxt2_top is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_BUS_ARBITER/u_KF8237/u_Timing_And_Control/dma_acknowledg
+   e_ff[3]_GND_22_o_mux_113_OUT<3 : 0> on block unoxt2_top is not reconstructed,
+   because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_BUS_ARBITER/u_KF8237/u_Timing_And_Control/dma_acknowledg
+   e_ff<3 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/interrupt<7 : 0> on block
+   unoxt2_top is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_In_Service/highest_level_in_servi
+   ce<4 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_In_Service/in_service_register<4
+   : 0> on block unoxt2_top is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_Control_Logic/interrupt_special_m
+   ask<7 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_Control_Logic/acknowledge_interru
+   pt[7]_GND_29_o_mux_188_OUT<4 : 0> on block unoxt2_top is not reconstructed,
+   because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_Control_Logic/acknowledge_interru
+   pt<4 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_Control_Logic/interrupt_when_ack1
+   <4 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_Control_Logic/interrupt_special_m
+   ask[7]_GND_29_o_mux_84_OUT<7 : 0> on block unoxt2_top is not reconstructed,
+   because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_Control_Logic/cascade_device_conf
+   ig<4 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_In_Service/next_in_service_regist
+   er<4 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_In_Service/next_in_service_regist
+   er[7]_interrupt_special_mask[7]_and_7_OUT<7 : 0> on block unoxt2_top is not
+   reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8259/u_In_Service/next_highest_level_in_
+   service<4 : 0> on block unoxt2_top is not reconstructed, because there are
+   some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8253/u_KF8253_Counter_0/dec_count<15 :
+   1> on block unoxt2_top is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8253/u_KF8253_Counter_1/dec_count<15 :
+   1> on block unoxt2_top is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8253/u_KF8253_Counter_2/dec_count[16]_co
+   unt[16]_mux_74_OUT<6 : 1> on block unoxt2_top is not reconstructed, because
+   there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8253/u_KF8253_Counter_2/dec_count<16 :
+   1> on block unoxt2_top is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8255/u_Port_C/port_c_io<7 : 0> on block
+   unoxt2_top is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/u_KF8255/u_Port_C/port_c_io_comb<7 : 0> on
+   block unoxt2_top is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/jtopl2_inst/u_mmr/u_reg/u_slot_cnt/slot<17 :
+   0> on block unoxt2_top is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/jtopl2_inst/u_mmr/u_reg/chcfg<17 : 0> on
+   block unoxt2_top is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/jtopl2_inst/u_pg/tc<5 : 3> on block
+   unoxt2_top is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/jtopl2_inst/u_pg/hh<8 : 2> on block
+   unoxt2_top is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/jtopl2_inst/u_eg/u_comb/u_pure/Madd_n0060[8:
+   0]_cy<4 : 2> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/jtopl2_inst/u_eg/u_comb/u_pure/ar_sum<5 : 1>
+   on block unoxt2_top is not reconstructed, because there are some missing bus
+   signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/jtopl2_inst/u_eg/u_comb/u_final/ksl_dB<8 :
+   0> on block unoxt2_top is not reconstructed, because there are some missing
+   bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/calc_lc_temp<9 : 0> on block
+   unoxt2_top is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/Msub_trans_fifo_index[10]_GND_160_
+   o_sub_173_OUT_cy<7 : 5> on block unoxt2_top is not reconstructed, because
+   there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/u_KFMMC_Drive/u_KFMMC_Command_IO/r
+   esponse<127 : 0> on block unoxt2_top is not reconstructed, because there are
+   some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/_n10080<3 : 1> on block unoxt2_top
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/cylinder[31]_GND_160_o_mux_331_OUT
+   <15 : 0> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/ide_address[2]_GND_160_o_wide_mux_
+   338_OUT<6 : 0> on block unoxt2_top is not reconstructed, because there are
+   some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/error<6 : 0> on block unoxt2_top
+   is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/ret_state<4 : 0> on block
+   unoxt2_top is not reconstructed, because there are some missing bus signals.
+WARNING:NetListWriters:306 - Signal bus
+   sys_inst/u_CHIPSET/u_PERIPHERALS/kfmmc_ide/u_KFMMC_Drive/u_KFMMC_Controller/c
+   sd<127 : 47> on block unoxt2_top is not reconstructed, because there are some
+   missing bus signals.
+  finished :Prep
+Writing EDIF netlist file unoxt2_top.edif ...
+ngc2edif: Total memory usage is 96888 kilobytes
+
+Parsing EDIF File [./planAhead_run_1/unoxt2.data/cache/unoxt2_top_ngc_zx.edif]
+INFO: [Common 17-344] 'link_design' was cancelled
+INFO: [Common 17-344] 'source' was cancelled
+exit
+ERROR: [PlanAhead 12-106] *** Exception: ui.h.b: Found deleted key in HTclEventBroker. Verify if the classes listed here call cleanup()
+HTclEvent: DEBUG_PORT_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_MODIFY   Classes: ui.views.aR 
+HTclEvent: DEBUG_CORE_CONFIG_CHANGE   Classes: ui.views.aR 
+HTclEvent: SIGNAL_BUS_MODIFY   Classes: ui.views.aR 
+ (See D:/Xilinx/share/pcxt/PCXT_ZXUno/ise\planAhead_pid17868.debug)
+ERROR: [Common 17-39] 'stop_gui' failed due to earlier errors.
+INFO: [Common 17-206] Exiting PlanAhead at Sat Mar 04 21:18:44 2023...
+INFO: [Common 17-83] Releasing license: PlanAhead
