@@ -252,27 +252,35 @@ module cga(
         end
     end
 
-    // CRT controller (MC6845 compatible)
-    crtc6845 crtc (
-        .clk(clk),
-        .divclk(crtc_clk),
-        .cs(crtc_cs),
-        .a0(bus_a[0]),
-        .write(~bus_iow_synced_l),
-        .read(~bus_ior_synced_l),
-        .bus(bus_d),
-        .bus_out(bus_out_crtc),
-        .lock(1'b0),
-        .hsync(hsync_int),
-        .vsync(vsync_l),
-		.hblank(hblank),
-		.vblank(vblank),
-        .display_enable(display_enable),
-        .cursor(cursor),
-        .mem_addr(crtc_addr),
-        .row_addr(row_addr),
-        .line_reset(line_reset)
-    );
+
+    UM6845R crtc (
+        .CLOCK(clk),
+		  .CLKEN(crtc_clk), 
+		  // .nCLKEN(),
+		  .nRESET(1'b1),
+		  .CRTC_TYPE(1'b1),
+		  
+		  .ENABLE(1'b1),
+		  .nCS(~crtc_cs),
+		  .R_nW(bus_iow_synced_l),
+		  .RS(bus_a[0]),
+		  .DI(bus_d),
+		  .DO(bus_out_crtc),
+		  
+		  .hblank(hblank),
+		  .vblank(vblank),
+		  .line_reset(line_reset),
+		  
+		  .VSYNC(vsync_l),
+		  .HSYNC(hsync_int),
+		  .DE(display_enable),
+		  // .FIELD(),
+		  .CURSOR(cursor),
+		  
+		  .MA(crtc_addr),
+		  .RA(row_addr)
+
+	 );
 
     // CGA 80 column timings
     defparam crtc.H_TOTAL = 8'd113; // 113 // 56
@@ -358,16 +366,13 @@ module cga(
         end
 		end
     end
-
-	 /*
+	 
     cga_scandoubler scandoubler (
         .clk(clk),
         .line_reset(line_reset),
         .video(video),		  
         .dbl_hsync(dbl_hsync),
         .dbl_video(dbl_video)
-    );
-	 */
-	 
+    );	 
 
 endmodule

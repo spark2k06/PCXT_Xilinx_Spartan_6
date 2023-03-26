@@ -1,4 +1,4 @@
-module KFPS2KB (
+module KFPS2KB_direct (
 	input		wire					clock,
 	input		wire					peripheral_clock,
 	input		wire					reset,
@@ -7,13 +7,14 @@ module KFPS2KB (
 	output	reg					irq,
 	output	reg	[7:0]			keycode,
 	input		wire					clear_keycode,
-	input                                                   reset_keybord,
-	output  reg                                             pause_core
+	input    wire              reset_keybord,
+	output   reg               pause_core
 );
 	parameter over_time = 16'd1000;
 	wire [7:0] register;
 	wire recieved_flag;
-	wire error_flag;
+	wire recieved_error;
+	reg error_flag;
 	reg break_flag;
 	KFPS2KB_Shift_Register #(.over_time(over_time)) u_Shift_Register(
 		.clock(clock),
@@ -23,7 +24,7 @@ module KFPS2KB (
 		.device_data(device_data),
 		.register(register),
 		.recieved_flag(recieved_flag),
-		.error_flag(error_flag)
+		.error_flag(recieved_error)
 	);
 	function [7:0] scancode_converter;
 		input [7:0] code;
@@ -181,6 +182,7 @@ module KFPS2KB (
 			keycode <= 8'h00;
 			break_flag <= 1'b0;
 			pause_core <= 1'b0;
+			error_flag <= 1'b0;
 		end
 		else if (reset_keybord) begin
 			irq <= 1'b1;
@@ -191,27 +193,32 @@ module KFPS2KB (
 			irq <= 1'b0;
 			keycode <= 8'h00;
 			break_flag <= 1'b0;
+			error_flag <= 1'b0;
 		end
-		else if (error_flag) begin
-			irq <= 1'b1;
+		else if (recieved_error) begin
+			irq <= 1'b0;
 			keycode <= 8'hff;
 			break_flag <= 1'b0;
+			error_flag <= 1'b1;
 		end
 		else if (recieved_flag) begin
-			if (irq == 1'b1) begin
-				irq <= 1'b1;
+			if ((irq == 1'b1) || (error_flag == 1'b1)) begin
+				irq <= 1'b0;
 				keycode <= 8'hff;
 				break_flag <= 1'b0;
+				error_flag <= 1'b1;
 			end
 			else if (register == 8'hfa) begin
 				irq <= 1'b0;
 				keycode <= 8'h00;
 				break_flag <= 1'b0;
+				error_flag <= 1'b0;
 			end
 			else if (register == 8'hf0) begin
 				irq <= 1'b0;
 				keycode <= 8'h00;
 				break_flag <= 1'b1;
+				error_flag <= 1'b0;
 			end
 			else if (register == 8'h07) begin
 				irq <= 1'b0;
@@ -233,11 +240,13 @@ module KFPS2KB (
 				irq <= 1'b1;
 				keycode <= scancode_converter(register) | (break_flag ? 8'h80 : 8'h00);
 				break_flag <= 1'b0;
+				error_flag <= 1'b0;
 			end
 		end
 		else begin
-			irq <= irq;
+			irq <= irq | error_flag;
 			keycode <= keycode;
 			break_flag <= break_flag;
+			error_flag <= error_flag;
 		end
 endmodule

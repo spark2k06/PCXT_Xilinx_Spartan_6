@@ -16,12 +16,21 @@ The [Graphics Gremlin project](https://github.com/schlae/graphics-gremlin) from 
 
 An SN76489AN Compatible Implementation (Tandy Sound) written in VHDL was also integrated - Copyright (c) 2005, 2006, [Arnim Laeuger](https://github.com/devsaurus) (arnim.laeuger@gmx.net)
 
+## Models
+
+ZXUno & ZXUnCore 512Kb: PCXT, CGA and PC Speaker.
+ZXUno & ZXUnCore 2Mb: PCXT, Tandy 1000, CGA and PC speaker.
+UnoXT & UnoXT2 4Mb: PCXT, Tandy 1000, CGA, Adlib, Tandy Sound, PC Speaker.
+
+ZXUno & ZXUnCore are powered by Spartan XC6SLX9
+UnoXT & UnoXT2 are powered by Spartan XC6SLX25
+
 ## To-do list and challenges
 
-* Refactor Graphics Gremlin module, the new KFPC-XT system will make this refactor possible.
-* 8-bit IDE module implementation
+* Improved implementation of 8-bit IDE module
+* UART & Mouse implementation
 * Floppy implementation
-* Addition of other modules
+* Other implementations
 
 ## Developers
 
