@@ -30,7 +30,6 @@ UnoXT & UnoXT2 are powered by Spartan XC6SLX25.
 
 * Improved implementation of 8-bit IDE module
 * UART & Mouse implementation
-* Floppy implementation
 * Other implementations
 
 ## Developers
