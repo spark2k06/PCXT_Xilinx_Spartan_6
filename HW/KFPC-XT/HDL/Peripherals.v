@@ -75,6 +75,7 @@ module PERIPHERALS (
 	input		wire					ems_enabled,
 	input		wire	[1:0]			ems_address,
 	output	wire					cga_vram_rdy,
+	output   wire              mmc_od_mode,
 	output   wire              mmc_clk,
 	input    wire              mmc_cmd_in,
 	output   wire              mmc_cmd_out,
@@ -800,7 +801,7 @@ module PERIPHERALS (
 
     KFMMC_IDE #(
         .init_spi_clock_cycle               (8'd100),
-        .normal_spi_clock_cycle             (8'd100),
+        .normal_spi_clock_cycle             (8'd004),
         .timeout                            (32'h000FFFFF)
     ) kfmmc_ide (
         .clock              (clock),
@@ -817,6 +818,7 @@ module PERIPHERALS (
 
         .device_master      (1'b1),     // set primary drive
 
+        .mmc_od_mode        (mmc_od_mode),
         .mmc_clk            (mmc_clk),
         .mmc_cmd_in         (mmc_cmd_in),
         .mmc_cmd_out        (mmc_cmd_out),

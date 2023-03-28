@@ -336,6 +336,7 @@ reg splash_status = 1'b0;
 //		  .ioctl_wr                           (ioctl_wr),
 //		  .ioctl_addr                         (ioctl_addr),
 //		  .ioctl_data                         (ioctl_data),
+		  .mmc_od_mode                        (mmc_od_mode),
 		  .mmc_clk                            (mmc_clk),
 		  .mmc_cmd_in                         (mmc_cmd_in),
 		  .mmc_cmd_out                        (mmc_cmd_out),
@@ -357,6 +358,7 @@ reg splash_status = 1'b0;
    //
    ///////////////////////   MMC     ///////////////////////
    //
+   wire mmc_od_mode;
    wire mmc_clk;
    wire mmc_cmd_in;
    wire mmc_cmd_out;
@@ -366,10 +368,10 @@ reg splash_status = 1'b0;
    wire mmc_dat_io;
 	
    assign  SD_CK    = mmc_clk;
-   assign  SD_DI    = (~mmc_cmd_io & ~mmc_cmd_out) ? 1'b0 : 1'bz;
+   assign  SD_DI    = mmc_cmd_io ? 1'bz : ~mmc_cmd_out ? 1'b0 : mmc_od_mode ? 1'bz : 1'b1;
    assign  mmc_cmd_in  = SD_DI;
 
-   assign  SD_DO = (~mmc_dat_io & ~mmc_dat_out) ? 1'b0 : 1'bz;
+   assign  SD_DO = mmc_dat_io ? 1'bz : ~mmc_dat_out ? 1'b0 : mmc_od_mode ? 1'bz : 1'b1;
    assign  mmc_dat_in = SD_DO;
 
    //

@@ -40,6 +40,7 @@ module KFMMC_Controller #(
 	input wire data_io_busy,
 	input wire [7:0] received_data,
 	output reg [7:0] mmc_clock_cycle,
+	output reg mmc_od_mode,
 	input wire [15:0] send_data_crc,
 	input wire [15:0] received_data_crc,
 	input wire timeout_interrupt,
@@ -529,6 +530,18 @@ module KFMMC_Controller #(
 			mmc_clock_cycle <= normal_spi_clock_cycle;
 		else
 			mmc_clock_cycle <= mmc_clock_cycle;
+			
+    // Open-drain mode
+    always @(posedge clock or posedge reset)
+        if (reset)
+            mmc_od_mode     <= 1'b1;
+        else if (control_state == 32'd0) // INIT
+            mmc_od_mode     <= 1'b1;
+        else if (control_state == 32'd28) // READY
+            mmc_od_mode     <= 1'b0;
+        else
+            mmc_od_mode     <= mmc_od_mode;
+			
 	wire reading_crc_byte = (access_count == 16'h0001) || (access_count == 16'h0000);
 	always @(posedge clock or posedge reset)
 		if (reset)
