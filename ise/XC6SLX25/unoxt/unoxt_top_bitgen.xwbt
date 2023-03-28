@@ -1,0 +1,8 @@
+INTSTYLE=ise
+INFILE=C:\Users\Aitor\Desktop\PCXT_ZXUno\ise\XC6SLX25\unoxt\unoxt_top.ncd
+OUTFILE=C:\Users\Aitor\Desktop\PCXT_ZXUno\ise\XC6SLX25\unoxt\unoxt_top.bit
+FAMILY=Spartan6
+PART=xc6slx25-2ftg256
+WORKINGDIR=C:\Users\Aitor\Desktop\PCXT_ZXUno\ise\XC6SLX25\unoxt
+LICENSE=WebPack
+USER_INFO=__0_0_0

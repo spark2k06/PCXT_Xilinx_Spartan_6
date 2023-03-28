@@ -1,0 +1,7 @@
+xst -intstyle ise -ifn "C:/Users/Aitor/Desktop/PCXT_ZXUno/ise/XC6SLX25/unoxt/unoxt_top.xst" -ofn "C:/Users/Aitor/Desktop/PCXT_ZXUno/ise/XC6SLX25/unoxt/unoxt_top.syr" 
+ngdbuild -intstyle ise -dd _ngo -sd ../ipcore_dir -nt timestamp -uc unoxt_pins.ucf -p xc6slx25-ftg256-2 unoxt_top.ngc unoxt_top.ngd  
+map -intstyle ise -p xc6slx25-ftg256-2 -w -logic_opt off -ol high -t 1 -xt 3 -register_duplication off -r 4 -global_opt off -mt off -ir off -pr off -lc off -power off -o unoxt_top_map.ncd unoxt_top.ngd unoxt_top.pcf 
+par -w -intstyle ise -ol high -mt off unoxt_top_map.ncd unoxt_top.ncd unoxt_top.pcf 
+trce -intstyle ise -v 3 -s 2 -n 3 -fastpaths -xml unoxt_top.twx unoxt_top.ncd -o unoxt_top.twr unoxt_top.pcf -ucf unoxt_pins.ucf 
+bitgen -intstyle ise -f unoxt_top.ut unoxt_top.ncd 
+bitgen -intstyle ise -f unoxt_top.ut unoxt_top.ncd 

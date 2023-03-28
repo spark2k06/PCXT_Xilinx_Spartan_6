@@ -2,6 +2,7 @@
 
 `define ZXUNO_512KB
 // `define ZXUNO_2MB
+// `define ZXUNO_2MB_EXT
 // `define ZXUNCORE_512KB
 // `define ZXUNCORE_2MB
 // `define UNOXT
@@ -18,13 +19,6 @@
 
 `define SPLASH_ENABLE
 
-`define SPLASH_SCR_ZXUNO_2MB "splash_zxuno_2mb.hex"
-`define SPLASH_SCR_ZXUNO_512KB "splash_zxuno_512kb.hex"
-`define SPLASH_SCR_ZXUNCORE_2MB "splash_zxuncore_2mb.hex"
-`define SPLASH_SCR_ZXUNCORE_512KB "splash_zxuncore_512kb.hex"
-`define SPLASH_SCR_UNOXT "splash_unoxt.hex"
-`define SPLASH_SCR_UNOXT2 "splash_unoxt2.hex"
-
 // Initial Video Output
   localparam
     VIDEO_OPTION = 1'b0;   // 0=RGB, 1=VGA	 
@@ -40,27 +34,38 @@
 
 `ifdef ZXUNO_512KB
 	`define MEM_512KB
+	`define SPLASH_SCR "splash_zxuno_512kb.hex"
 `endif
 
 `ifdef ZXUNCORE_512KB
+	`define SPLASH_SCR "splash_zxuncore_512kb.hex"
 	`define MEM_512KB
 `endif
 
 `ifdef ZXUNO_2MB
 	`define MEM_2MB
+	`define SPLASH_SCR "splash_zxuno_2mb.hex"
+`endif
+
+`ifdef ZXUNO_2MB_EXT
+	`define MEM_2MB
+	`define SPLASH_SCR "splash_zxuno_2mb_ext.hex"
 `endif
 
 `ifdef ZXUNCORE_2MB
 	`define MEM_2MB
+	`define SPLASH_SCR "splash_zxuncore_2mb.hex"
 `endif
 
 `ifdef UNOXT
 	`define MEM_4MB
+	`define SPLASH_SCR "splash_unoxt.hex"
 	`define PHISICAL_BUTTONS
 `endif
 
 `ifdef UNOXT2
 	`define MEM_4MB
+	`define SPLASH_SCR "splash_unoxt2.hex"
 	`define PHISICAL_BUTTONS
 `endif
 
