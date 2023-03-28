@@ -701,19 +701,9 @@ module PERIPHERALS (
 
 `ifdef MEM_512KB
 	`ifdef SPLASH_ENABLE
-		`ifdef ZXUNO_512KB	
-			bram_dualport #(.AW(14), .filename(`SPLASH_SCR_ZXUNO_512KB)) splash
-		`endif
-		`ifdef ZXUNCORE_512KB
-			bram_dualport #(.AW(14), .filename(`SPLASH_SCR_ZXUNCORE_512KB)) splash
-		`endif
+		bram_dualport #(.AW(14), .filename(`SPLASH_SCR)) splash
 	`else
-		`ifdef ZXUNO_512KB	
-			bram_dualport #(.AW(14)) splash
-		`endif
-		`ifdef ZXUNCORE_512KB
-			bram_dualport #(.AW(14)) splash
-		`endif
+		bram_dualport #(.AW(14)) splash
 	`endif
 	
 		(
@@ -733,19 +723,7 @@ module PERIPHERALS (
 
 `else
 	`ifdef SPLASH_ENABLE
-			`ifdef ZXUNO_2MB
-				bram #(.AW(12), .filename(`SPLASH_SCR_ZXUNO_2MB)) splash
-			`endif
-			`ifdef ZXUNCORE_2MB
-				bram #(.AW(12), .filename(`SPLASH_SCR_ZXUNCORE_2MB)) splash
-			`endif
-			`ifdef UNOXT    
-				bram #(.AW(12), .filename(`SPLASH_SCR_UNOXT)) splash
-			`endif
-			`ifdef UNOXT2
-				bram #(.AW(12), .filename(`SPLASH_SCR_UNOXT2)) splash
-			`endif
-			
+		bram #(.AW(12), .filename(`SPLASH_SCR)) splash			
 			(
 				.clka(clk_vga_cga),
 				.wea(1'b0),
