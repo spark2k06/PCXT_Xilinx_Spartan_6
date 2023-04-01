@@ -1,10 +1,17 @@
-// ZXUno model
+// Model
 
-`define ZXUNO_512KB
+// XC6SLX9
+`define ZXUNO_512KB 
 // `define ZXUNO_2MB
 // `define ZXUNO_2MB_EXT
 // `define ZXUNCORE_512KB
 // `define ZXUNCORE_2MB
+
+// XC6SLX16
+// `define ZXDOS_512KB
+// `define ZXDOS_1MB
+
+// XC6SLX25
 // `define UNOXT
 // `define UNOXT2
 
@@ -50,6 +57,11 @@
 `ifdef ZXUNO_2MB_EXT
 	`define MEM_2MB
 	`define SPLASH_SCR "splash_zxuno_2mb_ext.hex"
+`endif
+
+`ifdef ZXDOS_512KB
+	`define MEM_512KB
+	`define SPLASH_SCR "splash_zxdos_512kb.hex"
 `endif
 
 `ifdef ZXUNCORE_2MB
