@@ -6,6 +6,7 @@
 // `define ZXUNO_2MB_EXT
 `define ZXUNCORE_512KB
 // `define ZXUNCORE_2MB
+// `define VGAWIFI
 
 // XC6SLX16 (ZXDos Family)
 // `define ZXDOS_512KB

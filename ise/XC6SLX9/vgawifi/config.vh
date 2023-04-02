@@ -6,10 +6,10 @@
 // `define ZXUNO_2MB_EXT
 // `define ZXUNCORE_512KB
 // `define ZXUNCORE_2MB
-// `define VGAWIFI
+`define VGAWIFI
 
 // XC6SLX16 (ZXDos Family)
-`define ZXDOS_512KB
+// `define ZXDOS_512KB
 // `define ZXDOS_1MB
 // `define NGO
 
@@ -29,11 +29,11 @@
 
 `define SPLASH_ENABLE
 // `define SPLASH_SCR "splash_zxuno_512kb.hex"
-// `define SPLASH_SCR "splash_zxuno_2mb.hex"
+`define SPLASH_SCR "splash_zxuno_2mb.hex"
 // `define SPLASH_SCR "splash_zxuncore_512kb.hex"
 // `define SPLASH_SCR "splash_zxuncore_2mb.hex"
 
-`define SPLASH_SCR "splash_zxdos_512kb.hex"
+// `define SPLASH_SCR "splash_zxdos_512kb.hex"
 // `define SPLASH_SCR "splash_zxdos_1mb.hex"
 // `define SPLASH_SCR "splash_ngo.hex"
 
@@ -46,14 +46,14 @@
     VIDEO_OPTION = 1'b0;   // 0=RGB, 1=VGA	 
  
 // Memory
-`define MEM_512KB
+// `define MEM_512KB
 // `define MEM_1MB
-// `define MEM_2MB
+`define MEM_2MB
  
 // Features
   localparam
     TURBO_MODE = 1'b0;   // 0=Off, 1=On
 
 // `define PHISICAL_BUTTONS
-`define SOUND_ADLIB
-`define SOUND_TANDY
+// `define SOUND_ADLIB
+// `define SOUND_TANDY
