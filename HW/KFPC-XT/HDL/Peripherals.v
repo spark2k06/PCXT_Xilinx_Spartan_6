@@ -87,8 +87,8 @@ module PERIPHERALS (
 	input		wire					btn_green_n_i,
 	input		wire					btn_yellow_n_i
 	);
-
-`include "../../../ise/config.vh"
+	
+`include "config.vh"
 
 	parameter ps2_over_time = 16'd1000;
 	wire tandy_video;

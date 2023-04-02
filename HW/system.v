@@ -46,7 +46,7 @@ module system(
 	*/
 	);
 	
-`include "../ise/config.vh"
+`include "config.vh"
 	 
 reg clk_14_318 = 1'b0;
 reg clk_7_16 = 1'b0;
