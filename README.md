@@ -34,6 +34,8 @@ UnoXT, UnoXT2 & ZXDos+ are powered by Spartan XC6SLX25.
 
 ## Developers
 
+The bitstream generation process has been automated. It is possible to generate and update the files in the release folder automatically by running the scripts in each folder. They only require the environment variable XILINX_BIN_PATH to be defined, with the path to the BIN folder where ISE has been installed.
+
 Any contribution and pull request, please carry it out on the prerelease branch. Periodically they will be reviewed, moved and merged into the main branch, together with the corresponding release.
 
 Thank you!
