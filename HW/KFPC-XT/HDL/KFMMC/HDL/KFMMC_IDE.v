@@ -363,7 +363,7 @@ module KFMMC_IDE #(
 				end
 			endcase
 	assign end_chs2lba = chs2lba_state == 32'd3;
-	reg [7:0] fifo [access_block_size - 1:0];
+	reg [7:0] fifo [0:access_block_size - 1];
 	reg [7:0] fifo_in;
 	reg shift_fifo;
 	always @(posedge clock or posedge reset)
@@ -397,7 +397,7 @@ module KFMMC_IDE #(
 	reg select_lba;
 	wire [27:0] lba28_address = {head_number, cylinder[15:0], sector_number[7:0]};
 	wire [47:0] lba48_address = {cylinder[31:16], sector_number[15:8], cylinder[15:0], sector_number[7:0]};
-	wire [15:0] identify [256:0];
+	wire [15:0] identify [0:256];
 	reg [9:0] identify_index;
 	wire [15:0] identify_out = identify[identify_index[8:1]];
 	reg [31:0] state;
