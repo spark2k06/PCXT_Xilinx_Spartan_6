@@ -1,10 +1,6 @@
-# [IBM PC/XT](https://en.wikipedia.org/wiki/IBM_Personal_Computer_XT) for [ZXUno FPGA](https://zxuno.speccy.org/)
+# [IBM PC/XT](https://en.wikipedia.org/wiki/IBM_Personal_Computer_XT) for [Xilinx Spartan 6](https://www.xilinx.com/products/silicon-devices/fpga/spartan-6.html)
 
-PCXT port for ZXUno by [@spark2k06](https://github.com/spark2k06/).
-
-Discussion and evolution of the core in the following retrowiki forum thread:
-
-http://www.retrowiki.es/viewtopic.php?f=110&t=200038687#p200160311
+PCXT port for Xilinx Spartan 6 Family FPGAs by [@spark2k06](https://github.com/spark2k06/).
 
 ## Description
 
@@ -16,7 +12,7 @@ The [Graphics Gremlin project](https://github.com/schlae/graphics-gremlin) from 
 
 An SN76489AN Compatible Implementation (Tandy Sound) written in VHDL was also integrated - Copyright (c) 2005, 2006, [Arnim Laeuger](https://github.com/devsaurus) (arnim.laeuger@gmx.net)
 
-## Models
+## Models powered by Spartan 6
 
 * ZXUno & ZXUnCore 512Kb: PCXT, CGA and PC Speaker.
 * ZXUno & ZXUnCore 2Mb: PCXT, Tandy 1000, CGA and PC speaker.
