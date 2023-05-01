@@ -595,6 +595,10 @@ module PERIPHERALS (
 		.status(scandoubler),
 		.initial_status(VIDEO_OPTION)
 	);
+	
+`else
+
+	assign scandoubler = VIDEO_OPTION;
 
 `endif
 
