@@ -75,14 +75,12 @@ module PERIPHERALS (
 	input		wire					ems_enabled,
 	input		wire	[1:0]			ems_address,
 	output	wire					cga_vram_rdy,
-	output   wire              mmc_od_mode,
-	output   wire              mmc_clk,
-	input    wire              mmc_cmd_in,
-	output   wire              mmc_cmd_out,
-	output   wire              mmc_cmd_io,
-	input    wire              mmc_dat_in,
-	output   wire              mmc_dat_out,
-	output   wire              mmc_dat_io,
+// MMC interface
+   output   wire              spi_clk,
+   output   wire              spi_cs,
+   output   wire              spi_mosi,
+   input    wire              spi_miso,
+//
 	output   reg  [7:0]        xtctl = 8'h00,
 	input		wire					btn_green_n_i,
 	input		wire					btn_yellow_n_i
@@ -771,17 +769,16 @@ module PERIPHERALS (
         .ide_data_bus_in    (ide0_data_bus_in),
         .ide_data_bus_out   (ide0_data_bus_out)
     );
+	 
     //
     // XTIDE-MMC
     //
-
     wire [15:0]    mmcide_readdata;
 
-    KFMMC_IDE #(
-        .init_spi_clock_cycle               (8'd100),
-        .normal_spi_clock_cycle             (8'd004),
-        .timeout                            (32'h000FFFFF)
-    ) kfmmc_ide (
+    KFMMC_DRIVE_IDE #(
+        .init_spi_clock_cycle               (8'd150),
+        .normal_spi_clock_cycle             (8'd002)
+    ) u_KFMMC_DRIVE_IDE (
         .clock              (clock),
         .reset              (reset),
 
@@ -796,17 +793,16 @@ module PERIPHERALS (
 
         .device_master      (1'b1),     // set primary drive
 
-        .mmc_od_mode        (mmc_od_mode),
-        .mmc_clk            (mmc_clk),
-        .mmc_cmd_in         (mmc_cmd_in),
-        .mmc_cmd_out        (mmc_cmd_out),
-        .mmc_cmd_io         (mmc_cmd_io),
-        .mmc_dat_in         (mmc_dat_in),
-        .mmc_dat_out        (mmc_dat_out),
-        .mmc_dat_io         (mmc_dat_io)
+        .spi_clk            (spi_clk),
+        .spi_cs             (spi_cs),
+        .spi_mosi           (spi_mosi),
+        .spi_miso           (spi_miso)
+
     );
 
     assign ide0_data_bus_in = mmcide_readdata;
+	 
+	 
 	/*
 	wire [7:0] joy_data;
 	tandy_pcjr_joy joysticks(

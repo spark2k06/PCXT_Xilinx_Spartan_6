@@ -72,8 +72,8 @@
 
    output wire sd_cs0_n,    
    output wire sd_sclk,   // CLK
-   inout  wire sd_mosi,   // CMD
-   inout  wire sd_miso,   // DAT0
+   output wire sd_mosi,   // CMD
+   input  wire sd_miso,   // DAT0
 
    output wire led_red_o,
    output wire led_yellow_o,
@@ -136,7 +136,7 @@
 //		.PS2_DATA1(PS2DATA),
 //		.PS2_DATA2(PS2DATB)
 
-		.SD_n_CS(sd_cs0_n),
+		.SD_nCS(sd_cs0_n),
 		.SD_DI(sd_mosi),
 		.SD_CK(sd_sclk),
 		.SD_DO(sd_miso),

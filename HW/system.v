@@ -23,10 +23,10 @@ module system(
 
 	output	wire					AUD_L,
 	output	wire					AUD_R,
-	output	reg					SD_n_CS = 1'b1,
-	inout		wire					SD_DI, // CMD
-	output	wire					SD_CK, // CLK
-	inout		wire					SD_DO, // DAT0
+	output 	wire					SD_nCS,
+	output	wire					SD_DI,
+	output	wire					SD_CK,
+	input		wire					SD_DO,
 	input		wire					btn_green_n_i,
 	input		wire					btn_yellow_n_i
 	
@@ -336,14 +336,10 @@ reg splash_status = 1'b0;
 //		  .ioctl_wr                           (ioctl_wr),
 //		  .ioctl_addr                         (ioctl_addr),
 //		  .ioctl_data                         (ioctl_data),
-		  .mmc_od_mode                        (mmc_od_mode),
-		  .mmc_clk                            (mmc_clk),
-		  .mmc_cmd_in                         (mmc_cmd_in),
-		  .mmc_cmd_out                        (mmc_cmd_out),
-		  .mmc_cmd_io                         (mmc_cmd_io),
-		  .mmc_dat_in                         (mmc_dat_in),
-		  .mmc_dat_out                        (mmc_dat_out),
-		  .mmc_dat_io                         (mmc_dat_io),
+		  .spi_clk                            (spi_clk),
+		  .spi_cs                             (spi_cs),
+		  .spi_mosi                           (spi_mosi),
+		  .spi_miso                           (spi_miso),
 		  .SRAM_ADDR                          (SRAM_ADDR),
 		  .xtctl                              (xtctl),
 		  .SRAM_DATA                          (SRAM_DATA),
@@ -355,24 +351,29 @@ reg splash_status = 1'b0;
 		  .btn_yellow_n_i							  (btn_yellow_n_i)
     );
 
-   //
-   ///////////////////////   MMC     ///////////////////////
-   //
-   wire mmc_od_mode;
-   wire mmc_clk;
-   wire mmc_cmd_in;
-   wire mmc_cmd_out;
-   wire mmc_cmd_io;
-   wire mmc_dat_in;
-   wire mmc_dat_out;
-   wire mmc_dat_io;
-	
-   assign  SD_CK    = mmc_clk;
-   assign  SD_DI    = mmc_cmd_io ? 1'bz : ~mmc_cmd_out ? 1'b0 : mmc_od_mode ? 1'bz : 1'b1;
-   assign  mmc_cmd_in  = SD_DI;
+    //
+    ///////////////////////   MMC     ///////////////////////
+    //
+    wire spi_clk;
+    wire spi_cs;
+    wire spi_mosi;
+    wire spi_miso;
+	 
+	// output 	wire					SD_nCS, // OK
+	// output	wire					SD_DI,
+	// output	wire					SD_CK,
+	// input		wire					SD_DO,
+	//
+	// output wire SD_CS, // OK
+	// output wire SD_DI,
+	// output reg SD_CK = 0, // OK
+	// input SD_DO,
 
-   assign  SD_DO = mmc_dat_io ? 1'bz : ~mmc_dat_out ? 1'b0 : mmc_od_mode ? 1'bz : 1'b1;
-   assign  mmc_dat_in = SD_DO;
+    assign  SD_CK      = spi_clk; // OK
+    assign  SD_DI      = spi_mosi;
+    assign  spi_miso   = SD_DO;
+    assign  SD_nCS     = spi_cs; // OK
+	 
 
    //
    ///////////////////////   CPU     ///////////////////////

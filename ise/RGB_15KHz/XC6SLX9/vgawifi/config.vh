@@ -55,5 +55,5 @@
     TURBO_MODE = 1'b0;   // 0=Off, 1=On
 
 // `define PHISICAL_BUTTONS
-// `define SOUND_ADLIB
+`define SOUND_ADLIB
 // `define SOUND_TANDY

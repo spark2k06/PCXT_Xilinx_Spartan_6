@@ -1,4 +1,4 @@
-# BUILD ALL
+# BUILD ALL (RGB 15KHz)
 
 From this section it is possible to generate the core binaries for all models, updating the resulting files in the releases directory. Any errors occurring during the process will be logged in an error file, example:
 

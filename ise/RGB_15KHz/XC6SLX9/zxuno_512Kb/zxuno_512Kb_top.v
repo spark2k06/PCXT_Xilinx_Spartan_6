@@ -17,10 +17,10 @@ module zxuno_512Kb_top(
 
 	output	wire					AUDIO_L,
 	output	wire					AUDIO_R,
-	output	wire					SD_nCS,
-	inout		wire					SD_DI,
+	output 	wire					SD_nCS,
+	output	wire					SD_DI,
 	output	wire					SD_CK,
-	inout		wire					SD_DO,
+	input		wire					SD_DO,
 
 	output	wire					LED
 	/*
@@ -88,7 +88,7 @@ module zxuno_512Kb_top(
 //		.PS2_DATA1(PS2DATA),
 //		.PS2_DATA2(PS2DATB)
 
-		.SD_n_CS(SD_nCS),
+		.SD_nCS(SD_nCS),
 		.SD_DI(SD_DI),
 		.SD_CK(SD_CK),
 		.SD_DO(SD_DO)

@@ -1,4 +1,4 @@
-# BUILD XC6SLX16
+# BUILD XC6SLX16 (VGA 31KHz)
 
 From this section it is possible to generate the core binaries for all XC6SLX16 based models, updating the resulting files in the releases directory. Any errors occurring during the process will be logged in an error file, example:
 
