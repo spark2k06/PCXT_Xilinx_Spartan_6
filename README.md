@@ -14,8 +14,8 @@ An SN76489AN Compatible Implementation (Tandy Sound) written in VHDL was also in
 
 ## Models powered by Spartan 6
 
-* ZXUno & ZXUnCore 512Kb: PCXT, CGA and PC Speaker.
-* ZXUno & ZXUnCore 2Mb: PCXT, Tandy 1000, CGA and PC speaker.
+* ZXUno & ZXUnCore 512Kb: PCXT, CGA, Adlib, Tandy Sound, PC Speaker.
+* ZXUno & ZXUnCore 2Mb: PCXT, Tandy 1000, CGA, Adlib, Tandy Sound, PC Speaker.
 * ZXDos 512Kb: PCXT, CGA, Adlib, Tandy Sound, PC Speaker.
 * ZXDos 1Mb, NGo: PCXT, Tandy 1000, CGA, Adlib, Tandy Sound, PC Speaker.
 * ZXDos+, UnoXT, UnoXT2: PCXT, Tandy 1000, CGA, Adlib, Tandy Sound, PC Speaker.
