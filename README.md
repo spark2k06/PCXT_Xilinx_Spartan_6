@@ -28,7 +28,6 @@ UnoXT, UnoXT2 & ZXDos+ are powered by Spartan XC6SLX25.
 
 ## To-do list and challenges
 
-* Improved implementation of 8-bit IDE module
 * UART & Mouse implementation
 * Other implementations
 
