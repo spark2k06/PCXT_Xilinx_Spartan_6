@@ -909,11 +909,13 @@ module PERIPHERALS (
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= lpt_data;
 		end
+		/*
       else if ((xtctl_chip_select) && (~io_read_n))
       begin
           data_bus_out_from_chipset <= 1'b1;
           data_bus_out <= xtctl;
       end
+		*/
 		else if ((~ide0_chip_select_n) && (~io_read_n)) begin
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= xt2ide0_data_bus_out;
