@@ -38,6 +38,7 @@ UnoXT2 | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Adlib + Tandy Sound | Yes | 
 
 ### PCXT common features
 
+* Color Graphics Adapter (CGA)
 * VGA/RGB output switch (F11)
 * Turbo Mode (F12)
 * XTIDE support
