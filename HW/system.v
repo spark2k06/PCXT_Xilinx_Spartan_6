@@ -358,9 +358,8 @@ reg splash_status = 1'b0;
 		  .xtctl                              (xtctl),
 		  .SRAM_DATA                          (SRAM_DATA),
 		  .SRAM_WE_n                          (SRAM_WE_n),
-//		  .ems_enabled                        (1'b1), // ~status[11]
-		  .ems_enabled                        (1'b0), // ~status[11]
-		  .ems_address                        (2'b0), // status[13:12]
+		  .ems_enabled                        (1'b1),
+		  .ems_address                        (2'b00), // 00: 0xC000 01: 0xD000 11: 0xE000
 		  .btn_green_n_i							  (btn_green_n_i),
 		  .btn_yellow_n_i							  (btn_yellow_n_i)
     );

@@ -143,7 +143,7 @@ module PERIPHERALS (
 	wire nmi_mask_register_n = ~(((tandy_video && iorq) && ~address_enable_n) && (address[15:3] == (16'h00a0 >> 3)));
 	wire tandy_page_cs = (iorq && ~address_enable_n) && (address[15:0] == 16'h03df);
 
-	wire [3:0] ems_page_address = (ems_address == 2'b00 ? 4'b1010 : (ems_address == 2'b01 ? 4'b1100 : 4'b1101));
+	wire    [3:0] ems_page_address  = (ems_address == 2'b00) ? 4'b1100 : (ems_address == 2'b01) ? 4'b1101 : 4'b1110;
 	wire ems_oe = ((iorq && ~address_enable_n) && ems_enabled) && ({address[15:2], 2'd0} == 16'h0260);
 	reg [0:3] ena_ems;
 	wire ems_b1 = (~iorq && ena_ems[0]) && (address[19:14] == {ems_page_address, 2'b00});
