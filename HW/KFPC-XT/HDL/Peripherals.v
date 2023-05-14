@@ -44,6 +44,10 @@ module PERIPHERALS (
 	input		wire					ps2_data,
 	output	reg					ps2_clock_out,
 	output	wire					ps2_data_out,
+   input    wire              ps2_mouseclk_in,
+   input    wire              ps2_mousedat_in,
+   output   wire              ps2_mouseclk_out,
+   output   wire              ps2_mousedat_out,
 //	input		wire	[4:0]			joy_opts,
 //	input		wire	[31:0]		joy0,
 //	input		wire	[31:0]		joy1,
@@ -61,14 +65,7 @@ module PERIPHERALS (
 	input		wire					ioctl_wr,
 	input		wire	[24:0]		ioctl_addr,
 	input		wire	[7:0]			ioctl_data,
-//	input		wire					clk_uart,
-//	input		wire					uart_rx,
-//	output	wire					uart_tx,
-//	input		wire					uart_cts_n,
-//	input		wire					uart_dcd_n,
-//	input		wire					uart_dsr_n,
-//	output	wire					uart_rts_n,
-//	output	wire					uart_dtr_n,
+	input		wire					clk_uart,
 	output	wire	[20:0]		SRAM_ADDR,
 	inout		wire	[7:0]			SRAM_DATA,
 	output	wire					SRAM_WE_n,
@@ -125,7 +122,7 @@ module PERIPHERALS (
 	wire ppi_chip_select_n = iorq && chip_select_n[3];
 	assign dma_page_chip_select_n = iorq && chip_select_n[4];
 //	wire joystick_select = (iorq && ~address_enable_n) && (address[15:3] == (16'h0200 >> 3));
-//	wire uart_cs = ~address_enable_n && ({address[15:3], 3'd0} == 16'h03f8);
+	wire uart_cs = ~address_enable_n && ({address[15:3], 3'd0} == 16'h03f8);
 	wire opl_chip_select_n = ~((iorq && ~address_enable_n) && (address[15:1] == (16'h0388 >> 1)));
 	wire cga_chip_select_n = ~((~iorq && ~address_enable_n) && (address[19:15] == 5'b10111));
 	wire ide0_chip_select_n      = ~(iorq && ~address_enable_n && ({address[15:4], 4'd0} == 16'h0300));
@@ -133,7 +130,7 @@ module PERIPHERALS (
 	wire xtide_select_n = ~((~iorq && ~address_enable_n) && (address[19:14] == 6'b111011));
 	wire bios_8kb_select_n = ~((~iorq && ~address_enable_n) && (address[19:13] == 7'b1111111));
 	wire tandy_chip_select_n = ~((iorq && ~address_enable_n) && (address[15:3] == (16'h00c0 >> 3)));
-	wire xtctl_chip_select = (iorq && ~address_enable_n && address[15:0] == 16'h8888);
+	// wire xtctl_chip_select = (iorq && ~address_enable_n && address[15:0] == 16'h8888);
 
 `ifdef MEM_512KB
 	wire ram_select_n = ~(~iorq && ~address_enable_n && ~address[19]);
@@ -182,7 +179,7 @@ module PERIPHERALS (
 
 	wire timer_interrupt;
 	reg keybord_interrupt;
-//	wire uart_interrupt;
+	wire uart_interrupt;
 	wire [7:0] interrupt_data_bus_out;
 	KF8259 u_KF8259(
 		.clock(clock),
@@ -197,8 +194,11 @@ module PERIPHERALS (
 		.slave_program_n(1'b1),
 		.interrupt_acknowledge_n(interrupt_acknowledge_n),
 		.interrupt_to_cpu(interrupt_to_cpu),
+`ifdef MOUSE_COM1
+		.interrupt_request({interrupt_request[7:5], uart_interrupt, interrupt_request[3:2], keybord_interrupt, timer_interrupt})
+`else
 		.interrupt_request({interrupt_request[7:4], interrupt_request[3:2], keybord_interrupt, timer_interrupt})
-//		.interrupt_request({interrupt_request[7:5], uart_interrupt, interrupt_request[3:2], keybord_interrupt, timer_interrupt})
+`endif		
 	);
 	reg prev_p_clock_1;
 	reg prev_p_clock_2;
@@ -364,10 +364,9 @@ module PERIPHERALS (
 		end
 	reg prev_io_read_n;
 	reg prev_io_write_n;
-//	reg [7:0] write_to_uart;
-//	wire [7:0] uart_readdata_1;
-//	wire [7:0] uart_readdata_2;
-//	reg [7:0] uart_readdata;
+	reg [7:0] write_to_uart;
+	wire [7:0] uart_readdata_1;
+	reg [7:0] uart_readdata;
 	always @(posedge clock) begin
 		prev_io_read_n <= io_read_n;
 		prev_io_write_n <= io_write_n;
@@ -394,8 +393,8 @@ module PERIPHERALS (
 		*/
 		if (lpt_cs && ~io_write_n)
 			lpt_data <= internal_data_bus;
-      if ((xtctl_chip_select) && (~io_write_n))
-         xtctl <= internal_data_bus;
+//      if ((xtctl_chip_select) && (~io_write_n))
+//         xtctl <= internal_data_bus;
 
 `ifndef MEM_512KB
 		if (tandy_page_cs && ~io_write_n)		
@@ -404,8 +403,11 @@ module PERIPHERALS (
 			nmi_mask_register_data <= internal_data_bus;
 `endif
 	end
-	/*
+	 
+`ifdef MOUSE_COM1
+	wire rts_n;	
 	wire iorq_uart = (io_write_n & ~prev_io_write_n) || (~io_read_n & prev_io_read_n);
+	wire uart_tx;
 	uart uart1(
 		.clk(clock),
 		.br_clk(clk_uart),
@@ -416,23 +418,33 @@ module PERIPHERALS (
 		.write(io_write_n & ~prev_io_write_n),
 		.readdata(uart_readdata_1),
 		.cs(uart_cs & iorq_uart),
-		.rx(uart_rx),
-		.tx(uart_tx),
-		.cts_n(uart_cts_n),
-		.dcd_n(uart_dcd_n),
-		.dsr_n(uart_dsr_n),
-		.rts_n(uart_rts_n),
-		.dtr_n(uart_dtr_n),
-		.ri_n(1),
+		.rx(uart_tx),
+      .cts_n(0),
+      .dcd_n(0),
+      .dsr_n(0),
+      .ri_n(1),
+      .rts_n(rts_n),
 		.irq(uart_interrupt)
 	);
+	
+    MSMouseWrapper MSMouseWrapper_inst 
+    (
+        .clk(clock),
+        .ps2dta_in(ps2_mousedat_in),
+        .ps2clk_in(ps2_mouseclk_in),
+        .ps2dta_out(ps2_mousedat_out),
+        .ps2clk_out(ps2_mouseclk_out),
+        .rts(~rts_n),
+        .rd(uart_tx)
+    );
+`endif
 	
 	always @(posedge clock)
 		if (~io_read_n)
 			uart_readdata <= uart_readdata_1;
 		else
 			uart_readdata <= uart_readdata;
-	*/
+	
 	reg [19:0] video_ram_address;
 	reg [7:0] video_ram_data;
 	reg video_memory_write_n;

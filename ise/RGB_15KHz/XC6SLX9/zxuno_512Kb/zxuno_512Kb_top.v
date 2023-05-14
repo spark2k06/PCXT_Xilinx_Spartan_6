@@ -14,6 +14,8 @@ module zxuno_512Kb_top(
 
 	inout		wire					clkps2,
 	inout		wire					dataps2,
+	inout		wire					mouseclk,
+	inout		wire					mousedata,
 
 	output	wire					AUDIO_L,
 	output	wire					AUDIO_R,
@@ -40,8 +42,6 @@ module zxuno_512Kb_top(
 	wire clk_100;
 	wire clk_50;
 	wire clk_28_571;	
-	wire clk_14_815;
-	wire clk_3_571;
 	
 	wire [5:0] R;
 	wire [5:0] G;
@@ -58,17 +58,14 @@ module zxuno_512Kb_top(
 		.CLK_IN1(CLK_50MHZ), 
 		.CLK_OUT1(clk_100),
 		.CLK_OUT2(clk_50),
-		.CLK_OUT3(clk_28_571),
-		.CLK_OUT4(clk_3_571)
+		.CLK_OUT3(clk_28_571)
     );
    
 	system sys_inst
 	(	
 		.clk_100(clk_100),
 		.clk_chipset(clk_50),
-		.clk_vga(clk_28_571),
-//		.clk_uart(clk_14_815),
-		.clk_opl2(clk_3_571),		
+		.clk_vga(clk_28_571),	
 		
 		.VGA_R(R),
 		.VGA_G(G),
@@ -81,6 +78,8 @@ module zxuno_512Kb_top(
 //		.LED(LED),
 		.clkps2(clkps2),
 		.dataps2(dataps2),
+		.mouseclk(mouseclk),
+		.mousedata(mousedata),
 		.AUD_L(AUDIO_L),
 		.AUD_R(AUDIO_R),
 //	 	.PS2_CLK1(PS2CLKA),

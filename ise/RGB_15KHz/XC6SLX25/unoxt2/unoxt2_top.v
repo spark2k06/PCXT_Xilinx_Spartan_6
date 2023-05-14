@@ -89,8 +89,6 @@
 	wire clk_100;
 	wire clk_50;
 	wire clk_28_571;	
-	wire clk_14_815;
-	wire clk_3_571;
 	
 	wire [5:0] R;
 	wire [5:0] G;
@@ -105,8 +103,7 @@
 		.CLK_IN1(clock_50_i), 
 		.CLK_OUT1(clk_100),
 		.CLK_OUT2(clk_50),
-		.CLK_OUT3(clk_28_571),
-		.CLK_OUT4(clk_3_571)
+		.CLK_OUT3(clk_28_571)
    );
    
 	system sys_inst
@@ -114,7 +111,6 @@
 		.clk_100(clk_100),
 		.clk_chipset(clk_50),
 		.clk_vga(clk_28_571),
-		.clk_opl2(clk_3_571),
 		
 		.turbo(led_yellow_o),
 		
@@ -129,6 +125,8 @@
 //		.LED(LED),
 		.clkps2(ps2_clk_io),
 		.dataps2(ps2_data_io),
+		.mouseclk(ps2_pin6_io),
+		.mousedata(ps2_pin2_io),
 		.AUD_L(audioext_l_o),
 		.AUD_R(audioext_r_o),
 //	 	.PS2_CLK1(PS2CLKA),

@@ -57,3 +57,4 @@
 // `define PHISICAL_BUTTONS
 `define SOUND_ADLIB
 `define SOUND_TANDY
+`define MOUSE_COM1

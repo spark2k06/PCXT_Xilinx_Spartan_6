@@ -5,7 +5,6 @@ module system(
 	input		wire					clk_100,
 	input		wire					clk_chipset,
 	input		wire					clk_vga,
-	input		wire					clk_opl2,
 	
 	output	wire					turbo,
 
@@ -20,6 +19,8 @@ module system(
 
 	inout		wire					clkps2,
 	inout		wire					dataps2,
+	inout    wire              mouseclk,
+	inout    wire              mousedata,
 
 	output	wire					AUD_L,
 	output	wire					AUD_R,
@@ -32,10 +33,6 @@ module system(
 	
 	/*
 	output	wire					LED,
-	inout		wire					PS2_CLK1,
-	inout		wire					PS2_CLK2,
-	inout		wire					PS2_DATA1,
-	inout		wire					PS2_DATA2
 
 	input		wire					joy_up,
 	input		wire					joy_down,
@@ -61,13 +58,10 @@ reg ps2_data_in;
 wire ps2_clock_out;
 wire ps2_data_out;
 
-/*
-assign ps2_clock_in = clkps2;
-assign clkps2 = (ps2_clock_out == 1'b0) ? 1'b0 : 1'bZ;
-
-assign ps2_data_in = dataps2;
-assign dataps2 = (ps2_data_out == 1'b0) ? 1'b0 : 1'bZ;
-*/
+reg ps2_mouseclk_in;
+reg ps2_mousedat_in;
+wire ps2_mouseclk_out;
+wire ps2_mousedat_out;
 
 always @(posedge clk_vga) begin // 28.636MHz
 	clk_14_318 <= ~clk_14_318; // 14.318Mhz
@@ -85,13 +79,16 @@ clk_div3 clk_normal // 4.77MHz
 always @(posedge clk_4_77)
 	peripheral_clock <= ~peripheral_clock; // 2.385Mhz
 	
-
 assign clkps2 = (ps2_clock_out == 1'b0) ? 1'b0 : 1'bZ;
 assign dataps2 = (ps2_data_out == 1'b0) ? 1'b0 : 1'bZ;
+assign mouseclk = (ps2_mouseclk_out == 1'b0) ? 1'b0 : 1'bZ;
+assign mousedata = (ps2_mousedat_out == 1'b0) ? 1'b0 : 1'bZ;
 
 always @(posedge peripheral_clock) begin
 	ps2_clock_in <= clkps2;
 	ps2_data_in <= dataps2;
+	ps2_mouseclk_in <= mouseclk;
+	ps2_mousedat_in <= mousedata;
 end
 	
 wire  biu_done;
@@ -99,7 +96,7 @@ reg  turbo_mode;
 
 always @(posedge clk_chipset) begin
     if (biu_done)
-		  turbo_mode  <= turbo ? turbo : xtctl[0];
+		  turbo_mode  <= turbo; // ? turbo : xtctl[0];
     else
         turbo_mode  <= turbo_mode;
 end
@@ -118,6 +115,18 @@ always @(posedge clk_chipset) begin
     pclk_ff_1    <= peripheral_clock;
     pclk_ff_2    <= pclk_ff_1;
     pclk         <= pclk_ff_2;
+end
+
+reg         clk_opl2; // 3.58MHz
+reg  [15:0] cen_opl2_cnt;
+wire [15:0] cen_opl2_cnt_next = cen_opl2_cnt + 16'd358;
+always @(posedge clk_chipset) begin
+	clk_opl2 <= 0;
+	cen_opl2_cnt <= cen_opl2_cnt_next;
+	if (cen_opl2_cnt_next >= 5000) begin // CPU_MHZ * 100
+		clk_opl2 <= 1;
+		cen_opl2_cnt <= cen_opl2_cnt_next - 5000;
+	end
 end
 
 reg   clk_opl2_ff_1;
@@ -320,6 +329,10 @@ reg splash_status = 1'b0;
 	     .ps2_data                           (ps2_data_in),
 	     .ps2_clock_out                      (ps2_clock_out),
 	     .ps2_data_out                       (ps2_data_out),
+        .ps2_mouseclk_in                    (ps2_mouseclk_in),
+        .ps2_mousedat_in                    (ps2_mousedat_in),
+        .ps2_mouseclk_out                   (ps2_mouseclk_out),
+        .ps2_mousedat_out                   (ps2_mousedat_out),
 //		  .joy_opts                           (joy_opts),                          //Joy0-Disabled, Joy0-Type, Joy1-Disabled, Joy1-Type, turbo_sync
 //      .joy0                               (status[28] ? joy1 : joy0),
 //      .joy1                               (status[28] ? joy0 : joy1),
@@ -328,6 +341,7 @@ reg splash_status = 1'b0;
 		  .clk_en_opl2                        (cen_opl2),
 		  .jtopl2_snd_e                       (jtopl2_snd_e),
 		  .tandy_snd_e                        (tandy_snd_e),
+		  .clk_uart                           (clk_uart2_en),
 //		  .adlibhide                          (adlibhide),
 //		  .tandy_video                        (tandy_mode),
 //		  .tandy_16_gfx                       (tandy_16_gfx),
@@ -374,6 +388,73 @@ reg splash_status = 1'b0;
     assign  spi_miso   = SD_DO;
     assign  SD_nCS     = spi_cs; // OK
 	 
+    //
+    ////////////////////////////  UART  ///////////////////////////////////
+    //
+	 
+	 reg         clk_uart; // 14.815MHz
+	 reg  [21:0] clk_uart_cnt;
+	 wire [21:0] clk_uart_cnt_next = clk_uart_cnt + 22'd14815;
+	 always @(posedge clk_chipset) begin
+		clk_uart <= 0;
+		clk_uart_cnt <= clk_uart_cnt_next;
+	 	if (clk_uart_cnt_next >= 50000) begin // CPU_MHZ * 1000
+	 		clk_uart <= 1;
+	 		clk_uart_cnt <= clk_uart_cnt_next - 50000;
+	 	end
+	 end
+
+    reg clk_uart_ff_1;
+    reg clk_uart_ff_2;
+    reg clk_uart_ff_3;
+    reg clk_uart_en;
+    reg clk_uart2_en;
+    reg [2:0] clk_uart2_counter;
+
+    always @(posedge clk_chipset)
+    begin
+        clk_uart_ff_1 <= clk_uart;
+        clk_uart_ff_2 <= clk_uart_ff_1;
+        clk_uart_ff_3 <= clk_uart_ff_2;
+        clk_uart_en   <= ~clk_uart_ff_3 & clk_uart_ff_2;
+    end
+
+    always @(posedge clk_chipset)
+    begin
+        if (clk_uart_en)
+        begin
+            if (3'd7 != clk_uart2_counter)
+            begin
+                clk_uart2_counter <= clk_uart2_counter +3'd1;
+                clk_uart2_en <= 1'b0;
+            end
+            else
+            begin
+                clk_uart2_counter <= 3'd0;
+                clk_uart2_en <= 1'b1;
+            end
+        end
+        else
+        begin
+            clk_uart2_counter <= clk_uart2_counter;
+            clk_uart2_en <= 1'b0;
+        end
+    end
+
+
+
+    wire uart_tx, uart_rts, uart_dtr;
+
+//    assign UART_TXD = uart_tx;
+//    assign UART_RTS = uart_rts;
+//    assign UART_DTR = uart_dtr;
+
+    wire uart_rx;//  = UART_RXD;
+    wire uart_cts;// = UART_CTS;
+    wire uart_dsr;// = UART_DSR;
+    wire uart_dcd;// = UART_DTR;
+
+
 
    //
    ///////////////////////   CPU     ///////////////////////
