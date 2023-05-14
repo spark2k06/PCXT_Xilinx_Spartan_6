@@ -99,7 +99,7 @@ module PERIPHERALS (
 `ifdef MEM_512KB
 	assign cga_vram_rdy = 1'b1;
 `else
-	assign cga_vram_rdy = ~(CGA_VRAM_ENABLE | CGA_VRAM_ENABLE_ff | CGA_VRAM_ENABLE_ff_2);
+	assign cga_vram_rdy = ~(CGA_VRAM_ENABLE | CGA_VRAM_ENABLE_ff | CGA_VRAM_ENABLE_ff_2 | CGA_VRAM_ENABLE_ff_3);
 `endif
 
 	always @(*)
@@ -500,11 +500,13 @@ module PERIPHERALS (
 	reg [7:0] cga_vram_cpu_dout;
 	reg CGA_VRAM_ENABLE_ff;
 	reg CGA_VRAM_ENABLE_ff_2;
+	reg CGA_VRAM_ENABLE_ff_3;
 	reg [19:0] cga_crtc_ff;
 	reg [20:0] tandy_crtc_ff;
 	always @(negedge clock) begin
 		CGA_VRAM_ENABLE_ff <= CGA_VRAM_ENABLE;
 		CGA_VRAM_ENABLE_ff_2 <= CGA_VRAM_ENABLE_ff;
+		CGA_VRAM_ENABLE_ff_3 <= CGA_VRAM_ENABLE_ff_3;
 		cga_crtc_ff <= cga_crtc;
 		tandy_crtc_ff <= tandy_crtc;
 	end
