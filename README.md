@@ -12,6 +12,8 @@ The [Graphics Gremlin project](https://github.com/schlae/graphics-gremlin) from 
 
 An SN76489AN Compatible Implementation (Tandy Sound) written in VHDL was also integrated - Copyright (c) 2005, 2006, [Arnim Laeuger](https://github.com/devsaurus) (arnim.laeuger@gmx.net)
 
+![splashscreen](./doc/img/splashscreen.png)
+
 ## Models powered by Spartan 6
 Family | Models | LEs | BRAM
 -------- | ----------- | ----------- | -----------
