@@ -1,11 +1,11 @@
 `timescale 1ns / 1ps
 
 module button_status (
-    input clk,                 // input clock
-    input reset,               // reset signal
-    input button,              // input button
+    input wire clk,                 // input clock
+    input wire  reset,               // reset signal
+    input wire  button,              // input button
     output reg status,         // binary output
-    input initial_status       // initial state of the output
+    input wire  initial_status       // initial state of the output
 );
 
 // Debounce constants
