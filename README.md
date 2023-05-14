@@ -40,7 +40,7 @@ UnoXT2 | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Adlib + Tandy Sound | Yes | 
 
 * Color Graphics Adapter (CGA)
 * VGA/RGB output switch (F11)
-* Turbo Mode (F12)
+* Turbo Mode ON/OFF (F12)
 * XTIDE support
 * Mouse support into COM1 serial port, this works like any Microsoft mouse... you just need a driver to configure it, like CTMOUSE 1.9 (available into hdd folder)
 
