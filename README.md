@@ -28,7 +28,7 @@ Model | Memory | Audio | Tandy 1000 support | Binary
 ZXUno 512Kb | 512Kb | PC Speaker | No | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuno_512Kb/coreXX.zx1)
 ZXUno 2Mb | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuno_2Mb/coreXX.zx1)
 ZXUno 2Mb Ext | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuno_2Mb/coreXX.zx1)
-ZXUno VGAWifi | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/vgawifi/coreXX.zx1)
+ZXUno VGAWifi | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/vgawifi/coreXX.ZX1)
 ZXUnCore 512Kb | 512Kb | PC Speaker | No | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuncore_512Kb/coreXX.zx1)
 ZXUnCore 2Mb | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuncore_2Mb_Ext/coreXX.zx1)
 ZXDos 512Kb | 512Kb | PC Speaker + Adlib | No | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxdos_512Kb/coreXX.zx2)
