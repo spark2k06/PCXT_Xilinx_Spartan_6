@@ -7,8 +7,11 @@ module KFPS2KB_direct (
 	output	reg					irq,
 	output	reg	[7:0]			keycode,
 	input		wire					clear_keycode,
-	input    wire              reset_keybord,
-	output   reg               pause_core
+   output   reg               turbo_mode,
+   output   reg               swap_video,
+	input    wire              initial_turbo,
+	input    wire              initial_video,
+	input    wire              reset_keybord
 );
 	parameter over_time = 16'd1000;
 	wire [7:0] register;
@@ -178,10 +181,11 @@ module KFPS2KB_direct (
 	endfunction
 	always @(posedge clock or posedge reset)
 		if (reset) begin
+			swap_video <= initial_video;
+			turbo_mode <= initial_turbo;
 			irq <= 1'b0;
 			keycode <= 8'h00;
-			break_flag <= 1'b0;
-			pause_core <= 1'b0;
+			break_flag <= 1'b0;			
 			error_flag <= 1'b0;
 		end
 		else if (reset_keybord) begin
@@ -220,18 +224,21 @@ module KFPS2KB_direct (
 				break_flag <= 1'b1;
 				error_flag <= 1'b0;
 			end
+         else if (register == 8'h78) begin
+             // F11: RGB <-> Composite
+             irq         <= 1'b0;
+             keycode     <= 8'h00;
+             break_flag  <= 1'b0;
+             swap_video <= break_flag ? ~swap_video : swap_video;
+         end
+         else if (register == 8'h07) begin
+             // F12: Turbo mode ON <-> OFF
+             irq         <= 1'b0;
+             keycode     <= 8'h00;
+             break_flag  <= 1'b0;
+             turbo_mode  <= break_flag ? ~turbo_mode : turbo_mode;
+         end
 			else if (register == 8'h07) begin
-				irq <= 1'b0;
-				keycode <= 8'h00;
-				break_flag <= 1'b0;
-			end
-			else if (register == 8'h78) begin
-				irq <= 1'b0;
-				keycode <= 8'h00;
-				break_flag <= 1'b0;
-				pause_core <= (break_flag ? ~pause_core : pause_core);
-			end
-			else if (pause_core) begin
 				irq <= 1'b0;
 				keycode <= 8'h00;
 				break_flag <= 1'b0;

@@ -93,6 +93,8 @@ module PERIPHERALS (
 	assign tandy_16_gfx = (tandy_video & grph_mode) & hres_mode;
 	reg [7:0] chip_select_n;
 	wire CGA_VRAM_ENABLE;
+	wire turbo_mode;
+   wire swap_video;
 
 `ifdef MEM_512KB
 	assign cga_vram_rdy = 1'b1;
@@ -288,7 +290,12 @@ module PERIPHERALS (
 		.device_data(ps2_data),
 		.irq(keybord_irq),
 		.keycode(keycode),
-		.clear_keycode(clear_keycode)
+		.clear_keycode(clear_keycode),
+		.swap_video(swap_video),
+		.turbo_mode(turbo_mode),		
+		.initial_video(VIDEO_OPTION),
+		.initial_turbo(TURBO_MODE)
+		
 	);
 	KFPS2KB_Send_Data u_KFPS2KB_Send_Data(
 		.clock(clock),
@@ -610,7 +617,8 @@ module PERIPHERALS (
 	
 `else
 
-	assign scandoubler = VIDEO_OPTION;
+	assign scandoubler = swap_video;
+	assign turbo = turbo_mode;
 
 `endif
 
