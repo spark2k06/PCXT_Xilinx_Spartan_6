@@ -43,7 +43,7 @@ UnoXT2 | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Adlib + Tandy Sound | Yes | 
 * XTIDE support
 * Mouse support into COM1 serial port, this works like any Microsoft mouse... you just need a driver to configure it, like CTMOUSE 1.9 (available into hdd folder)
 
-Note: On LX9 models, it is possible to disable the mouse and add Adlib, it would be necessary to resynthesise to get the binary, see Developers section.
+Note: On LX9 models, it is possible to remove the mouse and add Adlib, it would be necessary to resynthesise to get the binary, see Developers section.
 
 ## To-do list and challenges
 
