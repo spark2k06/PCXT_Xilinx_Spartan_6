@@ -392,12 +392,12 @@ module PERIPHERALS (
 	reg [7:0] tandy_page_data = 8'h00;
 	reg [7:0] nmi_mask_register_data = 8'hff;
 	always @(posedge clock) begin
-		/*
+		
 		if (~io_write_n)
 			write_to_uart <= internal_data_bus;
 		else
 			write_to_uart <= write_to_uart;
-		*/
+		
 		if (lpt_cs && ~io_write_n)
 			lpt_data <= internal_data_bus;
 //      if ((xtctl_chip_select) && (~io_write_n))
@@ -916,6 +916,13 @@ module PERIPHERALS (
 			data_bus_out_from_chipset <= 1'b1;
 			data_bus_out <= xt2ide0_data_bus_out;
 		end
+`ifdef MOUSE_COM1
+      else if ((uart_cs) && (~io_read_n))
+      begin
+          data_bus_out_from_chipset <= 1'b1;
+          data_bus_out <= uart_readdata;
+      end
+`endif
 		/*
 		else if (joystick_select && ~io_read_n) begin
 			data_bus_out_from_chipset <= 1'b1;
