@@ -21,5 +21,5 @@
             (MicroCoreLabs)                        (TubeTime)      
                                                                    
                                                                    
-                                                                   
+           F11: VGA 31KHz <-> RGB 15KHz       F12: Turbo ON/OFF    
                                                                    
