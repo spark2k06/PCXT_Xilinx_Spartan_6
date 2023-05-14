@@ -1,4 +1,4 @@
-# BUILD XC6SLX25 (RGB 15KHz)
+# BUILD XC6SLX25
 
 From this section it is possible to generate the core binaries for all XC6SLX25 based models, updating the resulting files in the releases directory. Any errors occurring during the process will be logged in an error file, example:
 

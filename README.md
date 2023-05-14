@@ -12,6 +12,8 @@ The [Graphics Gremlin project](https://github.com/schlae/graphics-gremlin) from 
 
 An SN76489AN Compatible Implementation (Tandy Sound) written in VHDL was also integrated - Copyright (c) 2005, 2006, [Arnim Laeuger](https://github.com/devsaurus) (arnim.laeuger@gmx.net)
 
+![splashscreen](./doc/img/splashscreen.png)
+
 ## Models powered by Spartan 6
 Family | Models | LEs | BRAM
 -------- | ----------- | ----------- | -----------
@@ -25,7 +27,9 @@ Model | Memory | Audio | Tandy 1000 support | Binary
 -------- | ----------- | ----------- | ----------- | ----------- 
 ZXUno 512Kb | 512Kb | PC Speaker | No | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuno_512Kb/coreXX.zx1)
 ZXUno 2Mb | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuno_2Mb/coreXX.zx1)
-ZXDos 512Kb | 512Kb | PC Speaker | No | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxdos_512Kb/coreXX.zx2)
+ZXUnCore 512Kb | 512Kb | PC Speaker | No | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuncore_512Kb/coreXX.zx1)
+ZXUnCore 2Mb | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxuncore_2Mb/coreXX.zx1)
+ZXDos 512Kb | 512Kb | PC Speaker + Adlib | No | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxdos_512Kb/coreXX.zx2)
 ZXDos 1Mb | 640Kb + 384Kb UMB | PC Speaker + Adlib + Tandy Sound | Yes | [folder](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/tree/main/releases/zxdos_1Mb)
 NGo | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Adlib + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/ngo/un_pcxt.bit)
 ZXDos+ | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Adlib + Tandy Sound | Yes | [download](https://github.com/spark2k06/PCXT_Xilinx_Spartan_6/raw/main/releases/zxdosplus/coreXX.zxd)
@@ -34,10 +38,13 @@ UnoXT2 | 640Kb + 384Kb UMB + 1Mb EMS | PC Speaker + Adlib + Tandy Sound | Yes | 
 
 ### PCXT common features
 
+* Color Graphics Adapter (CGA)
+* VGA/RGB output switch (F11)
+* Turbo Mode (F12)
 * XTIDE support
 * Mouse support into COM1 serial port, this works like any Microsoft mouse... you just need a driver to configure it, like CTMOUSE 1.9 (available into hdd folder)
 
-Note: On LX9 models, it is possible to disable the mouse and add Adlib, it would be necessary to resynthesise to get the binary, see Developers section.
+Note: On LX9 models, it is possible to remove the mouse and add Adlib, it would be necessary to resynthesise to get the binary, see Developers section.
 
 ## To-do list and challenges
 
